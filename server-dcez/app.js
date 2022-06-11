@@ -36,5 +36,19 @@ app.get('/card/:id', (req, res) => {
     res.send(activity);
 })
 
+// client.on("presenceUpdate", function (oldPresence, newPresence, args, oldActivity, newActivity) {
+
+//     const currentActivity = newPresence.activities[0];
+
+//     if (newPresence.user.id === "784141856426033233" && newPresence.user.bot === false) {
+//         console.log(`${newPresence.user.tag} is ${newPresence.status}`);
+//         if (currentActivity.name === "Spotify") {
+//             console.log(`${newPresence.user.username} is listening to ${currentActivity.details} \nby ${currentActivity.state}}`);
+//         } else if (currentActivity.name === "Code") {
+//             console.log(`${newPresence.user.username} ${currentActivity.details} \n${currentActivity.state}`);
+//         }
+//     }
+// });
+
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 client.login(process.env.DISCORD_TOKEN);
