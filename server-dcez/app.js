@@ -29,7 +29,7 @@ io.on("connection", (socket) => {
 
         const member = client.guilds.cache.get('939799133177384990').members.cache.get(data.userid);
         const activity = member.presence.activities[0];
-        console.log(activity)
+        // console.log(activity)
 
         io.emit("message", {
             stuff: activity
@@ -38,7 +38,7 @@ io.on("connection", (socket) => {
         function getActivity() {
             const member = client.guilds.cache.get('939799133177384990').members.cache.get(data.userid);
             const activity = member.presence.activities[0];
-            console.log(activity)
+            // console.log(activity)
 
             io.emit("message", {
                 stuff: activity
@@ -46,7 +46,10 @@ io.on("connection", (socket) => {
         }
 
         client.on("presenceUpdate", function (newPresence) {
-            getActivity();
+            if (newPresence.user.id === main_user) {
+                getActivity()
+                console.log(newPresence.activities[0].state)
+            }
         });
     })
 })
