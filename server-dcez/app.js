@@ -1,45 +1,74 @@
 const express = require('express');
 const request = require('request');
 const app = express();
-const port = 5000;
 
 const { Client, Intents, Collection } = require('discord.js');
 const Discord = require('discord.js');
 const client = new Client({ intents: 32767 });
 require('dotenv').config();
 
-app.get('/', (req, res) => res.send('Hello World!'));
+const http = require('http')
+const { Server } = require('socket.io')
+const cors = require('cors')
+app.use(cors())
 
-app.get('/card', (req, res) => {
-    const member = client.guilds.cache.get('939799133177384990').members.cache.get('784141856426033233');
-    const activity = member.presence.activities[0];
-    // console.log(activity);
-    res.send(activity);
-})
+const server = http.createServer(app)
 
-// ask user for their discord id inside the api call to get the user's card info
-app.get('/card/:id', (req, res) => {
-    const id = req.params.id;
-    const member = client.guilds.cache.get('939799133177384990').members.cache.get(id);
-    const activity = member.presence.activities[0];
-    // console.log(activity);
-    res.send(activity);
-})
-
-client.on("presenceUpdate", function (oldPresence, newPresence, args, oldActivity, newActivity) {
-
-    const currentActivity = newPresence.activities[0];
-
-    if (newPresence.user.id === "784141856426033233" && newPresence.user.bot === false) {
-        // console.log(`${newPresence.user.tag} is ${newPresence.status}`);
-        if (currentActivity.name === "Spotify") {
-            console.log(`${newPresence.user.username} is listening to ${currentActivity.details} \nby ${currentActivity.state}}`);
-        } else if (currentActivity.name === "Code") {
-            console.log(`${currentActivity.state}`);
-        }   
+const io = new Server(server, {
+    cors: {
+        origin: 'http://localhost:3000',
+        methods: ["GET", "POST"],
     }
+})
 
-});
+// const member = client.guilds.cache.get('939799133177384990').members.cache.get('784141856426033233');
+// const activity = member.presence.activities[0];
+// console.log(activity);
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+io.on("connection", (socket) => {
+    console.log(`a user connected ${socket.id}`)
+
+    socket.on("user", function (data) {
+        const main_user = data.userid
+
+        const member = client.guilds.cache.get('939799133177384990').members.cache.get(data.userid);
+        const activity = member.presence.activities[0];
+
+        io.emit("message", {
+            stuff: activity
+        })
+
+        function updateActivity() { 
+            const member = client.guilds.cache.get('939799133177384990').members.cache.get(data.userid);
+            const activity = member.presence.activities[0];
+    
+            io.emit("message", {
+                stuff: activity
+            })
+        }
+
+        client.on("presenceUpdate", function (newPresence) {
+            if (newPresence.userId === main_user) {
+                updateActivity()
+                if(newPresence.activities[0].name === "Code"){
+                    if(newPresence.user.id === main_user) {
+                        const activity = newPresence.activities[0];
+                        io.emit("message", {
+                            stuff: activity
+                        })
+                    }
+                } else if (newPresence.activities[0].name === "Spotify"){
+                    if(newPresence.user.id === main_user) {
+                        const activity = newPresence.activities[0];
+                        io.emit("message", {
+                            stuff: activity
+                        })   
+                    }
+                }
+            }
+        });
+    })
+})
+
+server.listen(3001, () => console.log(`Listening on port 3001`))
 client.login(process.env.DISCORD_TOKEN);
