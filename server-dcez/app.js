@@ -21,10 +21,6 @@ const io = new Server(server, {
     }
 })
 
-// const member = client.guilds.cache.get('939799133177384990').members.cache.get('784141856426033233');
-// const activity = member.presence.activities[0];
-// console.log(activity);
-
 io.on("connection", (socket) => {
     console.log(`a user connected ${socket.id}`)
 
@@ -69,6 +65,11 @@ io.on("connection", (socket) => {
         });
     })
 })
+
+io.on("disconnect", (socket) => {
+    console.log(`a user disconnected ${socket.id}`)
+}
+)
 
 server.listen(3001, () => console.log(`Listening on port 3001`))
 client.login(process.env.DISCORD_TOKEN);
