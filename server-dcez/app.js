@@ -34,18 +34,8 @@ io.on("connection", (socket) => {
             stuff: activity
         })
 
-        function updateActivity() { 
-            const member = client.guilds.cache.get('939799133177384990').members.cache.get(data.userid);
-            const activity = member.presence.activities[0];
-    
-            io.emit("message", {
-                stuff: activity
-            })
-        }
-
         client.on("presenceUpdate", function (newPresence) {
             if (newPresence.userId === main_user) {
-                updateActivity()
                 if(newPresence.activities[0].name === "Code"){
                     if(newPresence.user.id === main_user) {
                         const activity = newPresence.activities[0];
