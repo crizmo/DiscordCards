@@ -1,6 +1,7 @@
 const express = require('express');
 const request = require('request');
 const app = express();
+const onlysvg = express();
 const fs = require('fs');
 
 const { Client, Intents, Collection } = require('discord.js');
@@ -42,7 +43,7 @@ io.on("connection", (socket) => {
         // console.log(temp)
 
         let base64 = Buffer.from(temp).toString('base64');
-        console.log(base64)
+        // console.log(base64)
 
         io.emit("message", {
             stuff: activity,
@@ -74,15 +75,15 @@ io.on("connection", (socket) => {
 
         client.on("presenceUpdate", function (newPresence, oldPresence) {
             if (newPresence.user.bot) return;
-            console.log(newPresence.user)
+            // console.log(newPresence.user)
             // console.log(newPresence.user.id)
             if (newPresence.user.id === main_user) {
                 if (newPresence.activities[0].name === 'Spotify') {
                     if(newPresence.activities[0].details === oldPresence.activities[0].details) {
                         return;
                     } else {
-                        console.log(oldPresence.activities[0].details)
-                        console.log(newPresence.activities[0].details)
+                        // console.log(oldPresence.activities[0].details)
+                        // console.log(newPresence.activities[0].details)
                         getActivity()
                     }
                 } else if (newPresence.activities[0].name === 'Code') {
@@ -90,6 +91,16 @@ io.on("connection", (socket) => {
                 }
             }
         });
+
+    })
+    
+    socket.on("svg", function (data) {
+        // console.log(data.svg)
+
+        onlysvg.get('/', (req, res) => {
+            res.send(data.svg)
+        })
+        
     })
 })
 
@@ -99,4 +110,5 @@ io.on("disconnect", (socket) => {
 )
 
 server.listen(3001, () => console.log(`Listening on port 3001`))
+onlysvg.listen(5000, () => console.log(`Listening on port 5000`))
 client.login(process.env.DISCORD_TOKEN);
