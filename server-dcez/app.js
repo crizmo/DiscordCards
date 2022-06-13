@@ -10,7 +10,8 @@ require('dotenv').config();
 
 const http = require('http')
 const { Server } = require('socket.io')
-const cors = require('cors')
+const cors = require('cors');
+const { get } = require('request');
 app.use(cors())
 
 const server = http.createServer(app)
@@ -71,10 +72,22 @@ io.on("connection", (socket) => {
             })
         }
 
-        client.on("presenceUpdate", function (newPresence) {
+        client.on("presenceUpdate", function (newPresence, oldPresence) {
+            if (newPresence.user.bot) return;
+            console.log(newPresence.user)
+            // console.log(newPresence.user.id)
             if (newPresence.user.id === main_user) {
-                getActivity()
-                console.log(newPresence.activities[0].state)
+                if (newPresence.activities[0].name === 'Spotify') {
+                    if(newPresence.activities[0].details === oldPresence.activities[0].details) {
+                        return;
+                    } else {
+                        console.log(oldPresence.activities[0].details)
+                        console.log(newPresence.activities[0].details)
+                        getActivity()
+                    }
+                } else if (newPresence.activities[0].name === 'Code') {
+                    getActivity()
+                }
             }
         });
     })
