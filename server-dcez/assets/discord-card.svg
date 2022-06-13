@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="300" height="150" viewBox="0 0 300 150" xml:space="preserve">
+<desc>Created with Fabric.js 4.2.0</desc>
+<defs>
+</defs>
+<g transform="matrix(0 0 0 0 0 0)" id="e568aa6f-5108-406f-a3c5-a0f7c514004e"  >
+</g>
+<g transform="matrix(1 0 0 1 150 75)" id="05d0351f-5982-4fe6-a119-8f5439803f67"  >
+<rect style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(32,31,31); fill-rule: nonzero; opacity: 1;" vector-effect="non-scaling-stroke"  x="-150" y="-75" rx="0" ry="0" width="300" height="150" />
+</g>
+<g transform="matrix(0.59 0 0 0.59 46.32 58.61)"  >
+<path style="stroke: rgb(0,0,0); stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(101,101,101); fill-rule: nonzero; opacity: 1;" vector-effect="non-scaling-stroke"  transform=" translate(-50, -50)" d="M 90.375 90.375 L 9.625 90.375 L 9.625 9.625 L 90.375 9.625 L 90.375 90.375 z M 11.625 88.375 L 88.375 88.375 L 88.375 11.625 L 11.625 11.625 L 11.625 88.375 z" stroke-linecap="round" />
+</g>
+<g transform="matrix(3.85 0 0 0.38 149.88 121.01)" id="a5a33611-8e1b-48f8-a76f-539bd6f4a1e9"  >
+<rect style="stroke: rgb(128,124,124); stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(112,112,112); fill-rule: nonzero; opacity: 1;" vector-effect="non-scaling-stroke"  x="-33.085" y="-33.085" rx="0" ry="0" width="66.17" height="66.17" />
+</g>
+<g transform="matrix(0.34 0 0 0.28 148.42 121.58)" style="" id="85efbb0c-cf47-41fb-a635-20b39eba200c"  >
+		<text xml:space="preserve" font-family="Lato" font-size="43" font-style="normal" font-weight="400" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1; white-space: pre;" ><tspan x="-121.78" y="13.51" >[button-text]</tspan></text>
+</g>
+<g transform="matrix(0.11 0 0 0.11 68.91 19.29)" style="" id="1993be07-8502-43c1-a5f8-a72f5b3be3eb"  >
+		<text xml:space="preserve" font-family="Raleway" font-size="105" font-style="normal" font-weight="900" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1; white-space: pre;" ><tspan x="-414.98" y="32.98" >[type]</tspan></text>
+</g>
+<g transform="matrix(0.09 0 0 0.08 169.3 42.88)" style="" id="6b81fc2a-e0fe-4bce-8bed-24bf2c2f4f6f"  >
+		<text xml:space="preserve" font-family="Raleway" font-size="155" font-style="normal" font-weight="700" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1; white-space: pre;" ><tspan x="-1028.52" y="48.69" >[name]</tspan></text>
+</g>
+<g transform="matrix(0.18 0 0 0.18 163.61 58.92)" style="" id="d79733f1-c7bf-47bc-925f-cf52faecd691"  >
+		<text xml:space="preserve" font-family="Lato" font-size="63" font-style="normal" font-weight="400" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1; white-space: pre;" ><tspan x="-476.39" y="19.79" >[details]</tspan></text>
+</g>
+<g transform="matrix(0.19 0 0 0.19 148.35 75.14)" style=""  >
+		<text xml:space="preserve" font-family="Lato" font-size="59" font-style="normal" font-weight="400" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1; white-space: pre;" ><tspan x="-373.19" y="18.53" >[state]</tspan></text>
+</g>
+</svg>
