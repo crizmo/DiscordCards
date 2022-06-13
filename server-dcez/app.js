@@ -1,6 +1,7 @@
 const express = require('express');
 const request = require('request');
 const app = express();
+const fs = require('fs');
 
 const { Client, Intents, Collection } = require('discord.js');
 const Discord = require('discord.js');
@@ -31,8 +32,21 @@ io.on("connection", (socket) => {
         const activity = member.presence.activities[0];
         // console.log(activity)
 
+        let temp = fs.readFileSync('./assets/discord-card.svg', {encoding: 'utf-8'}).toString()
+        temp = temp.replace('[name]', activity.name);
+        temp = temp.replace('[details]', activity.details);
+        temp = temp.replace('[state]', activity.state);
+        temp = temp.replace('[type]', activity.type);
+        // temp = temp.replace('[button-text]', activity.buttons[0]);
+        // console.log(temp)
+
+        let base64 = Buffer.from(temp).toString('base64');
+        console.log(base64)
+
         io.emit("message", {
-            stuff: activity
+            stuff: activity,
+            card: temp,
+            baseimg: base64
         })
 
         function getActivity() {
@@ -40,8 +54,20 @@ io.on("connection", (socket) => {
             const activity = member.presence.activities[0];
             // console.log(activity)
 
+            let temp = fs.readFileSync('./assets/discord-card.svg', {encoding: 'utf-8'}).toString()
+            temp = temp.replace('[name]', activity.name);
+            temp = temp.replace('[details]', activity.details);
+            temp = temp.replace('[state]', activity.state);
+            temp = temp.replace('[type]', activity.type);
+            temp = temp.replace('[button-text]', activity.buttons[0]);
+
+            let base64 = Buffer.from(temp).toString('base64');
+            // console.log(base64)
+
             io.emit("message", {
-                stuff: activity
+                stuff: activity,
+                card: temp,
+                baseimg: base64
             })
         }
 
