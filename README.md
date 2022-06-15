@@ -57,12 +57,10 @@ You can either use the api endpoint to display your discord activity or get your
 ## Roadmap
 
 - [ ] Better client website
-- [ ] Update cards
-- [ ] Add more cards
+- [ ] Update svg cards
+- [ ] Add more cards for different discord activities
 - [x] Endpoints
 - [ ] Better way for contributors to contribute
-
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
