@@ -31,8 +31,7 @@ io.on("connection", (socket) => {
         const main_user = data.userid
 
         const member = client.guilds.cache.get('939799133177384990').members.cache.get(data.userid);
-        const activity = member.presence.activities[0];
-        // console.log(activity)
+        const activity = member.presence.activities[0]
 
         let time = activity.timestamps.start;
         let elapsed = Date.now() - time;
@@ -43,12 +42,10 @@ io.on("connection", (socket) => {
         const largeimage = activity.assets.largeImage
         let largelink = largeimage.split('raw')[1]
         const rawlarge = 'https://raw' + largelink
-        // console.log(rawlarge)
 
         const smallimage = activity.assets.smallImage
         let smallink = smallimage.split('raw')[1]
         const rawsmall = 'https://raw' + smallink
-        // console.log(rawsmall)
 
         let temp = fs.readFileSync('./assets/discord-card.svg', {encoding: 'utf-8'}).toString()
         temp = temp.replace('[name]', activity.name);
@@ -61,7 +58,6 @@ io.on("connection", (socket) => {
         temp = temp.replace('[button-text]', activity.buttons[0]);
 
         let base64 = Buffer.from(temp).toString('base64');
-        // console.log(base64)
 
         io.emit("message", {
             stuff: activity,
@@ -72,7 +68,6 @@ io.on("connection", (socket) => {
         function getActivity() {
             const member = client.guilds.cache.get('939799133177384990').members.cache.get(data.userid);
             const activity = member.presence.activities[0];
-            // console.log(activity)
 
             let time = activity.timestamps.start;
             let elapsed = Date.now() - time;
@@ -83,14 +78,11 @@ io.on("connection", (socket) => {
             const largeimage = activity.assets.largeImage
             let largelink = largeimage.split('raw')[1]
             const rawlarge = 'https://raw' + largelink
-            // console.log(rawlarge)
 
             const smallimage = activity.assets.smallImage
             let smallink = smallimage.split('raw')[1]
             const rawsmall = 'https://raw' + smallink
-            // console.log(rawsmall)
 
-            // let temp;
             let temp = fs.readFileSync('./assets/discord-card.svg', {encoding: 'utf-8'}).toString()
             temp = temp.replace('[name]', activity.name);
             temp = temp.replace('[details]', activity.details);
@@ -103,10 +95,7 @@ io.on("connection", (socket) => {
 
             let base64 = Buffer.from(temp).toString('base64');
 
-            // download the temp svg using fs
             fs.writeFileSync('./assets/tempcard.svg', temp)
-
-            // console.log(base64)
 
             io.emit("message", {
                 stuff: activity,
@@ -117,15 +106,12 @@ io.on("connection", (socket) => {
 
         client.on("presenceUpdate", function (newPresence, oldPresence) {
             if (newPresence.user.bot) return;
-            // console.log(newPresence.user)
-            // console.log(newPresence.user.id)
+            console.log(newPresence.user.id)
             if (newPresence.user.id === main_user) {
                 if (newPresence.activities[0].name === 'Spotify') {
                     if(newPresence.activities[0].details === oldPresence.activities[0].details) {
                         return;
                     } else {
-                        // console.log(oldPresence.activities[0].details)
-                        // console.log(newPresence.activities[0].details)
                         getActivity()
                     }
                 } else if (newPresence.activities[0].name === 'Code') {
@@ -145,14 +131,12 @@ onlysvg.get('/svg', (req, res) => {
 
 onlysvg.get('/svgimg/:id', (req, res) => {
     const member = client.guilds.cache.get('939799133177384990').members.cache.get(req.params.id);
-    // console.log(member)
     let activity
     try {
         activity = member.presence.activities[0];
     } catch (error) {
         res.send('No activity')
     }
-    // console.log(member.presence.activities[0])
 
     if(activity.name === 'Code') {
         let time = activity.timestamps.start;
@@ -164,12 +148,10 @@ onlysvg.get('/svgimg/:id', (req, res) => {
         const largeimage = activity.assets.largeImage
         let largelink = largeimage.split('raw')[1]
         const rawlarge = 'https://raw' + largelink
-        // console.log(rawlarge)
 
         const smallimage = activity.assets.smallImage
         let smallink = smallimage.split('raw')[1]
         const rawsmall = 'https://raw' + smallink
-        // console.log(rawsmall)
 
         let temp;
         temp = fs.readFileSync('./assets/discord-card.svg', {encoding: 'utf-8'}).toString()
