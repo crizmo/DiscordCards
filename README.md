@@ -32,9 +32,6 @@
   <ol>
     <li>
       <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
     </li>
     <li>
       <a href="#getting-started">Getting Started</a>
@@ -56,16 +53,99 @@
 
 <!-- [![Breeze][]]() -->
 
-There are many great README templates available on GitHub; however, I didn't find one that really suited my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
+Breeze helps you display your discord activity on your website / anywhere you want using the api or the client.
 
-Here's why:
-* Your time should be focused on creating something amazing. A project that solves a problem and helps others
-* You shouldn't be doing the same tasks over and over like creating a README from scratch
-* You should implement DRY principles to the rest of your life :smile:
-
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have contributed to expanding this template!
-
-Use the `BLANK_README.md` to get started.
+Here's what breeze offers:
+* client (website): display your discord activity on the website
+* server (backend): display your discord activity as a api image which u can use on your website or anywhere you want
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
+## Getting Started
+
+If you wish to make your own client, you can follow the steps below:
+
+### Prerequisites
+
+Install the following dependencies :
+
+Client :
+* npm
+  ```sh
+  npm install axios socket.io socket.io-client
+  ```
+
+Server :
+* npm
+  ```sh
+  npm install express cors discord.js dotenv fs nodemon request socket.io
+  ```
+
+### Installation
+
+_To download breeze, you can do the following:_
+
+1. Clone the repo
+   ```sh
+   git clone https://github.com/crizmo/breeze.git
+   ```
+3. Install NPM packages
+   ```sh
+   npm install
+   ```
+4. Make a .env file in server-dcez 
+    With the following content:
+    ```sh
+    DISCORD_TOKEN=<your discord token>
+    ```
+5. Run the server
+    ```sh
+    npm start
+    ```
+6. Run the client
+```sh
+npm start
+```
+7. Done !
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+## Usage
+
+Breeze is very easy to use.
+You can either use the api endpoint to display your discord activity or get your discord activity using the breeze client website.
+
+<a href="https://localhost:5000/">Endpoints</a>
+<a href="https://localhost:3000">Website</a>
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+## Contributing
+
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+Don't forget to give the project a star! Thanks again!
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+<!-- LICENSE -->
+## License
+
+Distributed under the MIT License. See `LICENSE.txt` for more information.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+
+<!-- CONTACT -->
+## Contact
+
+You can contact me on Discord my username is `Criz#1270`.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
