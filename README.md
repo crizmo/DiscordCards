@@ -1,11 +1,3 @@
-<!-- [![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url] -->
-
-<br />
 <div align="center">
   <a href="https://github.com/othneildrew/Best-README-Template">
     <!-- <img src="images/logo.png" alt="Logo" width="80" height="80"> -->
@@ -45,7 +37,6 @@
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
@@ -103,9 +94,9 @@ _To download breeze, you can do the following:_
     npm start
     ```
 6. Run the client
-```sh
-npm start
-```
+    ```sh
+    npm start
+    ```
 7. Done !
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -119,6 +110,19 @@ You can either use the api endpoint to display your discord activity or get your
 <a href="https://localhost:3000">Website</a>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
+
+## Roadmap
+
+- [ ] Better client website
+- [ ] Update cards
+- [ ] Add more cards
+- [x] Endpoints
+- [ ] Better way for contributors to contribute
+
+See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
 
 ## Contributing
 
