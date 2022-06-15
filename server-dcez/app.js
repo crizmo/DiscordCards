@@ -47,7 +47,7 @@ io.on("connection", (socket) => {
         let smallink = smallimage.split('raw')[1]
         const rawsmall = 'https://raw' + smallink
 
-        let temp = fs.readFileSync('./assets/discord-card.svg', {encoding: 'utf-8'}).toString()
+        let temp = fs.readFileSync('./assets/vscode-card.svg', {encoding: 'utf-8'}).toString()
         temp = temp.replace('[name]', activity.name);
         temp = temp.replace('[details]', activity.details);
         temp = temp.replace('[state]', activity.state);
@@ -83,7 +83,7 @@ io.on("connection", (socket) => {
             let smallink = smallimage.split('raw')[1]
             const rawsmall = 'https://raw' + smallink
 
-            let temp = fs.readFileSync('./assets/discord-card.svg', {encoding: 'utf-8'}).toString()
+            let temp = fs.readFileSync('./assets/vscode-card.svg', {encoding: 'utf-8'}).toString()
             temp = temp.replace('[name]', activity.name);
             temp = temp.replace('[details]', activity.details);
             temp = temp.replace('[state]', activity.state);
@@ -154,7 +154,7 @@ onlysvg.get('/svgimg/:id', (req, res) => {
         const rawsmall = 'https://raw' + smallink
 
         let temp;
-        temp = fs.readFileSync('./assets/discord-card.svg', {encoding: 'utf-8'}).toString()
+        temp = fs.readFileSync('./assets/vscode-card.svg', {encoding: 'utf-8'}).toString()
         temp = temp.replace('[name]', activity.name);
         temp = temp.replace('[details]', activity.details);
         temp = temp.replace('[state]', activity.state);
