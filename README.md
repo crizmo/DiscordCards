@@ -25,13 +25,6 @@
     <li>
       <a href="#about-the-project">About The Project</a>
     </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
@@ -49,55 +42,6 @@ Breeze helps you display your discord activity on your website / anywhere you wa
 Here's what breeze offers:
 * client (website): display your discord activity on the website
 * server (backend): display your discord activity as a api image which u can use on your website or anywhere you want
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-## Getting Started
-
-If you wish to make your own client, you can follow the steps below:
-
-### Prerequisites
-
-Install the following dependencies :
-
-Client :
-* npm
-  ```sh
-  npm install axios socket.io socket.io-client
-  ```
-
-Server :
-* npm
-  ```sh
-  npm install express cors discord.js dotenv fs nodemon request socket.io
-  ```
-
-### Installation
-
-_To download breeze, you can do the following:_
-
-1. Clone the repo
-   ```sh
-   git clone https://github.com/crizmo/breeze.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Make a .env file in server-dcez 
-    With the following content:
-    ```sh
-    DISCORD_TOKEN=<your discord token>
-    ```
-5. Run the server
-    ```sh
-    npm start
-    ```
-6. Run the client
-    ```sh
-    npm start
-    ```
-7. Done !
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
