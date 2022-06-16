@@ -1,24 +1,30 @@
-<svg width="292" height="153" viewBox="0 0 292 153" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<rect width="292" height="153" fill="#18191C"/>
-<rect x="15" y="107" width="268" height="32" rx="4" fill="#4E545B"/>
-<rect x="15" y="30" width="60" height="60" rx="7" fill="#393026"/>
-<circle cx="71" cy="86" r="11" fill="#203036" stroke="#18191C" stroke-width="2"/>
-<rect x="15" y="30" width="60" height="60" rx="7" fill="url(#pattern0)"/>
-<rect x="61" y="76" width="20" height="20" rx="10" fill="url(#pattern1)"/>
-<text fill="white" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="12" font-weight="500" letter-spacing="0em"><tspan x="108.553" y="126.864">View Repository</tspan></text>
-<text fill="#CCCDCF" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="12" font-weight="300" letter-spacing="0.07em"><tspan x="86" y="90.8636">70:32 elapsed</tspan></text>
-<text fill="#CCCDCF" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="12" font-weight="300" letter-spacing="0.07em"><tspan x="86" y="75.8636">Working on app.js:153:1</tspan></text>
-<text fill="#D0D1D1" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="12" font-weight="300" letter-spacing="0.005em"><tspan x="86" y="60.8636">In breeze - 0 problems found</tspan></text>
-<text fill="white" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="12" font-weight="500" letter-spacing="0.1em"><tspan x="86" y="45.8636">Code</tspan></text>
-<text fill="#B9BBBE" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="11" font-weight="500" letter-spacing="0.04em"><tspan x="15" y="19.5">PLAYING</tspan></text>
+<svg width="285" height="172" viewBox="0 0 285 172" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<rect width="285" height="172" fill="#18191C"/>
+<rect x="253" y="11" width="20" height="20" fill="url(#pattern0)"/>
+<rect x="13" y="127" width="224" height="32" rx="5" fill="#4E545B"/>
+<rect x="245" y="127" width="32" height="32" rx="3" fill="#4E545B"/>
+<path d="M13 34C13 32.3431 14.3431 31 16 31H70C71.6569 31 73 32.3431 73 34V88C73 89.6569 71.6569 91 70 91H16C14.3431 91 13 89.6569 13 88V34Z" fill="#D9D9D9"/>
+<rect x="13" y="31" width="60" height="60" rx="3" fill="url(#pattern1)"/>
+<rect x="245" y="127" width="32" height="32" rx="5" fill="url(#pattern2)"/>
+<text fill="white" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="12" font-weight="500" letter-spacing="0em"><tspan x="87.5527" y="146.864">Play on Spotify</tspan></text>
+<text fill="#D0D1D1" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="12" font-weight="300" letter-spacing="0.005em"><tspan x="82" y="81.8636">[on]</tspan></text>
+<text fill="#D0D1D1" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="12" font-weight="300" letter-spacing="0.005em"><tspan x="13" y="111.864">[time-left</tspan></text>
+<text fill="#D0D1D1" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="12" font-weight="300" letter-spacing="0em"><tspan x="65.7953" y="111.864">]</tspan></text>
+<text fill="#D0D1D1" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="12" font-weight="300" letter-spacing="0.005em"><tspan x="82" y="63.8636">James Arthur; Anne-Marie</tspan></text>
+<text fill="#DCDDDE" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="12" font-weight="500" letter-spacing="0.1em"><tspan x="82" y="45.8636">Rewrite The Stars</tspan></text>
+<text fill="#B5B7B9" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="11" font-weight="500" letter-spacing="0.045em"><tspan x="13" y="21.5">LISTENING</tspan></text>
 <defs>
 <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
-<use xlink:href="#image0_5_3" transform="translate(-0.00455104 -0.0806934) scale(0.01 0.0109455)"/>
+<use xlink:href="#image0_10_18" transform="scale(0.05)"/>
 </pattern>
 <pattern id="pattern1" patternContentUnits="objectBoundingBox" width="1" height="1">
-<use xlink:href="#image1_5_3" transform="scale(0.0434783)"/>
+<use xlink:href="#image1_10_18" transform="scale(0.0166667)"/>
 </pattern>
-<image id="image0_5_3" width="103" height="105" xlink:href="https://raw.githubusercontent.com/LeonardSSH/vscord/main/assets/icons/js.png" />
-<image id="image1_5_3" width="23" height="23" xlink:href="https://raw.githubusercontent.com/LeonardSSH/vscord/main/assets/icons/vscode.png"/>
+<pattern id="pattern2" patternContentUnits="objectBoundingBox" width="1" height="1">
+<use xlink:href="#image2_10_18" transform="scale(0.03125)"/>
+</pattern>
+<image id="image0_10_18" width="20" height="20" xlink:href="[spotify-logo]"/>
+<!-- <image id="image1_10_18" width="60" height="60" xlink:href="[large-image]"/> -->
+<image id="image2_10_18" width="32" height="32" xlink:href="[play-along]"/>
 </defs>
 </svg>
