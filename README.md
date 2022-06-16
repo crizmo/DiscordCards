@@ -61,6 +61,7 @@ You can either use the api endpoint to display your discord activity or get your
 - [ ] Add more cards for different discord activities
 - [x] Endpoints
 - [ ] Better way for contributors to contribute
+- [ ] Fix (&) in spotify name bug
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
