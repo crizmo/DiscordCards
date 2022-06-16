@@ -39,6 +39,7 @@ io.on("connection", (socket) => {
             temp = temp.replace('[details]', activity.details);
             temp = temp.replace('[state]', activity.state);
             temp = temp.replace('[type]', activity.type);
+            temp = temp.replace('[on]', activity.assets.largeText);
             temp = temp.replace('[button-text]', "Play on Spotify");
         } else if (activity.name === 'Code') {
 
@@ -79,29 +80,40 @@ io.on("connection", (socket) => {
             const member = client.guilds.cache.get('939799133177384990').members.cache.get(data.userid);
             const activity = member.presence.activities[0];
 
-            let time = activity.timestamps.start;
-            let elapsed = Date.now() - time;
-            let minutes = Math.floor(elapsed / 60000);
-            let seconds = Math.floor((elapsed % 60000) / 1000);
-            let timeString = `${minutes}:${seconds}`;
+            let temp;
+            if (activity.name === 'Spotify') {
+                temp = fs.readFileSync('./assets/spotify-card.svg', {encoding: 'utf-8'}).toString()
+                temp = temp.replace('[details]', activity.details);
+                temp = temp.replace('[state]', activity.state);
+                temp = temp.replace('[type]', activity.type);
+                temp = temp.replace('[on]', activity.assets.largeText);
+                temp = temp.replace('[button-text]', "Play on Spotify");
+            } else if (activity.name === 'Code') {
 
-            const largeimage = activity.assets.largeImage
-            let largelink = largeimage.split('raw')[1]
-            const rawlarge = 'https://raw' + largelink
+                let time = activity.timestamps.start;
+                let elapsed = Date.now() - time;
+                let minutes = Math.floor(elapsed / 60000);
+                let seconds = Math.floor((elapsed % 60000) / 1000);
+                let timeString = `${minutes}:${seconds}`;
+                
+                const largeimage = activity.assets.largeImage
+                let largelink = largeimage.split('raw')[1]
+                const rawlarge = 'https://raw' + largelink
 
-            const smallimage = activity.assets.smallImage
-            let smallink = smallimage.split('raw')[1]
-            const rawsmall = 'https://raw' + smallink
+                const smallimage = activity.assets.smallImage
+                let smallink = smallimage.split('raw')[1]
+                const rawsmall = 'https://raw' + smallink
 
-            let temp = fs.readFileSync('./assets/vscode-card.svg', {encoding: 'utf-8'}).toString()
-            temp = temp.replace('[name]', activity.name);
-            temp = temp.replace('[details]', activity.details);
-            temp = temp.replace('[state]', activity.state);
-            temp = temp.replace('[type]', activity.type);
-            temp = temp.replace('[time]', timeString + ' elapsed');
-            temp = temp.replace('[large-image]', rawlarge);
-            temp = temp.replace('[small-image]', rawsmall);
-            temp = temp.replace('[button-text]', activity.buttons[0]);
+                temp = fs.readFileSync('./assets/vscode-card.svg', {encoding: 'utf-8'}).toString()
+                temp = temp.replace('[name]', activity.name);
+                temp = temp.replace('[details]', activity.details);
+                temp = temp.replace('[state]', activity.state);
+                temp = temp.replace('[type]', activity.type);
+                temp = temp.replace('[time]', timeString + ' elapsed');
+                temp = temp.replace('[large-image]', rawlarge);
+                temp = temp.replace('[small-image]', rawsmall);
+                temp = temp.replace('[button-text]', activity.buttons[0]);
+            }
 
             let base64 = Buffer.from(temp).toString('base64');
 
@@ -115,7 +127,13 @@ io.on("connection", (socket) => {
         }
 
         client.on("presenceUpdate", function (newPresence, oldPresence) {
-            if (newPresence.user.bot) return;
+            try {
+                if (newPresence.user.bot) {
+                    return;
+                }
+            } catch (e) {
+                return;
+            }
             // console.log(newPresence.user.id)
             if (newPresence.user.id === main_user) {
                 if (newPresence.activities[0].name === 'Spotify') {
@@ -145,6 +163,7 @@ onlysvg.get('/svgimg/:id', (req, res) => {
     let activity
     try {
         activity = member.presence.activities[0];
+        // console.log(activity)
     } catch (error) {
         res.send('No activity')
         return;
@@ -152,10 +171,22 @@ onlysvg.get('/svgimg/:id', (req, res) => {
 
     let temp;
     if (activity.name === 'Spotify') {
+
+        let start = activity.timestamps.start
+        let end = activity.timestamps.end
+        let elapsed = end - start
+        let minutes = Math.floor(elapsed / 60000)
+        let seconds = Math.floor((elapsed % 60000) / 1000)
+        let timeString = `${minutes}:${seconds}` 
+
+        let time = 0;
+
         temp = fs.readFileSync('./assets/spotify-card.svg', {encoding: 'utf-8'}).toString()
         temp = temp.replace('[details]', activity.details);
         temp = temp.replace('[state]', activity.state);
         temp = temp.replace('[type]', activity.type);
+        temp = temp.replace('[on]', activity.assets.largeText);
+        temp = temp.replace('[time]', time + ' -- ' + timeString);
         temp = temp.replace('[button-text]', "Play on Spotify");
     } else if (activity.name === 'Code') {
 
