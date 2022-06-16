@@ -1,30 +1,32 @@
 <svg width="285" height="172" viewBox="0 0 285 172" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <rect width="285" height="172" fill="#18191C"/>
-<rect x="253" y="11" width="20" height="20" fill="url(#pattern0)"/>
 <rect x="13" y="127" width="224" height="32" rx="5" fill="#4E545B"/>
 <rect x="245" y="127" width="32" height="32" rx="3" fill="#4E545B"/>
-<path d="M13 34C13 32.3431 14.3431 31 16 31H70C71.6569 31 73 32.3431 73 34V88C73 89.6569 71.6569 91 70 91H16C14.3431 91 13 89.6569 13 88V34Z" fill="#D9D9D9"/>
-<rect x="13" y="31" width="60" height="60" rx="3" fill="url(#pattern1)"/>
-<rect x="245" y="127" width="32" height="32" rx="5" fill="url(#pattern2)"/>
+<rect x="245" y="127" width="32" height="32" rx="5" fill="url(#pattern0)"/>
+<rect x="13" y="34" width="60" height="60" rx="30" fill="url(#pattern1)"/>
+<rect x="53" y="76" width="20" height="20" rx="10" fill="url(#pattern2)"/>
+<rect x="253" y="12" width="20" height="20" rx="10" fill="url(#pattern3)"/>
 <text fill="white" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="12" font-weight="500" letter-spacing="0em"><tspan x="87.5527" y="146.864">Play on Spotify</tspan></text>
-<text fill="#D0D1D1" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="12" font-weight="300" letter-spacing="0.005em"><tspan x="82" y="81.8636">[on]</tspan></text>
-<text fill="#D0D1D1" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="12" font-weight="300" letter-spacing="0.005em"><tspan x="13" y="111.864">[time-left</tspan></text>
-<text fill="#D0D1D1" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="12" font-weight="300" letter-spacing="0em"><tspan x="65.7953" y="111.864">]</tspan></text>
-<text fill="#D0D1D1" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="12" font-weight="300" letter-spacing="0.005em"><tspan x="82" y="63.8636">James Arthur; Anne-Marie</tspan></text>
-<text fill="#DCDDDE" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="12" font-weight="500" letter-spacing="0.1em"><tspan x="82" y="45.8636">Rewrite The Stars</tspan></text>
+<text fill="#D0D1D1" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="12" font-weight="300" letter-spacing="0.005em"><tspan x="82" y="81.8636">Silence</tspan></text>
+<text fill="#D0D1D1" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="12" font-weight="300" letter-spacing="0.005em"><tspan x="13" y="111.864">0 -- 3:0</tspan></text>
+<text fill="#D0D1D1" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="12" font-weight="300" letter-spacing="0.005em"><tspan x="82" y="63.8636">Marshmello; Khalid</tspan></text>
+<text fill="#DCDDDE" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="12" font-weight="500" letter-spacing="0.1em"><tspan x="82" y="45.8636">Silence</tspan></text>
 <text fill="#B5B7B9" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="11" font-weight="500" letter-spacing="0.045em"><tspan x="13" y="21.5">LISTENING</tspan></text>
 <defs>
 <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
-<use xlink:href="#image0_10_18" transform="scale(0.05)"/>
+<use xlink:href="#image0_10_18" transform="scale(0.03125)"/>
 </pattern>
 <pattern id="pattern1" patternContentUnits="objectBoundingBox" width="1" height="1">
-<use xlink:href="#image1_10_18" transform="scale(0.0166667)"/>
+<use xlink:href="#image1_10_18" transform="scale(0.00217391)"/>
 </pattern>
 <pattern id="pattern2" patternContentUnits="objectBoundingBox" width="1" height="1">
-<use xlink:href="#image2_10_18" transform="scale(0.03125)"/>
+<use xlink:href="#image2_10_18" transform="translate(0 -0.0116279) scale(0.0116279)"/>
 </pattern>
-<image id="image0_10_18" width="20" height="20" xlink:href="[spotify-logo]"/>
-<!-- <image id="image1_10_18" width="60" height="60" xlink:href="[large-image]"/> -->
-<image id="image2_10_18" width="32" height="32" xlink:href="[play-along]"/>
+<pattern id="pattern3" patternContentUnits="objectBoundingBox" width="1" height="1">
+<use xlink:href="#image2_10_18" transform="translate(0 -0.0116279) scale(0.0116279)"/>
+</pattern>
+<image id="image0_10_18" width="32" height="32" xlink:href="data:image/png;base64,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"/>
+<image id="image1_10_18" width="460" height="460" xlink:href="https://cdn.discordapp.com/avatars/784141856426033233/2b71440eb154c1c2897e956f1f0da7b7.png?size=1024"/>
+<image id="image2_10_18" width="86" height="88" xlink:href="https://www.freeiconspng.com/uploads/spotify-icon-0.png"/>
 </defs>
 </svg>
