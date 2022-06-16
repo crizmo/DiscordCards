@@ -141,18 +141,22 @@ onlysvg.get('/svg', (req, res) => {
 onlysvg.get('/svgimg/:id', (req, res) => {
 
     const member = client.guilds.cache.get('939799133177384990').members.cache.get(req.params.id);
-    let activity = member.presence.activities[0];
+    
+    let activity
+    try {
+        activity = member.presence.activities[0];
+    } catch (error) {
+        res.send('No activity')
+        return;
+    }
 
+    let temp;
     if (activity.name === 'Spotify') {
-        let temp;
         temp = fs.readFileSync('./assets/spotify-card.svg', {encoding: 'utf-8'}).toString()
         temp = temp.replace('[details]', activity.details);
         temp = temp.replace('[state]', activity.state);
         temp = temp.replace('[type]', activity.type);
         temp = temp.replace('[button-text]', "Play on Spotify");
-
-        res.writeHead(200, {'Content-Type': 'image/svg+xml'})
-        res.end(temp)
     } else if (activity.name === 'Code') {
 
         let time = activity.timestamps.start;
@@ -169,7 +173,6 @@ onlysvg.get('/svgimg/:id', (req, res) => {
         let smallink = smallimage.split('raw')[1]
         const rawsmall = 'https://raw' + smallink
 
-        let temp;
         temp = fs.readFileSync('./assets/vscode-card.svg', {encoding: 'utf-8'}).toString()
         temp = temp.replace('[name]', activity.name);
         temp = temp.replace('[details]', activity.details);
@@ -179,10 +182,9 @@ onlysvg.get('/svgimg/:id', (req, res) => {
         temp = temp.replace('[large-image]', rawlarge);
         temp = temp.replace('[small-image]', rawsmall);
         temp = temp.replace('[button-text]', activity.buttons[0]);
-
-        res.writeHead(200, {'Content-Type': 'image/svg+xml'})
-        res.end(temp)
-    } 
+    }
+    res.writeHead(200, {'Content-Type': 'image/svg+xml'})
+    res.end(temp)
 
 })
 
