@@ -180,14 +180,37 @@ onlysvg.get('/svg', (req, res) => {
     res.end(image)
 })
 
-onlysvg.get('/svgimg/:id', (req, res) => {
+onlysvg.get('/svgimg/:id/:about', (req, res) => {
 
-    const member = client.guilds.cache.get('939799133177384990').members.cache.get(req.params.id);
-    console.log(member)
+    let member
+    try {
+        member = client.guilds.cache.get('939799133177384990').members.cache.get(req.params.id);
+        // console.log(member)
+    } catch (e) {
+        res.send('User not found')
+        return;
+    }
 
     let activity
-    let discord_avatar = member.user.displayAvatarURL({format: 'png', dynamic: true, size: 1024})
-    let spotify_logo = 'https://www.freeiconspng.com/uploads/spotify-icon-0.png'
+    let discord_avatar
+    let spotify_logo
+    let username
+    let banner
+    let about
+
+    let play_along
+    try {
+        discord_avatar = member.user.displayAvatarURL({format: 'png', dynamic: true})
+        spotify_logo = 'https://www.freeiconspng.com/uploads/spotify-icon-0.png'
+        username = member.user.username + '#' + member.user.discriminator
+        banner = member.user.banner || 'https://cdn.discordapp.com/attachments/970974282681307187/987323350709862420/green-back.png'
+        about = req.params.about
+
+        play_along = "https://cdn.discordapp.com/attachments/970974282681307187/987330240609132555/play-along.png"
+    } catch (e) {
+        res.send('User not found')
+        return;
+    }
 
     try {
         activity = member.presence.activities[0];
@@ -209,13 +232,19 @@ onlysvg.get('/svgimg/:id', (req, res) => {
 
         let time = 0;
 
-        temp = fs.readFileSync('./assets/spotify-card.svg', {encoding: 'utf-8'}).toString()
+        temp = fs.readFileSync('./assets/spotify-new.svg', {encoding: 'utf-8'}).toString()
+        temp = temp.replace('[username]', username);
+        temp = temp.replace('[banner]', banner);
+        temp = temp.replace('[about]', about);
+
+        temp = temp.replace('[play-along]', play_along);
+
         temp = temp.replace('[details]', activity.details.replace(/&/g, '&amp;'));
         temp = temp.replace('[state]', activity.state.replace(/&/g, '&amp;'));
         temp = temp.replace('[type]', activity.type);
         temp = temp.replace('[on]', activity.assets.largeText.replace(/&/g, '&amp;'));
         temp = temp.replace('[time]', time + ' -- ' + timeString);
-        temp = temp.replace('[discord-pfp]', discord_avatar);
+        temp = temp.replace('[pfp]', discord_avatar);
         temp = temp.replace('[spotify-logo]', spotify_logo);
         temp = temp.replace('[button-text]', "Play on Spotify");
     } else if (activity.name === 'Code') {
@@ -255,5 +284,5 @@ io.on("disconnect", (socket) => {
 )
 
 server.listen(3001, () => console.log(`Listening on port 3001`))
-onlysvg.listen(5000, () => console.log(`Listening on port 5000 \nhttp://localhost:5000/svgimg/784141856426033233`))
+onlysvg.listen(5000, () => console.log(`Listening on port 5000 \nhttp://localhost:5000/svgimg/784141856426033233/poggies`))
 client.login(process.env.DISCORD_TOKEN);
