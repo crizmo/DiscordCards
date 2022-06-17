@@ -27,12 +27,42 @@ io.on("connection", (socket) => {
 
     socket.on("user", function (data) {
         const main_user = data.userid
+        const about = data.about
 
         const member = client.guilds.cache.get('939799133177384990').members.cache.get(data.userid);
         const activity = member.presence.activities[0]
 
-        let discord_avatar = member.user.displayAvatarURL({format: 'png', dynamic: true, size: 1024})
-        let spotify_logo = 'https://www.freeiconspng.com/uploads/spotify-icon-0.png'
+        let discord_avatar
+        let username
+        let banner
+
+        let play_along
+        let spotify_logo
+
+        let details = activity.details.replace(/&/g, '&amp;');
+        if (details.length > 24) {
+            details = details.substring(0, 24) + '...';
+        }
+        let state = activity.state.replace(/&/g, '&amp;');
+        if (state.length > 25) {
+            state = state.substring(0, 24) + '...';
+        }
+        let largeText = activity.assets.largeText.replace(/&/g, '&amp;');
+        if (largeText.length > 25) {
+            largeText = largeText.substring(0, 24) + '...';
+        }
+        
+        try {
+            discord_avatar = member.user.displayAvatarURL({format: 'png', dynamic: true})
+            spotify_logo = 'https://www.freeiconspng.com/uploads/spotify-icon-0.png'
+            username = member.user.username + '#' + member.user.discriminator
+            banner = 'https://cdn.discordapp.com/attachments/970974282681307187/987323350709862420/green-back.png'|| member.user.banner
+
+            play_along = "https://cdn.discordapp.com/attachments/970974282681307187/987330240609132555/play-along.png"
+        } catch (e) {
+            res.send('User not found')
+            return;
+        }
 
         let temp;
         if (activity.name === 'Spotify') {
@@ -45,13 +75,19 @@ io.on("connection", (socket) => {
 
             let time = 0;
 
-            temp = fs.readFileSync('./assets/spotify-card.svg', {encoding: 'utf-8'}).toString()
-            temp = temp.replace('[details]', activity.details);
-            temp = temp.replace('[state]', activity.state);
+            temp = fs.readFileSync('./assets/spotify-new.svg', {encoding: 'utf-8'}).toString()
+            temp = temp.replace('[username]', username);
+            temp = temp.replace('[banner]', banner);
+            temp = temp.replace('[about]', about);
+
+            temp = temp.replace('[play-along]', play_along);
+
+            temp = temp.replace('[details]', details);
+            temp = temp.replace('[state]', state);
             temp = temp.replace('[type]', activity.type);
-            temp = temp.replace('[on]', activity.assets.largeText);
+            temp = temp.replace('[on]', largeText);
             temp = temp.replace('[time]', time + ' -- ' + timeString);
-            temp = temp.replace('[discord-pfp]', discord_avatar);
+            temp = temp.replace('[pfp]', discord_avatar);
             temp = temp.replace('[spotify-logo]', spotify_logo);
             temp = temp.replace('[button-text]', "Play on Spotify");
         } else if (activity.name === 'Code') {
@@ -70,15 +106,20 @@ io.on("connection", (socket) => {
             let smallink = smallimage.split('raw')[1]
             const rawsmall = 'https://raw' + smallink
 
-            temp = fs.readFileSync('./assets/vscode-card.svg', {encoding: 'utf-8'}).toString()
+            temp = fs.readFileSync('./assets/vscode-new.svg', {encoding: 'utf-8'}).toString()
+            temp = temp.replace('[username]', username);
+            temp = temp.replace('[banner]', banner);
+            temp = temp.replace('[about]', about);
+            temp = temp.replace('[pfp]', discord_avatar);
+
             temp = temp.replace('[name]', activity.name);
             temp = temp.replace('[details]', activity.details);
-            temp = temp.replace('[state]', activity.state);
+            temp = temp.replace('[state]', state);
             temp = temp.replace('[type]', activity.type);
             temp = temp.replace('[time]', timeString + ' elapsed');
             temp = temp.replace('[large-image]', rawlarge);
             temp = temp.replace('[small-image]', rawsmall);
-            temp = temp.replace('[button-text]', activity.buttons[0]);
+            temp = temp.replace('[button-text]', activity.buttons[0] || 'View Repository');
         }
 
         let base64 = Buffer.from(temp).toString('base64');
@@ -104,14 +145,33 @@ io.on("connection", (socket) => {
 
                 let time = 0;
 
-                temp = fs.readFileSync('./assets/spotify-card.svg', {encoding: 'utf-8'}).toString()
-                temp = temp.replace('[details]', activity.details);
-                temp = temp.replace('[state]', activity.state);
+                let details = activity.details.replace(/&/g, '&amp;');
+                if (details.length > 24) {
+                    details = details.substring(0, 24) + '...';
+                }
+                let state = activity.state.replace(/&/g, '&amp;');
+                if (state.length > 25) {
+                    state = state.substring(0, 24) + '...';
+                }
+                let largeText = activity.assets.largeText.replace(/&/g, '&amp;');
+                if (largeText.length > 25) {
+                    largeText = largeText.substring(0, 24) + '...';
+                }
+
+                temp = fs.readFileSync('./assets/spotify-new.svg', {encoding: 'utf-8'}).toString()
+                temp = temp.replace('[username]', username);
+                temp = temp.replace('[banner]', banner);
+                temp = temp.replace('[about]', about);
+        
+                temp = temp.replace('[play-along]', play_along);
+        
+                temp = temp.replace('[details]', details);
+                temp = temp.replace('[state]', state);
                 temp = temp.replace('[type]', activity.type);
-                temp = temp.replace('[on]', activity.assets.largeText);
-                temp = temp.replace('[discord-pfp]', discord_avatar);
-                temp = temp.replace('[spotify-logo]', spotify_logo);
+                temp = temp.replace('[on]', largeText);
                 temp = temp.replace('[time]', time + ' -- ' + timeString);
+                temp = temp.replace('[pfp]', discord_avatar);
+                temp = temp.replace('[spotify-logo]', spotify_logo);
                 temp = temp.replace('[button-text]', "Play on Spotify");
             } else if (activity.name === 'Code') {
 
@@ -129,15 +189,25 @@ io.on("connection", (socket) => {
                 let smallink = smallimage.split('raw')[1]
                 const rawsmall = 'https://raw' + smallink
 
-                temp = fs.readFileSync('./assets/vscode-card.svg', {encoding: 'utf-8'}).toString()
+                let state = activity.state;
+                if (state.length > 23) {
+                    state = state.substring(0, 23) + '...';
+                }
+
+                temp = fs.readFileSync('./assets/vscode-new.svg', {encoding: 'utf-8'}).toString()
+                temp = temp.replace('[username]', username);
+                temp = temp.replace('[banner]', banner);
+                temp = temp.replace('[about]', about);
+                temp = temp.replace('[pfp]', discord_avatar);
+
                 temp = temp.replace('[name]', activity.name);
                 temp = temp.replace('[details]', activity.details);
-                temp = temp.replace('[state]', activity.state);
+                temp = temp.replace('[state]', state);
                 temp = temp.replace('[type]', activity.type);
                 temp = temp.replace('[time]', timeString + ' elapsed');
                 temp = temp.replace('[large-image]', rawlarge);
                 temp = temp.replace('[small-image]', rawsmall);
-                temp = temp.replace('[button-text]', activity.buttons[0]);
+                temp = temp.replace('[button-text]', activity.buttons[0] || 'View Repository' );
             }
 
             let base64 = Buffer.from(temp).toString('base64');
@@ -157,6 +227,7 @@ io.on("connection", (socket) => {
                     return;
                 }
             } catch (e) {
+                console.log("how bot lol")
                 return;
             }
             if (newPresence.user.id === main_user) {
@@ -197,13 +268,13 @@ onlysvg.get('/svgimg/:id/:about', (req, res) => {
     let username
     let banner
     let about
-
     let play_along
+
     try {
         discord_avatar = member.user.displayAvatarURL({format: 'png', dynamic: true})
         spotify_logo = 'https://www.freeiconspng.com/uploads/spotify-icon-0.png'
         username = member.user.username + '#' + member.user.discriminator
-        banner = member.user.banner || 'https://cdn.discordapp.com/attachments/970974282681307187/987323350709862420/green-back.png'
+        banner = 'https://cdn.discordapp.com/attachments/970974282681307187/987323350709862420/green-back.png'|| member.user.banner
         about = req.params.about
 
         play_along = "https://cdn.discordapp.com/attachments/970974282681307187/987330240609132555/play-along.png"
@@ -214,7 +285,6 @@ onlysvg.get('/svgimg/:id/:about', (req, res) => {
 
     try {
         activity = member.presence.activities[0];
-        // console.log(activity)
     } catch (error) {
         res.send('No activity')
         return;
@@ -232,6 +302,19 @@ onlysvg.get('/svgimg/:id/:about', (req, res) => {
 
         let time = 0;
 
+        let details = activity.details.replace(/&/g, '&amp;');
+        if (details.length > 24) {
+            details = details.substring(0, 24) + '...';
+        }
+        let state = activity.state.replace(/&/g, '&amp;');
+        if (state.length > 25) {
+            state = state.substring(0, 24) + '...';
+        }
+        let largeText = activity.assets.largeText.replace(/&/g, '&amp;');
+        if (largeText.length > 25) {
+            largeText = largeText.substring(0, 24) + '...';
+        }
+
         temp = fs.readFileSync('./assets/spotify-new.svg', {encoding: 'utf-8'}).toString()
         temp = temp.replace('[username]', username);
         temp = temp.replace('[banner]', banner);
@@ -239,10 +322,10 @@ onlysvg.get('/svgimg/:id/:about', (req, res) => {
 
         temp = temp.replace('[play-along]', play_along);
 
-        temp = temp.replace('[details]', activity.details.replace(/&/g, '&amp;'));
-        temp = temp.replace('[state]', activity.state.replace(/&/g, '&amp;'));
+        temp = temp.replace('[details]', details);
+        temp = temp.replace('[state]', state);
         temp = temp.replace('[type]', activity.type);
-        temp = temp.replace('[on]', activity.assets.largeText.replace(/&/g, '&amp;'));
+        temp = temp.replace('[on]', largeText);
         temp = temp.replace('[time]', time + ' -- ' + timeString);
         temp = temp.replace('[pfp]', discord_avatar);
         temp = temp.replace('[spotify-logo]', spotify_logo);
@@ -263,15 +346,25 @@ onlysvg.get('/svgimg/:id/:about', (req, res) => {
         let smallink = smallimage.split('raw')[1]
         const rawsmall = 'https://raw' + smallink
 
-        temp = fs.readFileSync('./assets/vscode-card.svg', {encoding: 'utf-8'}).toString()
+        let state = activity.state;
+        if (state.length > 23) {
+            state = state.substring(0, 23) + '...';
+        }
+
+        temp = fs.readFileSync('./assets/vscode-new.svg', {encoding: 'utf-8'}).toString()
+        temp = temp.replace('[username]', username);
+        temp = temp.replace('[banner]', banner);
+        temp = temp.replace('[about]', about);
+        temp = temp.replace('[pfp]', discord_avatar);
+
         temp = temp.replace('[name]', activity.name);
         temp = temp.replace('[details]', activity.details);
-        temp = temp.replace('[state]', activity.state);
+        temp = temp.replace('[state]', state);
         temp = temp.replace('[type]', activity.type);
         temp = temp.replace('[time]', timeString + ' elapsed');
         temp = temp.replace('[large-image]', rawlarge);
         temp = temp.replace('[small-image]', rawsmall);
-        temp = temp.replace('[button-text]', activity.buttons[0]);
+        temp = temp.replace('[button-text]', activity.buttons[0] || 'View Repository');
     }
     res.writeHead(200, {'Content-Type': 'image/svg+xml'})
     res.end(temp)
