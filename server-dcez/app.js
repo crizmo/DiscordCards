@@ -183,6 +183,7 @@ onlysvg.get('/svg', (req, res) => {
 onlysvg.get('/svgimg/:id', (req, res) => {
 
     const member = client.guilds.cache.get('939799133177384990').members.cache.get(req.params.id);
+    console.log(member)
 
     let activity
     let discord_avatar = member.user.displayAvatarURL({format: 'png', dynamic: true, size: 1024})
@@ -190,6 +191,7 @@ onlysvg.get('/svgimg/:id', (req, res) => {
 
     try {
         activity = member.presence.activities[0];
+        // console.log(activity)
     } catch (error) {
         res.send('No activity')
         return;
@@ -208,10 +210,10 @@ onlysvg.get('/svgimg/:id', (req, res) => {
         let time = 0;
 
         temp = fs.readFileSync('./assets/spotify-card.svg', {encoding: 'utf-8'}).toString()
-        temp = temp.replace('[details]', activity.details);
-        temp = temp.replace('[state]', activity.state);
+        temp = temp.replace('[details]', activity.details.replace(/&/g, '&amp;'));
+        temp = temp.replace('[state]', activity.state.replace(/&/g, '&amp;'));
         temp = temp.replace('[type]', activity.type);
-        temp = temp.replace('[on]', activity.assets.largeText);
+        temp = temp.replace('[on]', activity.assets.largeText.replace(/&/g, '&amp;'));
         temp = temp.replace('[time]', time + ' -- ' + timeString);
         temp = temp.replace('[discord-pfp]', discord_avatar);
         temp = temp.replace('[spotify-logo]', spotify_logo);
