@@ -28,8 +28,12 @@ io.on("connection", (socket) => {
     socket.on("user", function (data) {
         const main_user = data.userid
         const about = data.about
-
-        const member = client.guilds.cache.get('939799133177384990').members.cache.get(data.userid);
+        let member 
+        try {
+            member = client.guilds.cache.get('939799133177384990').members.cache.get(data.userid);
+        } catch (error) {
+            console.log(error)
+        }
         const activity = member.presence.activities[0]
 
         let discord_avatar
@@ -56,7 +60,7 @@ io.on("connection", (socket) => {
             discord_avatar = member.user.displayAvatarURL({format: 'png', dynamic: true})
             spotify_logo = 'https://www.freeiconspng.com/uploads/spotify-icon-0.png'
             username = member.user.username + '#' + member.user.discriminator
-            banner = 'https://cdn.discordapp.com/attachments/970974282681307187/987323350709862420/green-back.png'|| member.user.banner
+            banner = data.banner || 'https://cdn.discordapp.com/attachments/970974282681307187/987323350709862420/green-back.png'
 
             play_along = "https://cdn.discordapp.com/attachments/970974282681307187/987330240609132555/play-along.png"
         } catch (e) {
@@ -190,8 +194,12 @@ io.on("connection", (socket) => {
                 const rawsmall = 'https://raw' + smallink
 
                 let state = activity.state;
-                if (state.length > 23) {
-                    state = state.substring(0, 23) + '...';
+                try {
+                    if (state.length > 23) {
+                        state = state.substring(0, 23) + '...';
+                    }
+                } catch (e) {
+                    state = activity.state;
                 }
 
                 temp = fs.readFileSync('./assets/vscode-new.svg', {encoding: 'utf-8'}).toString()
@@ -251,12 +259,11 @@ onlysvg.get('/svg', (req, res) => {
     res.end(image)
 })
 
-onlysvg.get('/svgimg/:id/:about', (req, res) => {
+onlysvg.get('/svgimg/:id', (req, res) => {
 
     let member
     try {
         member = client.guilds.cache.get('939799133177384990').members.cache.get(req.params.id);
-        // console.log(member)
     } catch (e) {
         res.send('User not found')
         return;
@@ -274,8 +281,8 @@ onlysvg.get('/svgimg/:id/:about', (req, res) => {
         discord_avatar = member.user.displayAvatarURL({format: 'png', dynamic: true})
         spotify_logo = 'https://www.freeiconspng.com/uploads/spotify-icon-0.png'
         username = member.user.username + '#' + member.user.discriminator
-        banner = 'https://cdn.discordapp.com/attachments/970974282681307187/987323350709862420/green-back.png'|| member.user.banner
-        about = req.params.about
+        banner = req.query.banner || 'https://cdn.discordapp.com/attachments/970974282681307187/987323350709862420/green-back.png'
+        about = req.query.about || 'No description'
 
         play_along = "https://cdn.discordapp.com/attachments/970974282681307187/987330240609132555/play-along.png"
     } catch (e) {
@@ -324,7 +331,7 @@ onlysvg.get('/svgimg/:id/:about', (req, res) => {
 
         temp = temp.replace('[details]', details);
         temp = temp.replace('[state]', state);
-        temp = temp.replace('[type]', activity.type);
+        temp = temp.replace('[type]', req.query.type || activity.type);
         temp = temp.replace('[on]', largeText);
         temp = temp.replace('[time]', time + ' -- ' + timeString);
         temp = temp.replace('[pfp]', discord_avatar);
@@ -360,7 +367,7 @@ onlysvg.get('/svgimg/:id/:about', (req, res) => {
         temp = temp.replace('[name]', activity.name);
         temp = temp.replace('[details]', activity.details);
         temp = temp.replace('[state]', state);
-        temp = temp.replace('[type]', activity.type);
+        temp = temp.replace('[type]', req.query.type || activity.type);
         temp = temp.replace('[time]', timeString + ' elapsed');
         temp = temp.replace('[large-image]', rawlarge);
         temp = temp.replace('[small-image]', rawsmall);
@@ -377,5 +384,5 @@ io.on("disconnect", (socket) => {
 )
 
 server.listen(3001, () => console.log(`Listening on port 3001`))
-onlysvg.listen(5000, () => console.log(`Listening on port 5000 \nhttp://localhost:5000/svgimg/784141856426033233/poggies`))
+onlysvg.listen(5000, () => console.log(`Listening on port 5000 \nhttp://localhost:5000/svgimg/784141856426033233?about=pog&banner=https://wallpapercave.com/wp/wp4771870.jpg`))
 client.login(process.env.DISCORD_TOKEN);
