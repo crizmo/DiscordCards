@@ -1,5 +1,5 @@
-<svg width="292" height="412" viewBox="0 0 292 412" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<rect width="292" height="412" fill="#18191C"/>
+<svg width="292" height="437" viewBox="0 0 292 437" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<rect width="292" height="437" fill="#18191C"/>
 <rect width="292" height="120" fill="url(#pattern0)"/>
 <circle cx="58.5" cy="119.5" r="42" stroke="black" stroke-width="5"/>
 <line y1="209.5" x2="292" y2="209.5" stroke="#5B5B5B"/>
@@ -7,37 +7,42 @@
 <text fill="white" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="18" font-weight="500" letter-spacing="0.075em"><tspan x="19" y="192.545">Criz#1270</tspan></text>
 <text fill="#B9BBBE" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="11" font-weight="800" letter-spacing="0.065em"><tspan x="19" y="233.5">ABOUT ME</tspan></text>
 <text fill="#BBBBBC" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="13" letter-spacing="-0.005em"><tspan x="19" y="255.727">Itz me Kurizu</tspan></text>
-<rect x="19" y="366.462" width="247.385" height="29.5385" rx="4" fill="#4E545B"/>
-<rect x="19" y="295.385" width="55.3846" height="55.3846" rx="7" fill="#393026"/>
-<circle cx="70.6923" cy="347.077" r="10.2308" fill="#203036" stroke="#18191C" stroke-width="2"/>
-<rect x="19" y="295.385" width="55.3846" height="55.3846" rx="7" fill="url(#pattern2)"/>
-<rect x="61.4615" y="337.846" width="18.4615" height="18.4615" rx="9.23077" fill="url(#pattern3)"/>
-<rect x="239" y="279" width="24" height="24" rx="12" fill="url(#pattern4)"/>
-<text fill="white" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="12" font-weight="500" letter-spacing="0em"><tspan x="102.476" y="385.71">View Repository</tspan></text>
-<text fill="#CCCDCF" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="12" font-weight="300" letter-spacing="0.07em"><tspan x="84.5385" y="352.479">48:29 elapsed</tspan></text>
-<text fill="#CCCDCF" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="12" font-weight="300" letter-spacing="0.07em"><tspan x="84.5385" y="338.633">Working on App.css:57:1</tspan></text>
-<text fill="#D0D1D1" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="12" font-weight="300" letter-spacing="0.005em"><tspan x="84.5385" y="324.787">In breeze - 0 problems found</tspan></text>
-<text fill="white" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="12" font-weight="500" letter-spacing="0.1em"><tspan x="84.5385" y="310.941">Code</tspan></text>
-<text fill="#B9BBBE" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="11" font-weight="500" letter-spacing="0.04em"><tspan x="19" y="286.5">PLAYING</tspan></text>
+<rect x="14" y="391" width="224" height="32" rx="5" fill="#4E545B"/>
+<rect x="246" y="391" width="32" height="32" rx="3" fill="#4E545B"/>
+<rect x="246" y="391" width="32" height="32" rx="5" fill="url(#pattern2)"/>
+<rect x="14" y="299" width="60" height="60" rx="30" fill="url(#pattern3)"/>
+<rect x="54" y="340" width="20" height="20" rx="10" fill="url(#pattern4)"/>
+<rect x="254" y="276" width="20" height="20" rx="10" fill="url(#pattern5)"/>
+<text fill="white" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="12" font-weight="500" letter-spacing="0em"><tspan x="88.5527" y="410.864">Play on Spotify</tspan></text>
+<text fill="#D0D1D1" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="12" font-weight="300" letter-spacing="0.005em"><tspan x="83" y="345.864">We Love You Tecca</tspan></text>
+<text fill="#D0D1D1" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="12" font-weight="300" letter-spacing="0.005em"><tspan x="19" y="377.864">0 -- 2:11</tspan></text>
+<text fill="#D0D1D1" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="12" font-weight="300" letter-spacing="0.005em"><tspan x="83" y="327.864">Lil Tecca</tspan></text>
+<text fill="#DCDDDE" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="12" font-weight="500" letter-spacing="0.1em"><tspan x="83" y="309.864">Ransom</tspan></text>
+<text fill="#B5B7B9" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="11" font-weight="500" letter-spacing="0.045em"><tspan x="19" y="289.5">LISTENING</tspan></text>
 <defs>
 <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
-<use xlink:href="#image0_25_2" transform="translate(0 -0.184375) scale(0.000260417 0.000633681)"/>
+<use xlink:href="#image0_23_5" transform="translate(0 -0.184375) scale(0.000260417 0.000633681)"/>
 </pattern>
 <pattern id="pattern1" patternContentUnits="objectBoundingBox" width="1" height="1">
-<use xlink:href="#image1_25_2" transform="scale(0.00217391)"/>
+<use xlink:href="#image1_23_5" transform="scale(0.00217391)"/>
 </pattern>
 <pattern id="pattern2" patternContentUnits="objectBoundingBox" width="1" height="1">
-<use xlink:href="#image2_25_2" transform="translate(-0.00455104 -0.0806934) scale(0.01 0.0109455)"/>
+<use xlink:href="#image2_23_5" transform="scale(0.03125)"/>
 </pattern>
 <pattern id="pattern3" patternContentUnits="objectBoundingBox" width="1" height="1">
-<use xlink:href="#image3_25_2" transform="scale(0.0434783)"/>
+<use xlink:href="#image3_23_5" transform="scale(0.000976562)"/>
 </pattern>
 <pattern id="pattern4" patternContentUnits="objectBoundingBox" width="1" height="1">
-<use xlink:href="#image3_25_2" transform="scale(0.0434783)"/>
+<use xlink:href="#image4_23_5" transform="scale(0.00217391)"/>
 </pattern>
-<image id="image0_25_2" width="3840" height="2160" xlink:href="https://wallpapercave.com/wp/wp4771870.jpg"/>
-<image id="image1_25_2" width="460" height="460" xlink:href="https://cdn.discordapp.com/avatars/784141856426033233/2b71440eb154c1c2897e956f1f0da7b7.png"/>
-<image id="image2_25_2" width="103" height="105" xlink:href="https://raw.githubusercontent.com/LeonardSSH/vscord/main/assets/icons/css.png"/>
-<image id="image3_25_2" width="23" height="23" xlink:href="https://raw.githubusercontent.com/LeonardSSH/vscord/main/assets/icons/vscode.png"/>
+<pattern id="pattern5" patternContentUnits="objectBoundingBox" width="1" height="1">
+<use xlink:href="#image5_23_5" transform="translate(0 -0.0116279) scale(0.0116279)"/>
+</pattern>
+<image id="image0_23_5" width="3840" height="2160" xlink:href="https://wallpapercave.com/wp/wp4771870.jpg"/>
+<image id="image1_23_5" width="460" height="460" xlink:href="https://cdn.discordapp.com/avatars/784141856426033233/2b71440eb154c1c2897e956f1f0da7b7.png"/>
+<image id="image2_23_5" width="32" height="32" xlink:href="https://cdn.discordapp.com/attachments/970974282681307187/987330240609132555/play-along.png"/>
+<image id="image3_23_5" width="1024" height="1024" xlink:href="https://cdn.discordapp.com/avatars/784141856426033233/2b71440eb154c1c2897e956f1f0da7b7.png"/>
+<image id="image4_23_5" width="460" height="460" xlink:href="https://www.freeiconspng.com/uploads/spotify-icon-0.png"/>
+<image id="image5_23_5" width="86" height="88" xlink:href="https://www.freeiconspng.com/uploads/spotify-icon-0.png"/>
 </defs>
 </svg>
