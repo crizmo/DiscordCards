@@ -92,6 +92,8 @@ io.on("connection", (socket) => {
             temp = temp.replace('[on]', largeText);
             temp = temp.replace('[time]', time + ' -- ' + timeString);
             temp = temp.replace('[pfp]', discord_avatar);
+            temp = temp.replace('[large-image]', discord_avatar);
+            temp = temp.replace('[small-image]', spotify_logo);
             temp = temp.replace('[spotify-logo]', spotify_logo);
             temp = temp.replace('[button-text]', "Play on Spotify");
         } else if (activity.name === 'Code') {
@@ -175,6 +177,8 @@ io.on("connection", (socket) => {
                 temp = temp.replace('[on]', largeText);
                 temp = temp.replace('[time]', time + ' -- ' + timeString);
                 temp = temp.replace('[pfp]', discord_avatar);
+                temp = temp.replace('[large-image]', discord_avatar);
+                temp = temp.replace('[small-image]', spotify_logo);
                 temp = temp.replace('[spotify-logo]', spotify_logo);
                 temp = temp.replace('[button-text]', "Play on Spotify");
             } else if (activity.name === 'Code') {
@@ -335,6 +339,8 @@ onlysvg.get('/svgimg/:id', (req, res) => {
         temp = temp.replace('[on]', largeText);
         temp = temp.replace('[time]', time + ' -- ' + timeString);
         temp = temp.replace('[pfp]', discord_avatar);
+        temp = temp.replace('[large-image]', req.query.large || discord_avatar);
+        temp = temp.replace('[small-image]', req.query.small || spotify_logo);
         temp = temp.replace('[spotify-logo]', spotify_logo);
         temp = temp.replace('[button-text]', "Play on Spotify");
     } else if (activity.name === 'Code') {
