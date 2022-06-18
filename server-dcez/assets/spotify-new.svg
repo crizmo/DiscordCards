@@ -10,7 +10,7 @@
 <rect x="14" y="391" width="224" height="32" rx="5" fill="#4E545B"/>
 <rect x="246" y="391" width="32" height="32" rx="3" fill="#4E545B"/>
 <rect x="246" y="391" width="32" height="32" rx="5" fill="url(#pattern2)"/>
-<rect x="14" y="298" width="60" height="60" rx="30" fill="url(#pattern3)"/>
+<rect x="14" y="299" width="60" height="60" rx="30" fill="url(#pattern3)"/>
 <rect x="54" y="340" width="20" height="20" rx="10" fill="url(#pattern4)"/>
 <rect x="254" y="276" width="20" height="20" rx="10" fill="url(#pattern5)"/>
 <text fill="white" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="12" font-weight="500" letter-spacing="0em"><tspan x="88.5527" y="410.864">[button-text]</tspan></text>
@@ -19,9 +19,6 @@
 <text fill="#D0D1D1" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="12" font-weight="300" letter-spacing="0.005em"><tspan x="83" y="327.864">[state]</tspan></text>
 <text fill="#DCDDDE" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="12" font-weight="500" letter-spacing="0.1em"><tspan x="83" y="309.864">[details]</tspan></text>
 <text fill="#B5B7B9" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="11" font-weight="500" letter-spacing="0.045em"><tspan x="19" y="289.5">[type]</tspan></text>
-<rect x="261.549" y="133" width="16.4514" height="14" fill="url(#pattern6)"/>
-<rect x="236.627" y="133" width="19.4013" height="14" fill="url(#pattern7)"/>
-<rect x="218" y="133" width="13.1072" height="14" fill="url(#pattern8)"/>
 <defs>
 <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
 <use xlink:href="#image0_23_5" transform="translate(0 -0.184375) scale(0.000260417 0.000633681)"/>
@@ -33,17 +30,19 @@
 <use xlink:href="#image2_23_5" transform="scale(0.03125)"/>
 </pattern>
 <pattern id="pattern3" patternContentUnits="objectBoundingBox" width="1" height="1">
-<use xlink:href="#image1_23_5" transform="scale(0.00217391)"/>
+<use xlink:href="#image3_23_5" transform="scale(0.000976562)"/>
 </pattern>
 <pattern id="pattern4" patternContentUnits="objectBoundingBox" width="1" height="1">
-<use xlink:href="#image3_23_5" transform="translate(0 -0.0116279) scale(0.0116279)"/>
+<use xlink:href="#image4_23_5" transform="scale(0.00217391)"/>
 </pattern>
 <pattern id="pattern5" patternContentUnits="objectBoundingBox" width="1" height="1">
-<use xlink:href="#image3_23_5" transform="translate(0 -0.0116279) scale(0.0116279)"/>
+<use xlink:href="#image5_23_5" transform="translate(0 -0.0116279) scale(0.0116279)"/>
 </pattern>
 <image id="image0_23_5" width="3840" height="2160" xlink:href="[banner]"/>
 <image id="image1_23_5" width="460" height="460" xlink:href="[pfp]"/>
 <image id="image2_23_5" width="32" height="32" xlink:href="[play-along]"/>
-<image id="image3_23_5" width="86" height="88" xlink:href="[spotify-logo]"/>
+<image id="image3_23_5" width="1024" height="1024" xlink:href="[large-image]"/>
+<image id="image4_23_5" width="460" height="460" xlink:href="[small-image]"/>
+<image id="image5_23_5" width="86" height="88" xlink:href="[spotify-logo]"/>
 </defs>
 </svg>
