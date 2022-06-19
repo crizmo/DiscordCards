@@ -56,49 +56,60 @@ io.on("connection", (socket) => {
             return;
         }
 
-        let discord_avatar
-        let username
-        let banner
+        let discord_avatar, username, banner
 
-        let play_along
-        let spotify_logo
+        let play_along, spotify_logo
 
-        let details
-        let state
-        let largeText
+        let name, details, state, smallimg, raw, largeText
+
+        if(!activity.name){
+            name = 'No name'
+        } else {
+            name = activity.name.replace(/&/g, '&amp;');
+            if (name.length > 23) {
+                name = name.substring(0, 23) + '...';
+            }
+        }
         
-        if(!activity.details) {
-            details = "No details"
-        } else if(!activity.state) {
-            state = "No state"
-        } else if(!activity.largeText) {
-            largeText = "No largeText"
-        } 
-
-        try {
-
+        if(!activity.details){
+            details = 'No details'
+        } else {
             details = activity.details.replace(/&/g, '&amp;');
-            if (details.length > 24) {
-                details = details.substring(0, 24) + '...';
-            } else {
-                details = details;
+            if (details.length > 23) {
+                details = details.substring(0, 23) + '...';
             }
+        }
 
+        if(!activity.state){
+            state = 'No description'
+        } else {
             state = activity.state.replace(/&/g, '&amp;');
-            if (state.length > 25) {
-                state = state.substring(0, 24) + '...';
-            } else {
-                state = state;
+            if (state.length > 23) {
+                state = state.substring(0, 23) + '...';
             }
+        }
 
+        if(!activity.assets){
+            largeText = req.query.large_text || 'No large text'
+        } else if(activity.assets.largeText === null) {
+            largeText = req.query.large_text || 'No large text'
+        } else {
             largeText = activity.assets.largeText.replace(/&/g, '&amp;');
-            if (largeText.length > 25) {
-                largeText = largeText.substring(0, 24) + '...';
-            } else {
-                largeText = largeText;
+            if (largeText.length > 23) {
+                largeText = largeText.substring(0, 23) + '...';
             }
-        } catch (error) {
-            console.log(error)
+        }
+        
+        if(!activity.assets){
+            raw = discord_avatar
+        } else if(activity.assets.smallImage === null) {
+            raw = discord_avatar
+        } else if(activity.assets.smallImage.startsWith('mp:external')){
+            smallimg = activity.assets.smallImage
+            let smalllink = smallimg.split('https/')[1]
+            raw = 'https://' + smalllink
+        } else {
+            raw = discord_avatar   
         }
 
         try {
@@ -145,9 +156,10 @@ io.on("connection", (socket) => {
 
             let time = activity.timestamps.start;
             let elapsed = Date.now() - time;
-            let minutes = Math.floor(elapsed / 60000);
+            let hours = Math.floor(elapsed / 3600000);
+            let minutes = Math.floor((elapsed % 3600000) / 60000);
             let seconds = Math.floor((elapsed % 60000) / 1000);
-            let timeString = `${minutes}:${seconds}`;
+            let timeString = `${hours}:${minutes}:${seconds}`;
             
             const largeimage = activity.assets.largeImage
             let largelink = largeimage.split('raw')[1]
@@ -171,7 +183,29 @@ io.on("connection", (socket) => {
             temp = temp.replace('[large-image]', rawlarge);
             temp = temp.replace('[small-image]', rawsmall);
             temp = temp.replace('[button-text]', activity.buttons[0] || 'View Repository');
+        } else if (activity.type === 'PLAYING') {
+    
+            let time = activity.timestamps.start;
+            let elapsed = Date.now() - time;
+            let hours = Math.floor(elapsed / 3600000);
+            let minutes = Math.floor((elapsed % 3600000) / 60000);
+            let seconds = Math.floor((elapsed % 60000) / 1000);
+            let timeString = `${hours}:${minutes}:${seconds}`;
+
+            temp = fs.readFileSync('./assets/game-new.svg', {encoding: 'utf-8'}).toString()
+            temp = temp.replace('[username]', username);
+            temp = temp.replace('[banner]', banner);
+            temp = temp.replace('[about]', about);
+            temp = temp.replace('[pfp]', discord_avatar);
+    
+            temp = temp.replace('[name]', name || 'Gaming');
+            temp = temp.replace('[details]', details || 'No details');
+            temp = temp.replace('[state]', state || 'No description');
+            temp = temp.replace('[type]', activity.type || 'PLAYING');
+            temp = temp.replace('[large-image]', raw);
+            temp = temp.replace('[time]', timeString + ' elapsed' || '0:00 elapsed');
         }
+
         let base64
         try {
             base64 = Buffer.from(temp).toString('base64');
@@ -205,6 +239,58 @@ io.on("connection", (socket) => {
                 return;
             }
 
+            let name, details, state, smallimg, raw, largeText
+
+            if(!activity.name){
+                name = 'No name'
+            } else {
+                name = activity.name.replace(/&/g, '&amp;');
+                if (name.length > 23) {
+                    name = name.substring(0, 23) + '...';
+                }
+            }
+            
+            if(!activity.details){
+                details = 'No details'
+            } else {
+                details = activity.details.replace(/&/g, '&amp;');
+                if (details.length > 23) {
+                    details = details.substring(0, 23) + '...';
+                }
+            }
+
+            if(!activity.state){
+                state = 'No description'
+            } else {
+                state = activity.state.replace(/&/g, '&amp;');
+                if (state.length > 23) {
+                    state = state.substring(0, 23) + '...';
+                }
+            }
+
+            if(!activity.assets){
+                largeText = req.query.large_text || 'No large text'
+            } else if(activity.assets.largeText === null) {
+                largeText = req.query.large_text || 'No large text'
+            } else {
+                largeText = activity.assets.largeText.replace(/&/g, '&amp;');
+                if (largeText.length > 23) {
+                    largeText = largeText.substring(0, 23) + '...';
+                }
+            }
+
+            if(!activity.assets){
+                raw = discord_avatar
+            } else if(activity.assets.smallImage === null) {
+                raw = discord_avatar
+            } else if(activity.assets.smallImage.startsWith('mp:external')){
+                smallimg = activity.assets.smallImage
+                let smalllink = smallimg.split('https/')[1]
+                raw = 'https://' + smalllink
+            } else {
+                raw = discord_avatar   
+            }
+
             let temp;
             if (activity.name === 'Spotify') {
                 let start = activity.timestamps.start
@@ -215,44 +301,6 @@ io.on("connection", (socket) => {
                 let timeString = `${minutes}:${seconds}` 
 
                 let time = 0;
-
-                let details
-                let state
-                let largeText
-        
-                if(!activity.details) {
-                    details = "No details"
-                } else if(!activity.state) {
-                    state = "No state"
-                } else if(!activity.largeText) {
-                    largeText = "No largeText"
-                } 
-
-                try {
-                    details = activity.details.replace(/&/g, '&amp;');
-        
-                    if (details.length > 24) {
-                        details = details.substring(0, 24) + '...';
-                    } else {
-                        details = details;
-                    }
-        
-                    state = activity.state.replace(/&/g, '&amp;');
-                    if (state.length > 25) {
-                        state = state.substring(0, 24) + '...';
-                    } else {
-                        state = state;
-                    }
-        
-                    largeText = activity.assets.largeText.replace(/&/g, '&amp;');
-                    if (largeText.length > 25) {
-                        largeText = largeText.substring(0, 24) + '...';
-                    } else {
-                        largeText = largeText;
-                    }
-                } catch (error) {
-                    console.log(error)
-                }
 
                 temp = fs.readFileSync('./assets/spotify-new.svg', {encoding: 'utf-8'}).toString()
                 temp = temp.replace('[username]', username);
@@ -287,15 +335,6 @@ io.on("connection", (socket) => {
                 let smallink = smallimage.split('raw')[1]
                 const rawsmall = 'https://raw' + smallink
 
-                let state = activity.state;
-                try {
-                    if (state.length > 23) {
-                        state = state.substring(0, 23) + '...';
-                    }
-                } catch (e) {
-                    state = activity.state;
-                }
-
                 temp = fs.readFileSync('./assets/vscode-new.svg', {encoding: 'utf-8'}).toString()
                 temp = temp.replace('[username]', username);
                 temp = temp.replace('[banner]', banner);
@@ -310,6 +349,27 @@ io.on("connection", (socket) => {
                 temp = temp.replace('[large-image]', rawlarge);
                 temp = temp.replace('[small-image]', rawsmall);
                 temp = temp.replace('[button-text]', activity.buttons[0] || 'View Repository' );
+            } else if (activity.type === 'PLAYING') {
+        
+                let time = activity.timestamps.start;
+                let elapsed = Date.now() - time;
+                let hours = Math.floor(elapsed / 3600000);
+                let minutes = Math.floor((elapsed % 3600000) / 60000);
+                let seconds = Math.floor((elapsed % 60000) / 1000);
+                let timeString = `${hours}:${minutes}:${seconds}`;
+        
+                temp = fs.readFileSync('./assets/game-new.svg', {encoding: 'utf-8'}).toString()
+                temp = temp.replace('[username]', username);
+                temp = temp.replace('[banner]', banner);
+                temp = temp.replace('[about]', about);
+                temp = temp.replace('[pfp]', discord_avatar);
+        
+                temp = temp.replace('[name]', name || 'Gaming');
+                temp = temp.replace('[details]', details || 'No details');
+                temp = temp.replace('[state]', state || 'No description');
+                temp = temp.replace('[type]', activity.type || 'PLAYING');
+                temp = temp.replace('[large-image]', raw);
+                temp = temp.replace('[time]', timeString + ' elapsed' || '0:00 elapsed');
             }
 
             let base64 = Buffer.from(temp).toString('base64');
@@ -354,6 +414,14 @@ onlysvg.get('/svg', (req, res) => {
 
 onlysvg.get('/svgimg/:id', (req, res) => {
 
+    /* queries = {
+        banner: 'req.query.banner',
+        about: 'req.query.about',
+        type: 'req.query.type',
+        large_image: 'req.query.large_image',
+        small_image: 'req.query.small_image',
+    } */
+
     let member
     try {
         member = client.guilds.cache.get('782646778347388959').members.cache.get(req.params.id);
@@ -361,15 +429,8 @@ onlysvg.get('/svgimg/:id', (req, res) => {
         res.send('User not found')
         return;
     }
-
     
-    let activity
-    let discord_avatar
-    let spotify_logo
-    let username
-    let banner
-    let about
-    let play_along
+    let activity, discord_avatar, spotify_logo, username, banner, about, play_along
 
     try {
         discord_avatar = member.user.displayAvatarURL({format: 'png', dynamic: true})
@@ -400,6 +461,58 @@ onlysvg.get('/svgimg/:id', (req, res) => {
         res.send('Custom status error')
         return;
     }
+
+    let name, details, state, smallimg, raw, largeText
+        
+    if(!activity.name){
+        name = 'No name'
+    } else {
+        name = activity.name.replace(/&/g, '&amp;');
+        if (name.length > 23) {
+            name = name.substring(0, 23) + '...';
+        }
+    }
+    
+    if(!activity.details){
+        details = 'No details'
+    } else {
+        details = activity.details.replace(/&/g, '&amp;');
+        if (details.length > 23) {
+            details = details.substring(0, 23) + '...';
+        }
+    }
+    
+    if(!activity.state){
+        state = 'No description'
+    } else {
+        state = activity.state.replace(/&/g, '&amp;');
+        if (state.length > 23) {
+            state = state.substring(0, 23) + '...';
+        }
+    }
+    
+    if(!activity.assets){
+        raw = req.query.large_image || discord_avatar
+    } else if(activity.assets.smallImage === null) {
+        raw = req.query.large_image || discord_avatar
+    } else if(activity.assets.smallImage.startsWith('mp:external')){
+        smallimg = activity.assets.smallImage
+        let smalllink = smallimg.split('https/')[1]
+        raw = 'https://' + smalllink
+    } else {
+        raw = req.query.large_image || discord_avatar   
+    }
+
+    if(!activity.assets){
+        largeText = req.query.large_text || 'No large text'
+    } else if(activity.assets.largeText === null) {
+        largeText = req.query.large_text || 'No large text'
+    } else {
+        largeText = activity.assets.largeText.replace(/&/g, '&amp;');
+        if (largeText.length > 23) {
+            largeText = largeText.substring(0, 23) + '...';
+        }
+    }
     
     let temp;
     if (activity.name === 'Spotify') {
@@ -410,21 +523,6 @@ onlysvg.get('/svgimg/:id', (req, res) => {
         let minutes = Math.floor(elapsed / 60000)
         let seconds = Math.floor((elapsed % 60000) / 1000)
         let timeString = `${minutes}:${seconds}` 
-
-        let time = 0;
-
-        let details = activity.details.replace(/&/g, '&amp;');
-        if (details.length > 24) {
-            details = details.substring(0, 24) + '...';
-        }
-        let state = activity.state.replace(/&/g, '&amp;');
-        if (state.length > 25) {
-            state = state.substring(0, 24) + '...';
-        }
-        let largeText = activity.assets.largeText.replace(/&/g, '&amp;');
-        if (largeText.length > 25) {
-            largeText = largeText.substring(0, 24) + '...';
-        }
 
         temp = fs.readFileSync('./assets/spotify-new.svg', {encoding: 'utf-8'}).toString()
         temp = temp.replace('[username]', username);
@@ -437,10 +535,10 @@ onlysvg.get('/svgimg/:id', (req, res) => {
         temp = temp.replace('[state]', state);
         temp = temp.replace('[type]', req.query.type || activity.type);
         temp = temp.replace('[on]', largeText);
-        temp = temp.replace('[time]', time + ' -- ' + timeString);
+        temp = temp.replace('[time]', 0 + ' -- ' + timeString);
         temp = temp.replace('[pfp]', discord_avatar);
-        temp = temp.replace('[large-image]', req.query.large || discord_avatar);
-        temp = temp.replace('[small-image]', req.query.small || spotify_logo);
+        temp = temp.replace('[large-image]', req.query.large_image || discord_avatar);
+        temp = temp.replace('[small-image]', req.query.small_image || spotify_logo);
         temp = temp.replace('[spotify-logo]', spotify_logo);
         temp = temp.replace('[button-text]', "Play on Spotify");
     } else if (activity.name === 'Code') {
@@ -459,11 +557,6 @@ onlysvg.get('/svgimg/:id', (req, res) => {
         let smallink = smallimage.split('raw')[1]
         const rawsmall = 'https://raw' + smallink
 
-        let state = activity.state;
-        if (state.length > 23) {
-            state = state.substring(0, 23) + '...';
-        }
-
         temp = fs.readFileSync('./assets/vscode-new.svg', {encoding: 'utf-8'}).toString()
         temp = temp.replace('[username]', username);
         temp = temp.replace('[banner]', banner);
@@ -478,6 +571,29 @@ onlysvg.get('/svgimg/:id', (req, res) => {
         temp = temp.replace('[large-image]', rawlarge);
         temp = temp.replace('[small-image]', rawsmall);
         temp = temp.replace('[button-text]', activity.buttons[0] || 'Playing');
+    } else if (activity.type === 'PLAYING') {
+
+        // console.log(activity)
+
+        let time = activity.timestamps.start;
+        let elapsed = Date.now() - time;
+        let hours = Math.floor(elapsed / 3600000);
+        let minutes = Math.floor((elapsed % 3600000) / 60000);
+        let seconds = Math.floor((elapsed % 60000) / 1000);
+        let timeString = `${hours}:${minutes}:${seconds}`;
+
+        temp = fs.readFileSync('./assets/game-new.svg', {encoding: 'utf-8'}).toString()
+        temp = temp.replace('[username]', username);
+        temp = temp.replace('[banner]', banner);
+        temp = temp.replace('[about]', about);
+        temp = temp.replace('[pfp]', discord_avatar);
+
+        temp = temp.replace('[name]', name || 'Gaming');
+        temp = temp.replace('[details]', details || 'No details');
+        temp = temp.replace('[state]', state || 'No description');
+        temp = temp.replace('[type]', req.query.type || activity.type);
+        temp = temp.replace('[large-image]', raw);
+        temp = temp.replace('[time]', timeString + ' elapsed' || '0:00 elapsed');
     }
     res.writeHead(200, {'Content-Type': 'image/svg+xml'})
     res.end(temp)
@@ -486,8 +602,7 @@ onlysvg.get('/svgimg/:id', (req, res) => {
 
 io.on("disconnect", (socket) => {
     console.log(`a user disconnected ${socket.id}`)
-}
-)
+})
 
 server.listen(3001, () => console.log(`Listening on port 3001`))
 onlysvg.listen(5000, () => console.log(`Listening on port 5000 \nhttp://localhost:5000/svgimg/784141856426033233?about=pog&banner=https://wallpapercave.com/wp/wp4771870.jpg`))
