@@ -30,11 +30,31 @@ io.on("connection", (socket) => {
         const about = data.about
         let member 
         try {
-            member = client.guilds.cache.get('939799133177384990').members.cache.get(data.userid);
+           member = client.guilds.cache.get('782646778347388959').members.cache.get(data.userid);
         } catch (error) {
             console.log(error)
         }
-        const activity = member.presence.activities[0]
+        let activity
+        try {
+            if(member.presence.activities[0].id === 'custom' && !member.presence.activities[1]){
+                no_activity()
+            } else if (member.presence.activities[0].id === 'custom' || member.presence.activities[0].type === 'CUSTOM') {
+                activity = member.presence.activities[1];
+            } else {
+                try {
+                    activity = member.presence.activities[0];
+                } catch (error) {
+                    no_activity()
+                    return;
+                }
+            }
+        } catch (e) {
+            function no_activity() {
+                console.log(`${data.userid} has no activity`)
+            }
+            no_activity()
+            return;
+        }
 
         let discord_avatar
         let username
@@ -43,19 +63,44 @@ io.on("connection", (socket) => {
         let play_along
         let spotify_logo
 
-        let details = activity.details.replace(/&/g, '&amp;');
-        if (details.length > 24) {
-            details = details.substring(0, 24) + '...';
-        }
-        let state = activity.state.replace(/&/g, '&amp;');
-        if (state.length > 25) {
-            state = state.substring(0, 24) + '...';
-        }
-        let largeText = activity.assets.largeText.replace(/&/g, '&amp;');
-        if (largeText.length > 25) {
-            largeText = largeText.substring(0, 24) + '...';
-        }
+        let details
+        let state
+        let largeText
         
+        if(!activity.details) {
+            details = "No details"
+        } else if(!activity.state) {
+            state = "No state"
+        } else if(!activity.largeText) {
+            largeText = "No largeText"
+        } 
+
+        try {
+
+            details = activity.details.replace(/&/g, '&amp;');
+            if (details.length > 24) {
+                details = details.substring(0, 24) + '...';
+            } else {
+                details = details;
+            }
+
+            state = activity.state.replace(/&/g, '&amp;');
+            if (state.length > 25) {
+                state = state.substring(0, 24) + '...';
+            } else {
+                state = state;
+            }
+
+            largeText = activity.assets.largeText.replace(/&/g, '&amp;');
+            if (largeText.length > 25) {
+                largeText = largeText.substring(0, 24) + '...';
+            } else {
+                largeText = largeText;
+            }
+        } catch (error) {
+            console.log(error)
+        }
+
         try {
             discord_avatar = member.user.displayAvatarURL({format: 'png', dynamic: true})
             spotify_logo = 'https://www.freeiconspng.com/uploads/spotify-icon-0.png'
@@ -64,7 +109,7 @@ io.on("connection", (socket) => {
 
             play_along = "https://cdn.discordapp.com/attachments/970974282681307187/987330240609132555/play-along.png"
         } catch (e) {
-            res.send('User not found')
+            console.log(e)
             return;
         }
 
@@ -91,12 +136,12 @@ io.on("connection", (socket) => {
             temp = temp.replace('[type]', activity.type);
             temp = temp.replace('[on]', largeText);
             temp = temp.replace('[time]', time + ' -- ' + timeString);
-            temp = temp.replace('[pfp]', discord_avatar);
+            temp = temp.replace('[pfp]', discord_avatar);       
             temp = temp.replace('[large-image]', discord_avatar);
             temp = temp.replace('[small-image]', spotify_logo);
             temp = temp.replace('[spotify-logo]', spotify_logo);
             temp = temp.replace('[button-text]', "Play on Spotify");
-        } else if (activity.name === 'Code') {
+        } else if (activity.name === 'Code' || activity.name === 'Visual Studio Code') {
 
             let time = activity.timestamps.start;
             let elapsed = Date.now() - time;
@@ -127,8 +172,12 @@ io.on("connection", (socket) => {
             temp = temp.replace('[small-image]', rawsmall);
             temp = temp.replace('[button-text]', activity.buttons[0] || 'View Repository');
         }
-
-        let base64 = Buffer.from(temp).toString('base64');
+        let base64
+        try {
+            base64 = Buffer.from(temp).toString('base64');
+        } catch (error) {
+            console.log(error)
+        }
 
         io.emit("message", {
             stuff: activity,
@@ -137,8 +186,24 @@ io.on("connection", (socket) => {
         })
 
         function getActivity() {
-            const member = client.guilds.cache.get('939799133177384990').members.cache.get(data.userid);
-            const activity = member.presence.activities[0];
+            const member = client.guilds.cache.get('782646778347388959').members.cache.get(data.userid);
+            let activity
+            try {
+                if (member.presence.activities[0].id === 'custom' || member.presence.activities[0].type === 'CUSTOM') {
+                    activity = member.presence.activities[1];
+                } else {
+                    try {
+                        activity = member.presence.activities[0];
+                        // console.log(activity)
+                    } catch (error) {
+                        res.send('No activity')
+                        return;
+                    }
+                }
+            } catch (e) {
+                console.log(e)
+                return;
+            }
 
             let temp;
             if (activity.name === 'Spotify') {
@@ -151,17 +216,42 @@ io.on("connection", (socket) => {
 
                 let time = 0;
 
-                let details = activity.details.replace(/&/g, '&amp;');
-                if (details.length > 24) {
-                    details = details.substring(0, 24) + '...';
-                }
-                let state = activity.state.replace(/&/g, '&amp;');
-                if (state.length > 25) {
-                    state = state.substring(0, 24) + '...';
-                }
-                let largeText = activity.assets.largeText.replace(/&/g, '&amp;');
-                if (largeText.length > 25) {
-                    largeText = largeText.substring(0, 24) + '...';
+                let details
+                let state
+                let largeText
+        
+                if(!activity.details) {
+                    details = "No details"
+                } else if(!activity.state) {
+                    state = "No state"
+                } else if(!activity.largeText) {
+                    largeText = "No largeText"
+                } 
+
+                try {
+                    details = activity.details.replace(/&/g, '&amp;');
+        
+                    if (details.length > 24) {
+                        details = details.substring(0, 24) + '...';
+                    } else {
+                        details = details;
+                    }
+        
+                    state = activity.state.replace(/&/g, '&amp;');
+                    if (state.length > 25) {
+                        state = state.substring(0, 24) + '...';
+                    } else {
+                        state = state;
+                    }
+        
+                    largeText = activity.assets.largeText.replace(/&/g, '&amp;');
+                    if (largeText.length > 25) {
+                        largeText = largeText.substring(0, 24) + '...';
+                    } else {
+                        largeText = largeText;
+                    }
+                } catch (error) {
+                    console.log(error)
                 }
 
                 temp = fs.readFileSync('./assets/spotify-new.svg', {encoding: 'utf-8'}).toString()
@@ -181,7 +271,7 @@ io.on("connection", (socket) => {
                 temp = temp.replace('[small-image]', spotify_logo);
                 temp = temp.replace('[spotify-logo]', spotify_logo);
                 temp = temp.replace('[button-text]', "Play on Spotify");
-            } else if (activity.name === 'Code') {
+            } else if (activity.name === 'Code' || activity.name === 'Visual Studio Code') {
 
                 let time = activity.timestamps.start;
                 let elapsed = Date.now() - time;
@@ -239,7 +329,6 @@ io.on("connection", (socket) => {
                     return;
                 }
             } catch (e) {
-                console.log("how bot lol")
                 return;
             }
             if (newPresence.user.id === main_user) {
@@ -249,7 +338,7 @@ io.on("connection", (socket) => {
                     } else {
                         getActivity()
                     }
-                } else if (newPresence.activities[0].name === 'Code') {
+                } else if (newPresence.activities[0].name === 'Code' || newPresence.activities[0].name === 'Visual Studio Code') {
                     getActivity()
                 }
             }
@@ -267,12 +356,13 @@ onlysvg.get('/svgimg/:id', (req, res) => {
 
     let member
     try {
-        member = client.guilds.cache.get('939799133177384990').members.cache.get(req.params.id);
+        member = client.guilds.cache.get('782646778347388959').members.cache.get(req.params.id);
     } catch (e) {
         res.send('User not found')
         return;
     }
 
+    
     let activity
     let discord_avatar
     let spotify_logo
@@ -290,14 +380,24 @@ onlysvg.get('/svgimg/:id', (req, res) => {
 
         play_along = "https://cdn.discordapp.com/attachments/970974282681307187/987330240609132555/play-along.png"
     } catch (e) {
-        res.send('User not found')
+        res.send('User not found or no activity')
         return;
     }
-
+    
     try {
-        activity = member.presence.activities[0];
-    } catch (error) {
-        res.send('No activity')
+        if (member.presence.activities[0].id === 'custom' || member.presence.activities[0].type === 'CUSTOM') {
+            activity = member.presence.activities[1];
+        } else {
+            try {
+                activity = member.presence.activities[0];
+                // console.log(activity)
+            } catch (error) {
+                res.send('No activity')
+                return;
+            }
+        }
+    } catch (e) {
+        res.send('Custom status error')
         return;
     }
     
@@ -370,14 +470,14 @@ onlysvg.get('/svgimg/:id', (req, res) => {
         temp = temp.replace('[about]', about);
         temp = temp.replace('[pfp]', discord_avatar);
 
-        temp = temp.replace('[name]', activity.name);
-        temp = temp.replace('[details]', activity.details);
-        temp = temp.replace('[state]', state);
+        temp = temp.replace('[name]', activity.name || 'Gaming');
+        temp = temp.replace('[details]', activity.details || 'No details');
+        temp = temp.replace('[state]', state || 'No description');
         temp = temp.replace('[type]', req.query.type || activity.type);
-        temp = temp.replace('[time]', timeString + ' elapsed');
+        temp = temp.replace('[time]', timeString + ' elapsed' || '0:00 elapsed');
         temp = temp.replace('[large-image]', rawlarge);
         temp = temp.replace('[small-image]', rawsmall);
-        temp = temp.replace('[button-text]', activity.buttons[0] || 'View Repository');
+        temp = temp.replace('[button-text]', activity.buttons[0] || 'Playing');
     }
     res.writeHead(200, {'Content-Type': 'image/svg+xml'})
     res.end(temp)
