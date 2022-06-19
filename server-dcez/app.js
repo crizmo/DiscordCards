@@ -213,13 +213,18 @@ io.on("connection", (socket) => {
         } else if (activity.type === 'PLAYING') {
             // console.log(activity)
             let time, elapsed, hours, minutes, seconds, timeString
-            time = '0:0:0' || activity.timestamps.start;
-            elapsed = Date.now() - time;
-            hours = Math.floor(elapsed / 3600000);
-            minutes = Math.floor((elapsed % 3600000) / 60000);
-            seconds = Math.floor((elapsed % 60000) / 1000);
-            timeString = 'infinite lol' || `${hours}:${minutes}:${seconds} elapsed`;
-
+            
+            try {
+                time = activity.timestamps.start;
+                elapsed = Date.now() - time;
+                hours = Math.floor(elapsed / 3600000);
+                minutes = Math.floor((elapsed % 3600000) / 60000);
+                seconds = Math.floor((elapsed % 60000) / 1000);
+                timeString = `${hours}:${minutes}:${seconds}`;
+            } catch (error) {
+                timeString = '0:0:0'
+            }
+            
             temp = fs.readFileSync('./assets/game-new.svg', {encoding: 'utf-8'}).toString()
             temp = temp.replace('[username]', username);
             temp = temp.replace('[banner]', banner);
@@ -394,12 +399,18 @@ io.on("connection", (socket) => {
                 temp = temp.replace('[button-text]', activity.buttons[0] || 'View Repository' );
             } else if (activity.type === 'PLAYING') {
         
-                let time = activity.timestamps.start;
-                let elapsed = Date.now() - time;
-                let hours = Math.floor(elapsed / 3600000);
-                let minutes = Math.floor((elapsed % 3600000) / 60000);
-                let seconds = Math.floor((elapsed % 60000) / 1000);
-                let timeString = `${hours}:${minutes}:${seconds}`;
+                let time, elapsed, hours, minutes, seconds, timeString
+            
+                try {
+                    time = activity.timestamps.start;
+                    elapsed = Date.now() - time;
+                    hours = Math.floor(elapsed / 3600000);
+                    minutes = Math.floor((elapsed % 3600000) / 60000);
+                    seconds = Math.floor((elapsed % 60000) / 1000);
+                    timeString = `${hours}:${minutes}:${seconds}`;
+                } catch (error) {
+                    timeString = '0:0:0'
+                }
         
                 temp = fs.readFileSync('./assets/game-new.svg', {encoding: 'utf-8'}).toString()
                 temp = temp.replace('[username]', username);
@@ -624,12 +635,18 @@ onlysvg.get('/svgimg/:id', (req, res) => {
 
         // console.log(activity)
 
-        let time = activity.timestamps.start;
-        let elapsed = Date.now() - time;
-        let hours = Math.floor(elapsed / 3600000);
-        let minutes = Math.floor((elapsed % 3600000) / 60000);
-        let seconds = Math.floor((elapsed % 60000) / 1000);
-        let timeString = `${hours}:${minutes}:${seconds}`;
+        let time, elapsed, hours, minutes, seconds, timeString
+            
+        try {
+            time = activity.timestamps.start;
+            elapsed = Date.now() - time;
+            hours = Math.floor(elapsed / 3600000);
+            minutes = Math.floor((elapsed % 3600000) / 60000);
+            seconds = Math.floor((elapsed % 60000) / 1000);
+            timeString = `${hours}:${minutes}:${seconds}`;
+        } catch (error) {
+            timeString = '0:0:0'
+        }
 
         temp = fs.readFileSync('./assets/game-new.svg', {encoding: 'utf-8'}).toString()
         temp = temp.replace('[username]', username);
