@@ -27,10 +27,25 @@ io.on("connection", (socket) => {
 
     socket.on("user", function (data) {
         const main_user = data.userid
-        const about = data.about
+        let about = data.about
+        if(!about) {
+            about = " "
+        } else {
+            about = data.about
+            if (about.length > 20) {
+                about = about.substring(0, 20) + "..."
+            }
+        }
         let member 
         try {
-           member = client.guilds.cache.get('782646778347388959').members.cache.get(data.userid);
+            member = client.guilds.cache.get('782646778347388959').members.cache.get(data.userid);
+            if (!member) {
+                console.log('member not in server')
+                io.emit('not-in-server', {
+                    userid: data.userid
+                })
+                return 
+            }
         } catch (error) {
             console.log(error)
         }
@@ -196,13 +211,14 @@ io.on("connection", (socket) => {
             temp = temp.replace('[small-image]', rawsmall);
             temp = temp.replace('[button-text]', activity.buttons[0] || 'View Repository');
         } else if (activity.type === 'PLAYING') {
-    
-            let time = activity.timestamps.start;
-            let elapsed = Date.now() - time;
-            let hours = Math.floor(elapsed / 3600000);
-            let minutes = Math.floor((elapsed % 3600000) / 60000);
-            let seconds = Math.floor((elapsed % 60000) / 1000);
-            let timeString = `${hours}:${minutes}:${seconds}`;
+            // console.log(activity)
+            let time, elapsed, hours, minutes, seconds, timeString
+            time = '0:0:0' || activity.timestamps.start;
+            elapsed = Date.now() - time;
+            hours = Math.floor(elapsed / 3600000);
+            minutes = Math.floor((elapsed % 3600000) / 60000);
+            seconds = Math.floor((elapsed % 60000) / 1000);
+            timeString = 'infinite lol' || `${hours}:${minutes}:${seconds} elapsed`;
 
             temp = fs.readFileSync('./assets/game-new.svg', {encoding: 'utf-8'}).toString()
             temp = temp.replace('[username]', username);
@@ -216,7 +232,7 @@ io.on("connection", (socket) => {
             temp = temp.replace('[type]', activity.type || 'PLAYING');
             temp = temp.replace('[large-image]', large_image || raw);
             temp = temp.replace('[small-image]', small_image || raw);
-            temp = temp.replace('[time]', timeString + ' elapsed' || '0:00 elapsed');
+            temp = temp.replace('[time]', timeString || '0:00 elapsed');
         }
 
         let base64
@@ -234,7 +250,7 @@ io.on("connection", (socket) => {
 
         function getActivity() {
             const member = client.guilds.cache.get('782646778347388959').members.cache.get(data.userid);
-            console.log(member.presence.activities[0])
+            // console.log(member.presence.activities[0])
             let activity
             try {
                 if (member.presence.activities[0].id === 'custom' || member.presence.activities[0].type === 'CUSTOM') {
@@ -467,7 +483,10 @@ onlysvg.get('/svgimg/:id', (req, res) => {
         spotify_logo = 'https://www.freeiconspng.com/uploads/spotify-icon-0.png'
         username = member.user.username + '#' + member.user.discriminator
         banner = req.query.banner || 'https://cdn.discordapp.com/attachments/970974282681307187/987323350709862420/green-back.png'
-        about = req.query.about || 'No description'
+        about = req.query.about || ' '
+        if (about.length > 20) {
+            about = about.substring(0, 20) + "..."
+        }
 
         play_along = "https://cdn.discordapp.com/attachments/970974282681307187/987330240609132555/play-along.png"
     } catch (e) {
@@ -627,12 +646,27 @@ onlysvg.get('/svgimg/:id', (req, res) => {
     }
     res.writeHead(200, {'Content-Type': 'image/svg+xml'})
     res.end(temp)
-
 })
 
 io.on("disconnect", (socket) => {
     console.log(`a user disconnected ${socket.id}`)
 })
+
+process.on('unhandledRejection', async (reason, p, origin) => {
+    const embed = new Discord.MessageEmbed()
+        .setTitle('Error Occured')
+        .setColor('RANDOM')
+        .setDescription('```js\n' + reason.stack + '```');
+    client.channels.cache.get('988140784807202886').send({ embeds: [embed] })
+});
+
+process.on('uncaughtExceptionMonitor', async (err, origin) => {
+    const embed = new Discord.MessageEmbed()
+        .setTitle('Error Occured')
+        .setColor('RANDOM')
+        .setDescription('```js\n' + err.stack + '```');
+    client.channels.cache.get('988140784807202886').send({ embeds: [embed] })
+});
 
 server.listen(3001, () => console.log(`Listening on port 3001`))
 onlysvg.listen(5000, () => console.log(`Listening on port 5000 \nhttp://localhost:5000/svgimg/784141856426033233?about=pog&banner=https://wallpapercave.com/wp/wp4771870.jpg`))
