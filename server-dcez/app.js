@@ -374,7 +374,7 @@ io.on("connection", (socket) => {
 
             let base64 = Buffer.from(temp).toString('base64');
 
-            fs.writeFileSync('./assets/tempcard.svg', temp)
+            // fs.writeFileSync('./assets/tempcard.svg', temp)
 
             io.emit("message", {
                 stuff: activity,
