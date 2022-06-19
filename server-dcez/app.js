@@ -90,9 +90,9 @@ io.on("connection", (socket) => {
         }
 
         if(!activity.assets){
-            largeText = req.query.large_text || 'No large text'
+            largeText = 'No large text'
         } else if(activity.assets.largeText === null) {
-            largeText = req.query.large_text || 'No large text'
+            largeText = 'No large text'
         } else {
             largeText = activity.assets.largeText.replace(/&/g, '&amp;');
             if (largeText.length > 23) {
@@ -269,9 +269,9 @@ io.on("connection", (socket) => {
             }
 
             if(!activity.assets){
-                largeText = req.query.large_text || 'No large text'
+                largeText = 'No large text'
             } else if(activity.assets.largeText === null) {
-                largeText = req.query.large_text || 'No large text'
+                largeText = 'No large text'
             } else {
                 largeText = activity.assets.largeText.replace(/&/g, '&amp;');
                 if (largeText.length > 23) {
