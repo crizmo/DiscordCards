@@ -55,11 +55,22 @@ io.on("connection", (socket) => {
             no_activity()
             return;
         }
-
+        
         let discord_avatar, username, banner
-
         let play_along, spotify_logo
+        
+        try {
+            discord_avatar = member.user.displayAvatarURL({format: 'png', dynamic: true})
+            spotify_logo = 'https://www.freeiconspng.com/uploads/spotify-icon-0.png'
+            username = member.user.username + '#' + member.user.discriminator
+            banner = data.banner || 'https://cdn.discordapp.com/attachments/970974282681307187/987323350709862420/green-back.png'
 
+            play_along = "https://cdn.discordapp.com/attachments/970974282681307187/987330240609132555/play-along.png"
+        } catch (e) {
+            console.log(e)
+            return;
+        }
+        
         let name, details, state, smallimg, raw, largeText
 
         if(!activity.name){
@@ -112,17 +123,6 @@ io.on("connection", (socket) => {
             raw = discord_avatar   
         }
 
-        try {
-            discord_avatar = member.user.displayAvatarURL({format: 'png', dynamic: true})
-            spotify_logo = 'https://www.freeiconspng.com/uploads/spotify-icon-0.png'
-            username = member.user.username + '#' + member.user.discriminator
-            banner = data.banner || 'https://cdn.discordapp.com/attachments/970974282681307187/987323350709862420/green-back.png'
-
-            play_along = "https://cdn.discordapp.com/attachments/970974282681307187/987330240609132555/play-along.png"
-        } catch (e) {
-            console.log(e)
-            return;
-        }
 
         let temp;
         if (activity.name === 'Spotify') {
