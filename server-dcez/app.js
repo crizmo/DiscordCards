@@ -72,6 +72,7 @@ io.on("connection", (socket) => {
         }
         
         let name, details, state, smallimg, raw, largeText
+        let large_image, small_image
 
         if(!activity.name){
             name = 'No name'
@@ -120,9 +121,20 @@ io.on("connection", (socket) => {
             let smalllink = smallimg.split('https/')[1]
             raw = 'https://' + smalllink
         } else {
-            raw = discord_avatar   
+            raw = data.large_image || discord_avatar  
         }
 
+        if(!data.large_image){
+            large_image = raw
+        } else {
+            large_image = data.large_image
+        }
+
+        if(!data.small_image){
+            small_image = raw
+        } else {
+            small_image = data.small_image
+        }
 
         let temp;
         if (activity.name === 'Spotify') {
@@ -148,8 +160,8 @@ io.on("connection", (socket) => {
             temp = temp.replace('[on]', largeText);
             temp = temp.replace('[time]', time + ' -- ' + timeString);
             temp = temp.replace('[pfp]', discord_avatar);       
-            temp = temp.replace('[large-image]', discord_avatar);
-            temp = temp.replace('[small-image]', spotify_logo);
+            temp = temp.replace('[large-image]', large_image || discord_avatar);
+            temp = temp.replace('[small-image]', small_image || spotify_logo);
             temp = temp.replace('[spotify-logo]', spotify_logo);
             temp = temp.replace('[button-text]', "Play on Spotify");
         } else if (activity.name === 'Code' || activity.name === 'Visual Studio Code') {
@@ -202,7 +214,8 @@ io.on("connection", (socket) => {
             temp = temp.replace('[details]', details || 'No details');
             temp = temp.replace('[state]', state || 'No description');
             temp = temp.replace('[type]', activity.type || 'PLAYING');
-            temp = temp.replace('[large-image]', raw);
+            temp = temp.replace('[large-image]', large_image || raw);
+            temp = temp.replace('[small-image]', small_image || raw);
             temp = temp.replace('[time]', timeString + ' elapsed' || '0:00 elapsed');
         }
 
@@ -221,6 +234,7 @@ io.on("connection", (socket) => {
 
         function getActivity() {
             const member = client.guilds.cache.get('782646778347388959').members.cache.get(data.userid);
+            console.log(member.presence.activities[0])
             let activity
             try {
                 if (member.presence.activities[0].id === 'custom' || member.presence.activities[0].type === 'CUSTOM') {
@@ -240,6 +254,7 @@ io.on("connection", (socket) => {
             }
 
             let name, details, state, smallimg, raw, largeText
+            let large_image, small_image
 
             if(!activity.name){
                 name = 'No name'
@@ -291,6 +306,18 @@ io.on("connection", (socket) => {
                 raw = discord_avatar   
             }
 
+            if(!data.large_image){
+                large_image = raw
+            } else {
+                large_image = data.large_image
+            }
+    
+            if(!data.small_image){
+                small_image = raw
+            } else {
+                small_image = data.small_image
+            }
+
             let temp;
             if (activity.name === 'Spotify') {
                 let start = activity.timestamps.start
@@ -315,8 +342,8 @@ io.on("connection", (socket) => {
                 temp = temp.replace('[on]', largeText);
                 temp = temp.replace('[time]', time + ' -- ' + timeString);
                 temp = temp.replace('[pfp]', discord_avatar);
-                temp = temp.replace('[large-image]', discord_avatar);
-                temp = temp.replace('[small-image]', spotify_logo);
+                temp = temp.replace('[large-image]', large_image || raw);
+                temp = temp.replace('[small-image]', small_image || raw);
                 temp = temp.replace('[spotify-logo]', spotify_logo);
                 temp = temp.replace('[button-text]', "Play on Spotify");
             } else if (activity.name === 'Code' || activity.name === 'Visual Studio Code') {
@@ -368,7 +395,8 @@ io.on("connection", (socket) => {
                 temp = temp.replace('[details]', details || 'No details');
                 temp = temp.replace('[state]', state || 'No description');
                 temp = temp.replace('[type]', activity.type || 'PLAYING');
-                temp = temp.replace('[large-image]', raw);
+                temp = temp.replace('[large-image]', large_image || raw);
+                temp = temp.replace('[small-image]', small_image || raw);
                 temp = temp.replace('[time]', timeString + ' elapsed' || '0:00 elapsed');
             }
 
@@ -399,6 +427,8 @@ io.on("connection", (socket) => {
                         getActivity()
                     }
                 } else if (newPresence.activities[0].name === 'Code' || newPresence.activities[0].name === 'Visual Studio Code') {
+                    getActivity()
+                } else if (newPresence.activities[0].type === 'PLAYING') {
                     getActivity()
                 }
             }
