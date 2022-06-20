@@ -38,7 +38,7 @@ io.on("connection", (socket) => {
         }
         let member 
         try {
-            // client.guilds.fetch("782646778347388959")
+            client.guilds.fetch("782646778347388959")
             member = client.guilds.cache.get('782646778347388959').members.cache.get(data.userid);
             if (!member) {
                 console.log('member not in server')
@@ -255,7 +255,7 @@ io.on("connection", (socket) => {
         })
 
         function getActivity() {
-            // client.guilds.fetch("782646778347388959")
+            client.guilds.fetch("782646778347388959")
             const member = client.guilds.cache.get('782646778347388959').members.cache.get(data.userid);
             // console.log(member.presence.activities[0])
             let activity
@@ -489,5 +489,5 @@ const api = require('./api')
 onlysvg.use('/api', api)
 
 server.listen(3001, () => console.log(`Listening on port 3001`))
-onlysvg.listen(5000, () => console.log(`Listening on port 5000 \nhttp://localhost:5000/svgimg/784141856426033233?about=pog&banner=https://wallpapercave.com/wp/wp4771870.jpg`))
+onlysvg.listen(5000, () => console.log(`Listening on port 5000 \nhttp://localhost:5000/api/784141856426033233?about=pog&banner=https://wallpapercave.com/wp/wp4771870.jpg`))
 client.login(process.env.DISCORD_TOKEN);
