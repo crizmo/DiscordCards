@@ -528,7 +528,10 @@ io.on("connection", async (socket) => {
                 } else if (newPresence.activities[0].type === 'PLAYING') {
                     getActivity()
                 }
-            }
+            } 
+            // else {
+            //     return;
+            // }
         });
     })
 })
