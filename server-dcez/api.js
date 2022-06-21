@@ -8,9 +8,9 @@ const Discord = require('discord.js');
 const client = new Client({ intents: 32767 });
 require('dotenv').config();
 
-const api = async () => {
+const api = () => {
 
-    router.get('/:id', (req, res) => {
+    router.get('/:id', async (req, res) => {
 
         /* queries = {
             banner: 'req.query.banner',
@@ -22,8 +22,7 @@ const api = async () => {
 
         let member
         try {
-            client.guilds.fetch("782646778347388959")
-            member = client.guilds.cache.get("782646778347388959").members.cache.get(req.params.id);
+            member = await client.guilds.cache.get("782646778347388959").members.fetch(req.params.id);
         } catch (e) {
             res.send('User not found')
             console.log(e)
@@ -44,25 +43,63 @@ const api = async () => {
 
             play_along = "https://cdn.discordapp.com/attachments/970974282681307187/987330240609132555/play-along.png"
         } catch (e) {
-            res.send('User not found or no activity')
-            // console.log(e)
+            res.send('Uh user error')
+            console.log(e)
             return;
         }
         
         try {
-            if (member.presence.activities[0].id === 'custom' || member.presence.activities[0].type === 'CUSTOM') {
+            if(member.presence.activities[0].id === 'custom' && !member.presence.activities[1]){
+                no_activity()
+                return;
+            } else if (member.presence.activities[0].id === 'custom' || member.presence.activities[0].type === 'CUSTOM') {
                 activity = member.presence.activities[1];
             } else {
                 try {
                     activity = member.presence.activities[0];
-                    // console.log(activity)
                 } catch (error) {
-                    res.send('No activity')
+                    no_activity()
                     return;
                 }
             }
         } catch (e) {
-            res.send('Custom status error')
+            let temp;
+            function no_activity() {
+                let type, details
+                try {
+                    type = req.query.type || 'Chilling'
+                    details = req.query.details || 'Vibiing'
+
+                    if (type.length > 20) {
+                        type = type.substring(0, 20) + "..."
+                    }
+                    if (details.length > 20) {
+                        details = details.substring(0, 20) + "..."
+                    }
+                } catch (e) {
+                    type = 'Chilling'
+                    details = 'Vibing'
+                }
+
+                temp = fs.readFileSync('./assets/no-activity-new.svg', {encoding: 'utf-8'}).toString()
+                temp = temp.replace('[pfp]', discord_avatar);
+                temp = temp.replace('[username]', username);
+                temp = temp.replace('[banner]', banner);
+                temp = temp.replace('[about]', about);
+
+                temp = temp.replace('[type]', type);
+                temp = temp.replace('[details]', details);
+
+                temp = temp.replace('[large-image]', req.query.large_image || discord_avatar)
+                temp = temp.replace('[small-image]', req.query.small_image || discord_avatar)
+                temp = temp.replace('[side-image]', req.query.side_image || discord_avatar)
+
+                console.log(`${member.user.username} has no activity`)
+                // res.send('User has no activity')
+                res.writeHead(200, {'Content-Type': 'image/svg+xml'})
+                res.end(temp)
+            }
+            no_activity()
             return;
         }
 
