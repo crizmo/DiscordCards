@@ -22,6 +22,9 @@ const io = new Server(server, {
     }
 })
 
+const serverPort = process.env.PORT || 3001;
+const apiPort = process.env.PORT || 5000;
+
 io.on("connection", async (socket) => {
     console.log(`a user connected ${socket.id}`)
 
@@ -553,6 +556,6 @@ process.on('uncaughtExceptionMonitor', async (err, origin) => {
 const api = require('./lib/api')
 onlysvg.use('/api', api)
 
-server.listen(3001, () => console.log(`Listening on port 3001`))
-onlysvg.listen(5000, () => console.log(`Listening on port 5000 \nhttp://localhost:5000/api/784141856426033233?about=pog&banner=https://wallpapercave.com/wp/wp4771870.jpg`))
+server.listen(serverPort , () => console.log(`Listening on port 3001`))
+onlysvg.listen(apiPort , () => console.log(`Listening on port 5000 \nhttp://localhost:5000/api/784141856426033233?about=pog&banner=https://wallpapercave.com/wp/wp4771870.jpg`))
 client.login(process.env.DISCORD_TOKEN);
