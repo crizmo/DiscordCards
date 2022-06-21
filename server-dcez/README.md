@@ -1,21 +1,24 @@
 # INFO
-This is the backend of the DCEZ client.
-made using express for fetching discord activity.
+This is the backend of the breeze
+made using express and react for fetching discord activity.
 
 : Contains :
-- socket routing to send and receive data from | to the client
-- base onlysvg endpoints for the svg img api of the user
+- socket routing to send and receive activity data from | to the client
+- base api endpoints for the svg img of the user which contaings the data
 
 : API Endpoints :
-- /svg : display the download svg of the user
-- /svg/:id : display the svg activity of the user with the id
+- /api : display the download svg of the user
+- /api/:id : display the svg activity of the user with the id
 
 # Cards
 Currently breeze supports vs code and spotify activity svg images.
 
 : location :
-- VsCode : assets/vscode-card.svg
-- Spotify : assets/spotify-card.svg
+- VsCode : assets/vscode-new.svg
+  [Code](https://media.discordapp.net/attachments/970974282681307187/988846773856518187/code.png)
+- Spotify : assets/spotify-new.svg
+- Playing : assets/game-new.svg
+- No Activity : assets/no-activity-new.svg
 - Downloaded tempcard : assets/tempcard.svg
 
 # Ports 
