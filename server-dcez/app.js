@@ -22,10 +22,10 @@ const io = new Server(server, {
     }
 })
 
-io.on("connection", (socket) => {
+io.on("connection", async (socket) => {
     console.log(`a user connected ${socket.id}`)
 
-    socket.on("user", function (data) {
+    socket.on("user", async function (data) {
         const main_user = data.userid
         let about = data.about
         if(!about) {
@@ -39,7 +39,7 @@ io.on("connection", (socket) => {
         let member 
         try {
             client.guilds.fetch("782646778347388959")
-            member = client.guilds.cache.get('782646778347388959').members.cache.get(data.userid);
+            member = client.guilds.cache.get('782646778347388959').members.cache.get(data.userid) || await client.guilds.cache.get("782646778347388959").members.fetch(data.userid);
             if (!member) {
                 console.log('member not in server')
                 io.emit('not-in-server', {
@@ -65,8 +65,68 @@ io.on("connection", (socket) => {
                 }
             }
         } catch (e) {
+            let temp
+
+            let discord_avatar, username, banner, about
+            let large_image , small_image , side_image
+                
+            try {
+                discord_avatar = member.user.displayAvatarURL({format: 'png', dynamic: true})
+                username = member.user.username + '#' + member.user.discriminator
+                banner = data.banner || 'https://cdn.discordapp.com/attachments/970974282681307187/987323350709862420/green-back.png'
+                about = data.about || ' '
+    
+                if (about.length > 20) {
+                    about = about.substring(0, 20) + "..."
+                }
+            } catch (e) {
+                console.log(e)
+                return;
+            }
+
+            if(!data.large_image){
+                large_image = discord_avatar
+            } else {
+                large_image = data.large_image
+            }
+
+            if(!data.small_image){
+                small_image = discord_avatar
+            } else {
+                small_image = data.small_image
+            }
+
+            if(!data.side_image){
+                side_image = discord_avatar
+            } else {
+                side_image = data.side_image
+            }
+
             function no_activity() {
-                console.log(`${data.userid} has no activity`)
+                let type, details
+                type = 'Chilling'
+                details = 'Vibing'
+
+                temp = fs.readFileSync('./assets/no-activity-new.svg', {encoding: 'utf-8'}).toString()
+                temp = temp.replace('[pfp]', discord_avatar);
+                temp = temp.replace('[username]', username);
+                temp = temp.replace('[banner]', banner);
+                temp = temp.replace('[about]', about);
+
+                temp = temp.replace('[type]', type);
+                temp = temp.replace('[details]', details);
+
+                temp = temp.replace('[large-image]', large_image || discord_avatar)
+                temp = temp.replace('[small-image]', small_image || discord_avatar)
+                temp = temp.replace('[side-image]', discord_avatar)
+
+                console.log(`${member.user.username} has no activity`)
+
+                io.emit('no-activity', {
+                    userid: data.userid,
+                    card: temp
+                })
+        
             }
             no_activity()
             return;
@@ -80,6 +140,11 @@ io.on("connection", (socket) => {
             spotify_logo = 'https://www.freeiconspng.com/uploads/spotify-icon-0.png'
             username = member.user.username + '#' + member.user.discriminator
             banner = data.banner || 'https://cdn.discordapp.com/attachments/970974282681307187/987323350709862420/green-back.png'
+            about = data.about || ' '
+
+            if (about.length > 20) {
+                about = about.substring(0, 20) + "..."
+            }
 
             play_along = "https://cdn.discordapp.com/attachments/970974282681307187/987330240609132555/play-along.png"
         } catch (e) {
