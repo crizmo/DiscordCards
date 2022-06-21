@@ -550,7 +550,7 @@ process.on('uncaughtExceptionMonitor', async (err, origin) => {
     client.channels.cache.get('988140784807202886').send({ embeds: [embed] })
 });
 
-const api = require('./api')
+const api = require('./lib/api')
 onlysvg.use('/api', api)
 
 server.listen(3001, () => console.log(`Listening on port 3001`))
