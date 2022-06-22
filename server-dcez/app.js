@@ -159,7 +159,7 @@ io.on("connection", async (socket) => {
         let large_image, small_image
 
         if(!activity.name){
-            name = 'No name'
+            name = ' '
         } else {
             name = activity.name.replace(/&/g, '&amp;');
             if (name.length > 23) {
@@ -168,7 +168,7 @@ io.on("connection", async (socket) => {
         }
         
         if(!activity.details){
-            details = 'No details'
+            details = ' '
         } else {
             details = activity.details.replace(/&/g, '&amp;');
             if (details.length > 23) {
@@ -177,7 +177,7 @@ io.on("connection", async (socket) => {
         }
 
         if(!activity.state){
-            state = 'No description'
+            state = ' '
         } else {
             state = activity.state.replace(/&/g, '&amp;');
             if (state.length > 23) {
@@ -186,9 +186,9 @@ io.on("connection", async (socket) => {
         }
 
         if(!activity.assets){
-            largeText = 'No large text'
+            largeText = ' '
         } else if(activity.assets.largeText === null) {
-            largeText = 'No large text'
+            largeText = ' '
         } else {
             largeText = activity.assets.largeText.replace(/&/g, '&amp;');
             if (largeText.length > 23) {
@@ -301,8 +301,8 @@ io.on("connection", async (socket) => {
             temp = temp.replace('[pfp]', discord_avatar);
     
             temp = temp.replace('[name]', name || 'Gaming');
-            temp = temp.replace('[details]', details || 'No details');
-            temp = temp.replace('[state]', state || 'No description');
+            temp = temp.replace('[details]', details || '');
+            temp = temp.replace('[state]', state || ' ');
             temp = temp.replace('[type]', activity.type || 'PLAYING');
             temp = temp.replace('[large-image]', large_image || raw);
             temp = temp.replace('[small-image]', small_image || raw);
@@ -348,7 +348,7 @@ io.on("connection", async (socket) => {
             let large_image, small_image
 
             if(!activity.name){
-                name = 'No name'
+                name = ' '
             } else {
                 name = activity.name.replace(/&/g, '&amp;');
                 if (name.length > 23) {
@@ -357,7 +357,7 @@ io.on("connection", async (socket) => {
             }
             
             if(!activity.details){
-                details = 'No details'
+                details = ' '
             } else {
                 details = activity.details.replace(/&/g, '&amp;');
                 if (details.length > 23) {
@@ -366,7 +366,7 @@ io.on("connection", async (socket) => {
             }
 
             if(!activity.state){
-                state = 'No description'
+                state = ' '
             } else {
                 state = activity.state.replace(/&/g, '&amp;');
                 if (state.length > 23) {
@@ -375,9 +375,9 @@ io.on("connection", async (socket) => {
             }
 
             if(!activity.assets){
-                largeText = 'No large text'
+                largeText = ' '
             } else if(activity.assets.largeText === null) {
-                largeText = 'No large text'
+                largeText = ' '
             } else {
                 largeText = activity.assets.largeText.replace(/&/g, '&amp;');
                 if (largeText.length > 23) {
@@ -489,8 +489,8 @@ io.on("connection", async (socket) => {
                 temp = temp.replace('[pfp]', discord_avatar);
         
                 temp = temp.replace('[name]', name || 'Gaming');
-                temp = temp.replace('[details]', details || 'No details');
-                temp = temp.replace('[state]', state || 'No description');
+                temp = temp.replace('[details]', details || ' ');
+                temp = temp.replace('[state]', state || ' ');
                 temp = temp.replace('[type]', activity.type || 'PLAYING');
                 temp = temp.replace('[large-image]', large_image || raw);
                 temp = temp.replace('[small-image]', small_image || raw);
