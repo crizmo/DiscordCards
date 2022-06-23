@@ -559,6 +559,6 @@ process.on('uncaughtExceptionMonitor', async (err, origin) => {
 const api = require('./lib/api')
 onlysvg.use('/api', api)
 
-server.listen(serverPort , () => console.log(`Listening on port 3001`))
+server.listen(process.env.PORT || serverPort , () => console.log(`Listening on port 3001`))
 onlysvg.listen(apiPort , () => console.log(`Listening on port 5000 \nhttp://localhost:5000/api/784141856426033233?about=pog&banner=https://wallpapercave.com/wp/wp4771870.jpg`))
 client.login(process.env.DISCORD_TOKEN);
