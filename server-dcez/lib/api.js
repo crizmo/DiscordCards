@@ -25,7 +25,7 @@ const api = () => {
             member = await client.guilds.cache.get("782646778347388959").members.fetch(req.params.id);
         } catch (e) {
             res.send('User not found ! Please try again')
-            console.log(e)
+            // console.log(e)
             return;
         }
         
