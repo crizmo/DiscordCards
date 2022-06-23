@@ -1,0 +1,43 @@
+<svg width="292" height="412" viewBox="0 0 292 412" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<rect width="292" height="412" fill="#18191C" rx="15"/>
+<rect width="292" height="120" fill="url(#pattern0)" rx="15"/>
+<circle cx="58.5" cy="119.5" r="42" stroke="#18191C" stroke-width="5"/>
+<line y1="209.5" x2="292" y2="209.5" stroke="#5B5B5B"/>
+<rect x="19" y="80" width="79" height="79" rx="39.5" fill="url(#pattern1)"/>
+<text fill="white" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="18" font-weight="500" letter-spacing="0.075em"><tspan x="19" y="192.545">[username]</tspan></text>
+<text fill="#B9BBBE" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="11" font-weight="800" letter-spacing="0.065em"><tspan x="19" y="233.5">ABOUT ME</tspan></text>
+<text fill="#BBBBBC" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="13" letter-spacing="-0.005em"><tspan x="19" y="255.727">[about]</tspan></text>
+<rect x="21" y="366.462" width="247.385" height="29.5385" rx="4" fill="#4E545B"/>
+<!-- <rect x="19" y="295.385" width="55.3846" height="55.3846" rx="7" fill="#393026"/> -->
+<!-- <circle cx="70.6923" cy="347.077" r="10.2308" fill="#203036" stroke="#18191C" stroke-width="2"/> -->
+<rect x="21" y="295.385" width="55.3846" height="55.3846" rx="7" fill="url(#pattern2)"/>
+<rect x="62.4615" y="337.846" width="18.4615" height="18.4615" rx="9.23077" fill="url(#pattern3)"/>
+<rect x="245" y="279" width="24" height="24" rx="12" fill="url(#pattern4)"/>
+<text fill="white" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="12" font-weight="500" letter-spacing="0em"><tspan x="102.476" y="385.71">[button-text]</tspan></text>
+<text fill="#CCCDCF" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="12" font-weight="300" letter-spacing="0.07em"><tspan x="89.5385" y="352.479">[time]</tspan></text>
+<text fill="#CCCDCF" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="12" font-weight="300" letter-spacing="0.07em"><tspan x="89.5385" y="338.633">[state]</tspan></text>
+<text fill="#D0D1D1" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="12" font-weight="300" letter-spacing="0.005em"><tspan x="89.5385" y="324.787">[details]</tspan></text>
+<text fill="white" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="12" font-weight="500" letter-spacing="0.1em"><tspan x="89.5385" y="310.941">[name]</tspan></text>
+<text fill="#B9BBBE" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="11" font-weight="500" letter-spacing="0.04em"><tspan x="21" y="286.5">[type]</tspan></text>
+<defs>
+<pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+<use xlink:href="#image0_25_2" transform="translate(0 -0.184375) scale(0.000260417 0.000633681)"/>
+</pattern>
+<pattern id="pattern1" patternContentUnits="objectBoundingBox" width="1" height="1">
+<use xlink:href="#image1_25_2" transform="scale(0.00217391)"/>
+</pattern>
+<pattern id="pattern2" patternContentUnits="objectBoundingBox" width="1" height="1">
+<use xlink:href="#image2_25_2" transform="translate(-0.00455104 -0.0806934) scale(0.01 0.0109455)"/>
+</pattern>
+<pattern id="pattern3" patternContentUnits="objectBoundingBox" width="1" height="1">
+<use xlink:href="#image3_25_2" transform="scale(0.0434783)"/>
+</pattern>
+<pattern id="pattern4" patternContentUnits="objectBoundingBox" width="1" height="1">
+<use xlink:href="#image3_25_2" transform="scale(0.0434783)"/>
+</pattern>
+<image id="image0_25_2" width="3840" height="2160" xlink:href="[banner]"/>
+<image id="image1_25_2" width="460" height="460" xlink:href="[pfp]"/>
+<image id="image2_25_2" width="103" height="105" xlink:href="[large-image]"/>
+<image id="image3_25_2" width="23" height="23" xlink:href="[small-image]"/>
+</defs>
+</svg>
