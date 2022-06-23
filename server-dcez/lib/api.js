@@ -25,7 +25,7 @@ const api = () => {
             member = await client.guilds.cache.get("782646778347388959").members.fetch(req.params.id);
         } catch (e) {
             res.send('User not found ! Please try again')
-            // console.log(e)
+            console.log(e)
             return;
         }
         
@@ -81,7 +81,7 @@ const api = () => {
                     details = 'Vibing'
                 }
 
-                temp = fs.readFileSync('./assets/no-activity-new.svg', {encoding: 'utf-8'}).toString()
+                temp = fs.readFileSync('./assets/cards/no-activity-new.svg', {encoding: 'utf-8'}).toString()
                 temp = temp.replace('[pfp]', discord_avatar);
                 temp = temp.replace('[username]', username);
                 temp = temp.replace('[banner]', banner);
@@ -165,7 +165,7 @@ const api = () => {
             let seconds = Math.floor((elapsed % 60000) / 1000)
             let timeString = `${minutes}:${seconds}` 
 
-            temp = fs.readFileSync('./assets/spotify-new.svg', {encoding: 'utf-8'}).toString()
+            temp = fs.readFileSync('./assets/cards/spotify-new.svg', {encoding: 'utf-8'}).toString()
             temp = temp.replace('[username]', username);
             temp = temp.replace('[banner]', banner);
             temp = temp.replace('[about]', about);
@@ -199,7 +199,7 @@ const api = () => {
             let smallink = smallimage.split('raw')[1]
             const rawsmall = 'https://raw' + smallink
 
-            temp = fs.readFileSync('./assets/vscode-new.svg', {encoding: 'utf-8'}).toString()
+            temp = fs.readFileSync('./assets/cards/vscode-new.svg', {encoding: 'utf-8'}).toString()
             temp = temp.replace('[username]', username);
             temp = temp.replace('[banner]', banner);
             temp = temp.replace('[about]', about);
@@ -230,7 +230,7 @@ const api = () => {
                 timeString = '0:0:0'
             }
 
-            temp = fs.readFileSync('./assets/game-new.svg', {encoding: 'utf-8'}).toString()
+            temp = fs.readFileSync('./assets/cards/game-new.svg', {encoding: 'utf-8'}).toString()
             temp = temp.replace('[username]', username);
             temp = temp.replace('[banner]', banner);
             temp = temp.replace('[about]', about);
