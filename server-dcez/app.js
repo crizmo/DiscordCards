@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const onlysvg = express();
+// const onlysvg = express();
 const fs = require('fs');
 
 const { Client, Intents, Collection } = require('discord.js');
