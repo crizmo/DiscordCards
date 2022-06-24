@@ -93,6 +93,6 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 ## Contact
 
 You can contact me on Discord my username is `Criz#1270`.
-[![breeze](https://api-breeze.herokuapp.com/api/784141856426033233)](https://elina-bot.netlify.app)
+[![breeze](https://api-breeze.herokuapp.com/api/784141856426033233)](https://api-breeze.herokuapp.com/api/784141856426033233)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
