@@ -555,8 +555,12 @@ process.on('uncaughtExceptionMonitor', async (err, origin) => {
     client.channels.cache.get('988140784807202886').send({ embeds: [embed] })
 });
 
+app.get('/', (req, res) => {
+    res.send('Hello World!')
+})
+
 const api = require('./lib/api')
 app.use('/api', api)
 
-server.listen(process.env.PORT || serverPort , () => console.log(`Listening on port 3001`))
+server.listen(process.env.PORT || serverPort , () => console.log(`Listening on port ${process.env.PORT || serverPort}`))
 client.login(process.env.DISCORD_TOKEN);
