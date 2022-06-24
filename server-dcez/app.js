@@ -25,10 +25,6 @@ const io = new Server(server, {
 const serverPort = process.env.PORT || 3001;
 // const apiPort = process.env.PORT || 5000;
 
-serverPort.get('/api', (req, res) => {
-    res.send('Hello World!')
-})
-
 io.on("connection", async (socket) => {
     console.log(`a user connected ${socket.id}`)
 
