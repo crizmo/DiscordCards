@@ -10,6 +10,7 @@ require('dotenv').config();
 
 const http = require('http')
 const { Server } = require('socket.io')
+const socketIO = require('socket.io')
 const cors = require('cors');
 app.use(cors())
 
@@ -17,7 +18,7 @@ const server = http.createServer(app)
 
 const io = new Server(server, {
     cors: {
-        origin: 'https://breeze-stats.netlify.app/',
+        origin: '*',
         methods: ["GET", "POST"],
     }
 })
@@ -555,9 +556,9 @@ process.on('uncaughtExceptionMonitor', async (err, origin) => {
     client.channels.cache.get('988140784807202886').send({ embeds: [embed] })
 });
 
-app.get('/', (req, res) => {
-    res.send('Hello World!')
-})
+// app.get('/', (req, res) => {
+//     res.send('Hello World!')
+// })
 
 const api = require('./lib/api')
 app.use('/api', api)
