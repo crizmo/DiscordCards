@@ -34,7 +34,7 @@
 
 ## About The Project
 
-[![Breeze][https://api-breeze.herokuapp.com/api/784141856426033233?about=hi]](https://api-breeze.herokuapp.com/api/784141856426033233?about=hi)
+[![Breeze]["https://api-breeze.herokuapp.com/api/784141856426033233?about=hi"]](https://api-breeze.herokuapp.com/api/784141856426033233?about=hi)
 
 Breeze helps you display your discord activity on your website / anywhere you want using the api or the client.
 
