@@ -16,7 +16,7 @@
     ·
     <a href="https://localhost:3000">Website</a>
   </p>
-  <img src='https://api-breeze.herokuapp.com/api_png/784141856426033233' alt="" />
+  <img src='https://api-breeze.herokuapp.com/api/784141856426033233' alt="" />
 </div>
 
 <details>
