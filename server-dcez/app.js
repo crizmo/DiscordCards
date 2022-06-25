@@ -563,8 +563,5 @@ process.on('uncaughtExceptionMonitor', async (err, origin) => {
 const api = require('./lib/api')
 app.use('/api', api)
 
-const api_png = require('./lib/api-png')
-app.use('/api_png', api_png)
-
 server.listen(process.env.PORT || serverPort , () => console.log(`Listening on port ${process.env.PORT || serverPort}`))
 client.login(process.env.DISCORD_TOKEN);
