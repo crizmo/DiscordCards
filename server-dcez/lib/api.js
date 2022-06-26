@@ -123,17 +123,17 @@ const api = () => {
             let temp;
             function no_activity() {
                 try {
-                    type = req.query.type || 'Chilling'
-                    details = req.query.details || 'Vibiing'
+                    type = req.query.type || 'Breeze'
+                    details = req.query.details || 'Vibing'
 
-                    if (type.length > 20) {
-                        type = type.substring(0, 20) + "..."
+                    if (type.length > 23) {
+                        type = type.substring(0, 23) + "..."
                     }
-                    if (details.length > 20) {
-                        details = details.substring(0, 20) + "..."
+                    if (details.length > 23) {
+                        details = details.substring(0, 23) + "..."
                     }
                 } catch (e) {
-                    type = 'Chilling'
+                    type = 'Breeze'
                     details = 'Vibing'
                 }
 
@@ -170,7 +170,7 @@ const api = () => {
         if(!activity.details){
             details = 'No details'
         } else {
-            details = activity.details.replace(/&/g, '&amp;');
+            details = activity.details.replace(/&/g, '&amp;') || req.query.details || 'No details'
             if (details.length > 23) {
                 details = details.substring(0, 23) + '...';
             }
@@ -179,14 +179,23 @@ const api = () => {
         if(!activity.state){
             state = 'No description'
         } else {
-            state = activity.state.replace(/&/g, '&amp;');
+            state = activity.state.replace(/&/g, '&amp;') || req.query.state || 'No description'
             if (state.length > 23) {
                 state = state.substring(0, 23) + '...';
             }
         }
+
+        if(!activity.type){
+            type = req.query.type || 'Vibing'
+        } else {
+            type = activity.type.replace(/&/g, '&amp;')|| req.query.type || 'Vibing'
+            if (type.length > 23) {
+                type = type.substring(0, 23) + '...';
+            }
+        }
         
         if(!activity.assets){
-            raw = pfp64
+            raw = req.query.large_image || pfp64
         } else if(activity.assets.smallImage === null) {
             raw = pfp64
         } else if(activity.assets.smallImage.startsWith('mp:external')){
@@ -196,7 +205,7 @@ const api = () => {
             raw = await imageToBase64(raw)
             raw = `data:image/png;base64,${raw}`
         } else {
-            raw = pfp64  
+            raw = req.query.large_image || pfp64
         }
 
         if(!activity.assets){
@@ -236,7 +245,7 @@ const api = () => {
             
             temp = temp.replace('[details]', details);
             temp = temp.replace('[state]', state);
-            temp = temp.replace('[type]', req.query.type || activity.type);
+            temp = temp.replace('[type]', type || 'Vibing');
             temp = temp.replace('[on]', largeText);
             temp = temp.replace('[time]', 0 + ' -- ' + timeString);
             
@@ -278,7 +287,7 @@ const api = () => {
             temp = temp.replace('[name]', activity.name || 'Gaming');
             temp = temp.replace('[details]', activity.details || 'No details');
             temp = temp.replace('[state]', state || 'No description');
-            temp = temp.replace('[type]', req.query.type || activity.type);
+            temp = temp.replace('[type]', type || 'Coding');
             temp = temp.replace('[time]', timeString + ' elapsed' || '0:00 elapsed');
 
             temp = temp.replace('[large-image]', large64);
@@ -308,9 +317,9 @@ const api = () => {
             temp = temp.replace('[pfp]', pfp64);
 
             temp = temp.replace('[name]', name || 'Gaming');
-            temp = temp.replace('[details]', details || 'No details');
-            temp = temp.replace('[state]', state || 'No description');
-            temp = temp.replace('[type]', req.query.type || activity.type);
+            temp = temp.replace('[details]', details);
+            temp = temp.replace('[state]', state);
+            temp = temp.replace('[type]', type || 'Playing');
             temp = temp.replace('[time]', timeString + ' elapsed' || '0:00 elapsed');
 
             temp = temp.replace('[large-image]', raw);
