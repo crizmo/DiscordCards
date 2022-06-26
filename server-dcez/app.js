@@ -51,7 +51,12 @@ io.on("connection", async (socket) => {
                 return 
             }
         } catch (error) {
-            console.log(error)
+            console.log('member not in server')
+            io.emit('not-in-server', {
+                userid: data.userid
+            })
+            // console.log(error)
+            return
         }
         let activity
         try {
@@ -107,7 +112,7 @@ io.on("connection", async (socket) => {
 
             function no_activity() {
                 let type, details
-                type = 'Chilling'
+                type = 'Breeze'
                 details = 'Vibing'
 
                 temp = fs.readFileSync('./assets/cards/no-activity-new.svg', {encoding: 'utf-8'}).toString()
@@ -559,6 +564,12 @@ process.on('uncaughtExceptionMonitor', async (err, origin) => {
 // app.get('/', (req, res) => {
 //     res.send('Hello World!')
 // })
+
+const start = require('./lib/base_endpoints/start')
+app.use('/', start)
+
+const pre_api = require('./lib/base_endpoints/pre-api')
+app.use('/api', pre_api)
 
 const api = require('./lib/api')
 app.use('/api', api)
