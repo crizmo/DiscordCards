@@ -255,7 +255,7 @@ const api = () => {
             temp = temp.replace('[spotify-logo]', spotify64);
             temp = temp.replace('[play-along]', play_along64);
             temp = temp.replace('[button-text]', "Play on Spotify");
-        } else if (activity.name === 'Code') {
+        } else if (activity.name === 'Code' || activity.name === 'Visual Studio Code' ) {
 
             let time = activity.timestamps.start;
             let elapsed = Date.now() - time;
