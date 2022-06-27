@@ -214,13 +214,13 @@ io.on("connection", async (socket) => {
         }
 
         if(!data.large_image){
-            large_image = raw
+            large_image = discord_avatar 
         } else {
             large_image = data.large_image
         }
 
         if(!data.small_image){
-            small_image = raw
+            small_image = discord_avatar
         } else {
             small_image = data.small_image
         }
