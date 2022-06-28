@@ -50,6 +50,8 @@ const api = () => {
         let smallimg, raw // for PLaying
         let spotify_logo, play_along, largeText // for Spotify
 
+        let temp_large, temp_small, temp_side
+
         let pfp64, banner64
         let spotify64, play_along64
         let large64, small64, side64
@@ -57,7 +59,7 @@ const api = () => {
         try {
             discord_avatar = member.user.displayAvatarURL({ format: 'png', dynamic: true, size: 1024 })
             username = member.user.username + '#' + member.user.discriminator
-            banner = req.query.banner || 'https://cdn.discordapp.com/attachments/970974282681307187/987323350709862420/green-back.png'
+            banner = req.query.banner || 'https://media.discordapp.net/attachments/988140784807202886/991308628978061402/blue_boi.png'
             about = req.query.about || ' '
             if (about.length > 20) {
                 about = about.substring(0, 20) + "..."
@@ -66,8 +68,11 @@ const api = () => {
             spotify_logo = 'https://www.freeiconspng.com/uploads/spotify-icon-0.png'
             play_along = "https://cdn.discordapp.com/attachments/970974282681307187/987330240609132555/play-along.png"
 
-            large_image = req.query.large_image || discord_avatar
-            small_image = req.query.small_image || discord_avatar
+            temp_large = "https://cdn.discordapp.com/attachments/988140784807202886/991310693791965214/large_breeze.png"
+            temp_small = "https://cdn.discordapp.com/attachments/988140784807202886/991310761991360512/small_breeze.png"
+
+            large_image = req.query.large_image || temp_large
+            small_image = req.query.small_image || temp_small
             side_image = req.query.side_image || discord_avatar
 
         } catch (e) {
@@ -219,11 +224,11 @@ const api = () => {
             }
         }
 
-        large64 = req.query.large_image || discord_avatar
+        large64 = req.query.large_image || large_image
         large64 = await imageToBase64(large64)
         large64 = `data:image/png;base64,${large64}`
         
-        small64 = req.query.small_image || discord_avatar
+        small64 = req.query.small_image || small_image
         small64 = await imageToBase64(small64)
         small64 = `data:image/png;base64,${small64}`
         
