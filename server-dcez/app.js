@@ -30,8 +30,7 @@ io.on("connection", async (socket) => {
 
     socket.on("user", async function (data) {
         const main_user = data.userid
-        let about = data.about
-        if(!about) {
+        if(!data.about) {
             about = " "
         } else {
             about = data.about
@@ -77,12 +76,15 @@ io.on("connection", async (socket) => {
 
             let discord_avatar, username, banner, about
             let large_image , small_image , side_image
+            let temp_large, temp_small
                 
             try {
                 discord_avatar = member.user.displayAvatarURL({format: 'png', dynamic: true})
                 username = member.user.username + '#' + member.user.discriminator
-                banner = data.banner || 'https://cdn.discordapp.com/attachments/970974282681307187/987323350709862420/green-back.png'
+                banner = data.banner || 'https://media.discordapp.net/attachments/988140784807202886/991308628978061402/blue_boi.png'
                 about = data.about || ' '
+                temp_large = "https://cdn.discordapp.com/attachments/988140784807202886/991310693791965214/large_breeze.png"
+                temp_small = "https://cdn.discordapp.com/attachments/988140784807202886/991310761991360512/small_breeze.png"
     
                 if (about.length > 20) {
                     about = about.substring(0, 20) + "..."
@@ -93,13 +95,13 @@ io.on("connection", async (socket) => {
             }
 
             if(!data.large_image){
-                large_image = discord_avatar
+                large_image = temp_large
             } else {
                 large_image = data.large_image
             }
 
             if(!data.small_image){
-                small_image = discord_avatar
+                small_image = temp_small
             } else {
                 small_image = data.small_image
             }
@@ -147,7 +149,7 @@ io.on("connection", async (socket) => {
             discord_avatar = member.user.displayAvatarURL({format: 'png', dynamic: true})
             spotify_logo = 'https://www.freeiconspng.com/uploads/spotify-icon-0.png'
             username = member.user.username + '#' + member.user.discriminator
-            banner = data.banner || 'https://cdn.discordapp.com/attachments/970974282681307187/987323350709862420/green-back.png'
+            banner = data.banner || 'https://media.discordapp.net/attachments/988140784807202886/991308628978061402/blue_boi.png'
             about = data.about || ' '
 
             if (about.length > 20) {
@@ -162,6 +164,15 @@ io.on("connection", async (socket) => {
         
         let name, details, state, smallimg, raw, largeText
         let large_image, small_image
+        let temp_large, temp_small
+
+        try {
+            temp_large = "https://cdn.discordapp.com/attachments/988140784807202886/991310693791965214/large_breeze.png"
+            temp_small = "https://cdn.discordapp.com/attachments/988140784807202886/991310761991360512/small_breeze.png"
+        } catch (e) {
+            console.log(e)
+            return;
+        }
 
         if(!activity.name){
             name = ' '
@@ -214,13 +225,13 @@ io.on("connection", async (socket) => {
         }
 
         if(!data.large_image){
-            large_image = discord_avatar 
+            large_image = temp_large 
         } else {
             large_image = data.large_image
         }
 
         if(!data.small_image){
-            small_image = discord_avatar
+            small_image = temp_small
         } else {
             small_image = data.small_image
         }
@@ -249,7 +260,7 @@ io.on("connection", async (socket) => {
             temp = temp.replace('[on]', largeText);
             temp = temp.replace('[time]', time + ' -- ' + timeString);
             temp = temp.replace('[pfp]', discord_avatar);       
-            temp = temp.replace('[large-image]', large_image || discord_avatar);
+            temp = temp.replace('[large-image]', large_image || temp_large);
             temp = temp.replace('[small-image]', small_image || spotify_logo);
             temp = temp.replace('[spotify-logo]', spotify_logo);
             temp = temp.replace('[button-text]', "Play on Spotify");
@@ -350,7 +361,6 @@ io.on("connection", async (socket) => {
             }
 
             let name, details, state, smallimg, raw, largeText
-            let large_image, small_image
 
             if(!activity.name){
                 name = ' '
@@ -402,18 +412,6 @@ io.on("connection", async (socket) => {
                 raw = discord_avatar   
             }
 
-            if(!data.large_image){
-                large_image = raw
-            } else {
-                large_image = data.large_image
-            }
-    
-            if(!data.small_image){
-                small_image = raw
-            } else {
-                small_image = data.small_image
-            }
-
             let temp;
             if (activity.name === 'Spotify') {
                 let start = activity.timestamps.start
@@ -438,8 +436,8 @@ io.on("connection", async (socket) => {
                 temp = temp.replace('[on]', largeText);
                 temp = temp.replace('[time]', time + ' -- ' + timeString);
                 temp = temp.replace('[pfp]', discord_avatar);
-                temp = temp.replace('[large-image]', large_image || raw);
-                temp = temp.replace('[small-image]', small_image || raw);
+                temp = temp.replace('[large-image]', large_image);
+                temp = temp.replace('[small-image]', small_image);
                 temp = temp.replace('[spotify-logo]', spotify_logo);
                 temp = temp.replace('[button-text]', "Play on Spotify");
             } else if (activity.name === 'Code' || activity.name === 'Visual Studio Code') {
@@ -521,22 +519,20 @@ io.on("connection", async (socket) => {
             } catch (e) {
                 return;
             }
-            if (newPresence.user.id === main_user) {
-                if (newPresence.activities[0].name === 'Spotify') {
-                    if(newPresence.activities[0].details === oldPresence.activities[0].details) {
-                        return;
-                    } else {
-                        getActivity()
-                    }
-                } else if (newPresence.activities[0].name === 'Code' || newPresence.activities[0].name === 'Visual Studio Code') {
+            if(main_user === newPresence.user.id){
+                if(newPresence.activities[0].name === 'Spotify'){
                     getActivity()
-                } else if (newPresence.activities[0].type === 'PLAYING') {
+                } else if(newPresence.activities[0].name === 'Code' || newPresence.activities[0].name === 'Visual Studio Code'){
                     getActivity()
+                } else if(newPresence.activities[0].type === 'PLAYING'){
+                    getActivity()
+                } else {
+                    console.log(newPresence.activities[0].type + " card not added")
+                    return;
                 }
-            } 
-            // else {
-            //     return;
-            // }
+            } else {
+                return;
+            }
         });
     })
 })
