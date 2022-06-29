@@ -272,7 +272,7 @@ io.on("connection", async (socket) => {
             // client.guilds.fetch("782646778347388959")
             // member = client.guilds.cache.get('782646778347388959').members.cache.get(main_user)
             // console.log(member.presence.activities[0])
-            let activity
+            // let activity
             try {
                 if (member.presence.activities[0].id === 'custom' || member.presence.activities[0].type === 'CUSTOM') {
                     activity = member.presence.activities[1];
