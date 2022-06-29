@@ -25,11 +25,13 @@ const io = new Server(server, {
 
 const serverPort = process.env.PORT || 3001;
 
+// bring the no_activity function down to make the main_user work
+
 io.on("connection", async (socket) => {
     console.log(`a user connected ${socket.id}`)
 
     socket.on("user", async function (data) {
-        const main_user = data.userid
+        let main_user = data.user
         if(!data.about) {
             about = " "
         } else {
@@ -41,18 +43,19 @@ io.on("connection", async (socket) => {
         let member 
         try {
             client.guilds.fetch("782646778347388959")
-            member = client.guilds.cache.get('782646778347388959').members.cache.get(data.userid) || await client.guilds.cache.get("782646778347388959").members.fetch(data.userid);
+            member = client.guilds.cache.get('782646778347388959').members.cache.get(main_user) || await client.guilds.cache.get("782646778347388959").members.fetch(main_user);
+            // console.log(`${member.user.username} is the member`)
             if (!member) {
                 console.log('member not in server')
                 io.emit('not-in-server', {
-                    userid: data.userid
+                    user_id: data.user
                 })
                 return 
             }
         } catch (error) {
             console.log('member not in server')
             io.emit('not-in-server', {
-                userid: data.userid
+                user_id: data.user
             })
             // console.log(error)
             return
@@ -61,6 +64,7 @@ io.on("connection", async (socket) => {
         try {
             if(member.presence.activities[0].id === 'custom' && !member.presence.activities[1]){
                 no_activity()
+                return
             } else if (member.presence.activities[0].id === 'custom' || member.presence.activities[0].type === 'CUSTOM') {
                 activity = member.presence.activities[1];
             } else {
@@ -72,72 +76,6 @@ io.on("connection", async (socket) => {
                 }
             }
         } catch (e) {
-            let temp
-
-            let discord_avatar, username, banner, about
-            let large_image , small_image , side_image
-            let temp_large, temp_small
-                
-            try {
-                discord_avatar = member.user.displayAvatarURL({format: 'png', dynamic: true})
-                username = member.user.username + '#' + member.user.discriminator
-                banner = data.banner || 'https://media.discordapp.net/attachments/988140784807202886/991308628978061402/blue_boi.png'
-                about = data.about || ' '
-                temp_large = "https://cdn.discordapp.com/attachments/988140784807202886/991310693791965214/large_breeze.png"
-                temp_small = "https://cdn.discordapp.com/attachments/988140784807202886/991310761991360512/small_breeze.png"
-    
-                if (about.length > 20) {
-                    about = about.substring(0, 20) + "..."
-                }
-            } catch (e) {
-                console.log(e)
-                return;
-            }
-
-            if(!data.large_image){
-                large_image = temp_large
-            } else {
-                large_image = data.large_image
-            }
-
-            if(!data.small_image){
-                small_image = temp_small
-            } else {
-                small_image = data.small_image
-            }
-
-            if(!data.side_image){
-                side_image = discord_avatar
-            } else {
-                side_image = data.side_image
-            }
-
-            function no_activity() {
-                let type, details
-                type = 'Breeze'
-                details = 'Vibing'
-
-                temp = fs.readFileSync('./assets/cards/no-activity-new.svg', {encoding: 'utf-8'}).toString()
-                temp = temp.replace('[pfp]', discord_avatar);
-                temp = temp.replace('[username]', username);
-                temp = temp.replace('[banner]', banner);
-                temp = temp.replace('[about]', about);
-
-                temp = temp.replace('[type]', type);
-                temp = temp.replace('[details]', details);
-
-                temp = temp.replace('[large-image]', large_image || discord_avatar)
-                temp = temp.replace('[small-image]', small_image || discord_avatar)
-                temp = temp.replace('[side-image]', discord_avatar)
-
-                console.log(`${member.user.username} has no activity`)
-
-                io.emit('no-activity', {
-                    userid: data.userid,
-                    card: temp
-                })
-        
-            }
             no_activity()
             return;
         }
@@ -325,22 +263,14 @@ io.on("connection", async (socket) => {
             temp = temp.replace('[time]', timeString || '0:00 elapsed');
         }
 
-        let base64
-        try {
-            base64 = Buffer.from(temp).toString('base64');
-        } catch (error) {
-            console.log(error)
-        }
-
         io.emit("message", {
             stuff: activity,
             card: temp,
-            baseimg: base64
         })
 
         function getActivity() {
             client.guilds.fetch("782646778347388959")
-            const member = client.guilds.cache.get('782646778347388959').members.cache.get(data.userid);
+            member = client.guilds.cache.get('782646778347388959').members.cache.get(main_user)
             // console.log(member.presence.activities[0])
             let activity
             try {
@@ -357,7 +287,7 @@ io.on("connection", async (socket) => {
                 }
             } catch (e) {
                 console.log(e)
-                return;
+                return; 
             }
 
             let name, details, state, smallimg, raw, largeText
@@ -510,7 +440,6 @@ io.on("connection", async (socket) => {
                 baseimg: base64
             })
         }
-
         client.on("presenceUpdate", function (newPresence, oldPresence) {
             try {
                 if (newPresence.user.bot) {
@@ -519,21 +448,79 @@ io.on("connection", async (socket) => {
             } catch (e) {
                 return;
             }
-            if(main_user === newPresence.user.id){
-                if(newPresence.activities[0].name === 'Spotify'){
-                    getActivity()
-                } else if(newPresence.activities[0].name === 'Code' || newPresence.activities[0].name === 'Visual Studio Code'){
-                    getActivity()
-                } else if(newPresence.activities[0].type === 'PLAYING'){
-                    getActivity()
-                } else {
-                    console.log(newPresence.activities[0].type + " card not added")
-                    return;
-                }
+            if(main_user === data.user){
+                getActivity()
             } else {
                 return;
             }
         });
+
+        function no_activity() {
+            let temp
+
+            let discord_avatar, username, banner, about
+            let large_image , small_image , side_image
+            let temp_large, temp_small
+                
+            try {
+                discord_avatar = member.user.displayAvatarURL({format: 'png', dynamic: true})
+                username = member.user.username + '#' + member.user.discriminator
+                banner = data.banner || 'https://media.discordapp.net/attachments/988140784807202886/991308628978061402/blue_boi.png'
+                about = data.about || ' '
+                temp_large = "https://cdn.discordapp.com/attachments/988140784807202886/991310693791965214/large_breeze.png"
+                temp_small = "https://cdn.discordapp.com/attachments/988140784807202886/991310761991360512/small_breeze.png"
+    
+                if (about.length > 20) {
+                    about = about.substring(0, 20) + "..."
+                }
+            } catch (e) {
+                console.log(e)
+                return;
+            }
+
+            if(!data.large_image){
+                large_image = temp_large
+            } else {
+                large_image = data.large_image
+            }
+
+            if(!data.small_image){
+                small_image = temp_small
+            } else {
+                small_image = data.small_image
+            }
+
+            if(!data.side_image){
+                side_image = discord_avatar
+            } else {
+                side_image = data.side_image
+            }
+
+                let type, details
+                type = 'Breeze'
+                details = 'Vibing'
+
+                temp = fs.readFileSync('./assets/cards/no-activity-new.svg', {encoding: 'utf-8'}).toString()
+                temp = temp.replace('[pfp]', discord_avatar);
+                temp = temp.replace('[username]', username);
+                temp = temp.replace('[banner]', banner);
+                temp = temp.replace('[about]', about);
+
+                temp = temp.replace('[type]', type);
+                temp = temp.replace('[details]', details);
+
+                temp = temp.replace('[large-image]', large_image || discord_avatar)
+                temp = temp.replace('[small-image]', small_image || discord_avatar)
+                temp = temp.replace('[side-image]', discord_avatar)
+
+                console.log(`${member.user.username} has no activity`)
+
+                io.emit('no-activity', {
+                    user_id: data.user,
+                    card: temp
+                })
+        
+            }
     })
 })
 
