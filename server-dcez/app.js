@@ -31,7 +31,8 @@ io.on("connection", async (socket) => {
     console.log(`a user connected ${socket.id}`)
 
     socket.on("user", async function (data) {
-        let main_user = data.user
+        const main_user = data.user
+        console.log(data)
         if(!data.about) {
             about = " "
         } else {
@@ -270,9 +271,9 @@ io.on("connection", async (socket) => {
 
         function getActivity() {
             // client.guilds.fetch("782646778347388959")
-            // member = client.guilds.cache.get('782646778347388959').members.cache.get(main_user)
-            // console.log(member.presence.activities[0])
-            // let activity
+            // let member = client.guilds.cache.get('782646778347388959').members.cache.get(main_user)
+            // console.log(data)
+            let activity
             try {
                 if (member.presence.activities[0].id === 'custom' || member.presence.activities[0].type === 'CUSTOM') {
                     activity = member.presence.activities[1];
@@ -281,7 +282,7 @@ io.on("connection", async (socket) => {
                         activity = member.presence.activities[0];
                         // console.log(activity)
                     } catch (error) {
-                        res.send('No activity')
+                        no_activity()
                         return;
                     }
                 }
@@ -291,6 +292,11 @@ io.on("connection", async (socket) => {
             }
 
             let name, details, state, smallimg, raw, largeText
+
+            if(!activity){
+                no_activity()
+                return;
+            } 
 
             if(!activity.name){
                 name = ' '
@@ -430,14 +436,9 @@ io.on("connection", async (socket) => {
                 temp = temp.replace('[time]', timeString + ' elapsed' || '0:00 elapsed');
             }
 
-            let base64 = Buffer.from(temp).toString('base64');
-
-            // fs.writeFileSync('./assets/tempcard.svg', temp)
-
             io.emit("message", {
                 stuff: activity,
-                card: temp,
-                baseimg: base64
+                card: temp
             })
         }
         client.on("presenceUpdate", function (newPresence, oldPresence) {
@@ -448,10 +449,21 @@ io.on("connection", async (socket) => {
             } catch (e) {
                 return;
             }
-            if(main_user === data.user){
+            let person
+            client.guilds.fetch("782646778347388959")
+            person = client.guilds.cache.get('782646778347388959').members.cache.get(main_user)
+
+            if(data.user != newPresence.user.id && person.id == newPresence.user.id){
+                io.emit("message", {
+                    stuff: activity,
+                    card: temp,
+                })
+                return console.log("what")
+            } else if(person.id === member.id){
                 getActivity()
+                return
             } else {
-                return;
+                return
             }
         });
 
