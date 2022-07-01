@@ -32,15 +32,6 @@ io.on("connection", async (socket) => {
 
     socket.on("user", async function (data) {
         const main_user = data.user
-        console.log(data)
-        if(!data.about) {
-            about = " "
-        } else {
-            about = data.about
-            if (about.length > 20) {
-                about = about.substring(0, 20) + "..."
-            }
-        }
         let member 
         try {
             client.guilds.fetch("782646778347388959")
@@ -81,7 +72,7 @@ io.on("connection", async (socket) => {
             return;
         }
         
-        let discord_avatar, username, banner
+        let discord_avatar, username, banner, about
         let play_along, spotify_logo
         
         try {
@@ -263,209 +254,10 @@ io.on("connection", async (socket) => {
             temp = temp.replace('[small-image]', small_image || raw);
             temp = temp.replace('[time]', timeString || '0:00 elapsed');
         }
-
         io.emit("message", {
             stuff: activity,
             card: temp,
         })
-
-        function getActivity() {
-            // client.guilds.fetch("782646778347388959")
-            // let member = client.guilds.cache.get('782646778347388959').members.cache.get(main_user)
-            // console.log(data)
-            let activity
-            try {
-                if (member.presence.activities[0].id === 'custom' || member.presence.activities[0].type === 'CUSTOM') {
-                    activity = member.presence.activities[1];
-                } else {
-                    try {
-                        activity = member.presence.activities[0];
-                        // console.log(activity)
-                    } catch (error) {
-                        no_activity()
-                        return;
-                    }
-                }
-            } catch (e) {
-                console.log(e)
-                return; 
-            }
-
-            let name, details, state, smallimg, raw, largeText
-
-            if(!activity){
-                no_activity()
-                return;
-            } 
-
-            if(!activity.name){
-                name = ' '
-            } else {
-                name = activity.name.replace(/&/g, '&amp;');
-                if (name.length > 23) {
-                    name = name.substring(0, 23) + '...';
-                }
-            }
-            
-            if(!activity.details){
-                details = ' '
-            } else {
-                details = activity.details.replace(/&/g, '&amp;');
-                if (details.length > 23) {
-                    details = details.substring(0, 23) + '...';
-                }
-            }
-
-            if(!activity.state){
-                state = ' '
-            } else {
-                state = activity.state.replace(/&/g, '&amp;');
-                if (state.length > 23) {
-                    state = state.substring(0, 23) + '...';
-                }
-            }
-
-            if(!activity.assets){
-                largeText = ' '
-            } else if(activity.assets.largeText === null) {
-                largeText = ' '
-            } else {
-                largeText = activity.assets.largeText.replace(/&/g, '&amp;');
-                if (largeText.length > 23) {
-                    largeText = largeText.substring(0, 23) + '...';
-                }
-            }
-
-            if(!activity.assets){
-                raw = discord_avatar
-            } else if(activity.assets.smallImage === null) {
-                raw = discord_avatar
-            } else if(activity.assets.smallImage.startsWith('mp:external')){
-                smallimg = activity.assets.smallImage
-                let smalllink = smallimg.split('https/')[1]
-                raw = 'https://' + smalllink
-            } else {
-                raw = discord_avatar   
-            }
-
-            let temp;
-            if (activity.name === 'Spotify') {
-                let start = activity.timestamps.start
-                let end = activity.timestamps.end
-                let elapsed = end - start
-                let minutes = Math.floor(elapsed / 60000)
-                let seconds = Math.floor((elapsed % 60000) / 1000)
-                let timeString = `${minutes}:${seconds}` 
-
-                let time = 0;
-
-                temp = fs.readFileSync('./assets/cards/spotify-new.svg', {encoding: 'utf-8'}).toString()
-                temp = temp.replace('[username]', username);
-                temp = temp.replace('[banner]', banner);
-                temp = temp.replace('[about]', about);
-        
-                temp = temp.replace('[play-along]', play_along);
-        
-                temp = temp.replace('[details]', details);
-                temp = temp.replace('[state]', state);
-                temp = temp.replace('[type]', activity.type);
-                temp = temp.replace('[on]', largeText);
-                temp = temp.replace('[time]', time + ' -- ' + timeString);
-                temp = temp.replace('[pfp]', discord_avatar);
-                temp = temp.replace('[large-image]', large_image);
-                temp = temp.replace('[small-image]', small_image);
-                temp = temp.replace('[spotify-logo]', spotify_logo);
-                temp = temp.replace('[button-text]', "Play on Spotify");
-            } else if (activity.name === 'Code' || activity.name === 'Visual Studio Code') {
-
-                let time = activity.timestamps.start;
-                let elapsed = Date.now() - time;
-                let minutes = Math.floor(elapsed / 60000);
-                let seconds = Math.floor((elapsed % 60000) / 1000);
-                let timeString = `${minutes}:${seconds}`;
-                
-                const largeimage = activity.assets.largeImage
-                let largelink = largeimage.split('raw')[1]
-                const rawlarge = 'https://raw' + largelink
-
-                const smallimage = activity.assets.smallImage
-                let smallink = smallimage.split('raw')[1]
-                const rawsmall = 'https://raw' + smallink
-
-                temp = fs.readFileSync('./assets/cards/vscode-new.svg', {encoding: 'utf-8'}).toString()
-                temp = temp.replace('[username]', username);
-                temp = temp.replace('[banner]', banner);
-                temp = temp.replace('[about]', about);
-                temp = temp.replace('[pfp]', discord_avatar);
-
-                temp = temp.replace('[name]', activity.name);
-                temp = temp.replace('[details]', activity.details);
-                temp = temp.replace('[state]', state);
-                temp = temp.replace('[type]', activity.type);
-                temp = temp.replace('[time]', timeString + ' elapsed');
-                temp = temp.replace('[large-image]', rawlarge);
-                temp = temp.replace('[small-image]', rawsmall);
-                temp = temp.replace('[button-text]', activity.buttons[0] || 'View Repository' );
-            } else if (activity.type === 'PLAYING') {
-        
-                let time, elapsed, hours, minutes, seconds, timeString
-            
-                try {
-                    time = activity.timestamps.start;
-                    elapsed = Date.now() - time;
-                    hours = Math.floor(elapsed / 3600000);
-                    minutes = Math.floor((elapsed % 3600000) / 60000);
-                    seconds = Math.floor((elapsed % 60000) / 1000);
-                    timeString = `${hours}:${minutes}:${seconds}`;
-                } catch (error) {
-                    timeString = '0:0:0'
-                }
-        
-                temp = fs.readFileSync('./assets/cards/game-new.svg', {encoding: 'utf-8'}).toString()
-                temp = temp.replace('[username]', username);
-                temp = temp.replace('[banner]', banner);
-                temp = temp.replace('[about]', about);
-                temp = temp.replace('[pfp]', discord_avatar);
-        
-                temp = temp.replace('[name]', name || 'Gaming');
-                temp = temp.replace('[details]', details || ' ');
-                temp = temp.replace('[state]', state || ' ');
-                temp = temp.replace('[type]', activity.type || 'PLAYING');
-                temp = temp.replace('[large-image]', large_image || raw);
-                temp = temp.replace('[small-image]', small_image || raw);
-                temp = temp.replace('[time]', timeString + ' elapsed' || '0:00 elapsed');
-            }
-
-            io.emit("message", {
-                stuff: activity,
-                card: temp
-            })
-        }
-        client.on("presenceUpdate", function (newPresence, oldPresence) {
-            try {
-                if (newPresence.user.bot) {
-                    return;
-                }
-            } catch (e) {
-                return;
-            }
-            let person
-            client.guilds.fetch("782646778347388959")
-            person = client.guilds.cache.get('782646778347388959').members.cache.get(main_user)
-
-            if(data.user != newPresence.user.id && person.id == newPresence.user.id){
-                io.emit("message", {
-                    stuff: activity,
-                    card: temp,
-                })
-                return console.log("what")
-            } else if(person.id === member.id){
-                getActivity()
-                return
-            } else {
-                return
-            }
-        });
 
         function no_activity() {
             let temp
@@ -473,6 +265,7 @@ io.on("connection", async (socket) => {
             let discord_avatar, username, banner, about
             let large_image , small_image , side_image
             let temp_large, temp_small
+            let type , details
                 
             try {
                 discord_avatar = member.user.displayAvatarURL({format: 'png', dynamic: true})
@@ -481,7 +274,7 @@ io.on("connection", async (socket) => {
                 about = data.about || ' '
                 temp_large = "https://cdn.discordapp.com/attachments/988140784807202886/991310693791965214/large_breeze.png"
                 temp_small = "https://cdn.discordapp.com/attachments/988140784807202886/991310761991360512/small_breeze.png"
-    
+
                 if (about.length > 20) {
                     about = about.substring(0, 20) + "..."
                 }
@@ -508,31 +301,39 @@ io.on("connection", async (socket) => {
                 side_image = data.side_image
             }
 
-                let type, details
-                type = 'Breeze'
-                details = 'Vibing'
-
-                temp = fs.readFileSync('./assets/cards/no-activity-new.svg', {encoding: 'utf-8'}).toString()
-                temp = temp.replace('[pfp]', discord_avatar);
-                temp = temp.replace('[username]', username);
-                temp = temp.replace('[banner]', banner);
-                temp = temp.replace('[about]', about);
-
-                temp = temp.replace('[type]', type);
-                temp = temp.replace('[details]', details);
-
-                temp = temp.replace('[large-image]', large_image || discord_avatar)
-                temp = temp.replace('[small-image]', small_image || discord_avatar)
-                temp = temp.replace('[side-image]', discord_avatar)
-
-                console.log(`${member.user.username} has no activity`)
-
-                io.emit('no-activity', {
-                    user_id: data.user,
-                    card: temp
-                })
-        
+            if(!data.type){
+                type = 'Chilling'
+            } else {
+                type = data.type
             }
+
+            if(!data.details){
+                details = 'Breeze'
+            } else {
+                details = data.details
+            }
+
+            temp = fs.readFileSync('./assets/cards/no-activity-new.svg', {encoding: 'utf-8'}).toString()
+            temp = temp.replace('[pfp]', discord_avatar);
+            temp = temp.replace('[username]', username);
+            temp = temp.replace('[banner]', banner);
+            temp = temp.replace('[about]', about);
+
+            temp = temp.replace('[type]', type);
+            temp = temp.replace('[details]', details);
+
+            temp = temp.replace('[large-image]', large_image || discord_avatar)
+            temp = temp.replace('[small-image]', small_image || discord_avatar)
+            temp = temp.replace('[side-image]', discord_avatar)
+
+            console.log(`${member.user.username} has no activity`)
+
+            io.emit('no-activity', {
+                user_id: data.user,
+                card: temp
+            })
+            return
+        }
     })
 })
 
