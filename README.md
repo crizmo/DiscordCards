@@ -12,6 +12,7 @@
     ·
     <a href="https://breeze-stats.netlify.app/">Website</a>
   </p>
+  <img src="https://camo.githubusercontent.com/a7a8689949be7d227121d0dee830646ffbece6ffd8c04c2c748b974fdeb7f329/68747470733a2f2f6170692d627265657a652e6865726f6b756170702e636f6d2f6170692f373834313431383536343236303333323333?" />
 </div>
 
 <details>
