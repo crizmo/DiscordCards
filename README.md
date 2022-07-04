@@ -10,7 +10,7 @@
     ·
     <a href="https://github.com/crizmo/dcez-client">Client Side</a>
     ·
-    <a href="https://localhost:3000">Website</a>
+    <a href="https://breeze-stats.netlify.app/">Website</a>
   </p>
 </div>
 
@@ -45,19 +45,19 @@ Here's what breeze offers:
 Breeze is very easy to use.
 You can either use the api endpoint to display your discord activity or get your discord activity using the breeze client website.
 
-<a href="https://localhost:5000/">Endpoints</a>
-<a href="https://localhost:3000">Website</a>
+<a href="https://api-breeze.herokuapp.com/">Endpoints</a>
+<a href="https://breeze-stats.netlify.app/">Website</a>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Roadmap
 
-- [ ] Better client website
-- [ ] Update svg cards
+- [x] Better client website
+- [x] Update svg cards
 - [ ] Add more cards for different discord activities
 - [x] Endpoints
-- [ ] Better way for contributors to contribute
-- [ ] Fix (&) in spotify name bug
+- [x] Better way for contributors to contribute
+- [x] Fix (&) in spotify name bug
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 

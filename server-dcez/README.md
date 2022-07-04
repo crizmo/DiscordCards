@@ -1,41 +1,61 @@
-# INFO
-This is the backend of the breeze
-made using express and react for fetching discord activity.
+<div align="center">
+  <h3 align="center">Breeze</h3>
 
-: Contains :
-- socket routing to send and receive activity data from | to the client
-- base api endpoints for the svg img of the user which contaings the data
+  <p align="center">
+    An awesome way to display your discord activity !
+    <br />
+    <a href="https://github.com/crizmo/breeze/blob/main/server-dcez/README.md"><strong>Explore more »</strong></a>
+    <br />
+    <a href="https://github.com/crizmo/breeze/tree/main/server-dcez">Server Side</a>
+    ·
+    <a href="https://github.com/crizmo/dcez-client">Client Side</a>
+    ·
+    <a href="https://localhost:3000">Website</a>
+  </p>
+</div>
 
-: API Endpoints :
-- /api : display the download svg of the user
-- /api/:id : display the svg activity of the user with the id
+<details>
+  <summary>Features</summary>
+  <ol>
+    <li>
+      <a href="#breeze api">Breeze API</a>
+    </li>
+    <li><a href="#api endpoints">API endpoints</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ol>
+</details>
 
-: API Queries :
+## Breeze API
 
- [ Base ]
-- banner :- banner="banner url" : change the banner of the user
-- about :- about="about text" : change the about of the user
-- type :- type="type text" : change the presence type of the user
+With the help of breeze API you can display your discord activity as a card on your website or anywhere you want. 
 
- [ for Spotify / Games / Vs-code ]
-- large_image :- large_image="large image url" : change the large image of the user
-- small_image :- small_image="small image url" : change the small image of the user
-- side_image :- side_image="side image url" : change the side image of the user
+![breeze](https://media.discordapp.net/attachments/988140784807202886/993533565738426378/breeze.png?width=1028&height=474)
 
-# Cards
-Currently breeze supports vs code and spotify activity svg images.
+## API Endpoints
 
-: location :
-- VsCode : assets/vscode-new.svg
-  [Code card](https://media.discordapp.net/attachments/970974282681307187/988846773856518187/code.png)
-- Spotify : assets/spotify-new.svg
-  [Spotify card](https://media.discordapp.net/attachments/970974282681307187/988846774083002448/spotify.png)
-- Playing : assets/game-new.svg
-- No Activity : assets/no-activity-new.svg
-- Downloaded tempcard : assets/tempcard.svg
+<a href="https://api-breeze.herokuapp.com/">Base</a>
+<a href="https://api-breeze.herokuapp.com/api/">api</a>
+<a href="https://api-breeze.herokuapp.com/api/:id">User card</a>
 
-# Ports 
-- 3000 : backend server
-- 3001 : client server + api
+These are the base endpoints of breeze , :id is the main card endpoint.
 
-main folder - breeze
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+## API Query Parameters
+
+  * banner: url of the banner image
+  * about: about the user
+  * type: discord activity type
+
+  * large_image: url of the large image
+  * small_image: url of the small image
+  * side_image: url of the side image
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+## License
+
+Distributed under the MIT License. See `LICENSE.txt` for more information.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
