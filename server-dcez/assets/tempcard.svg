@@ -4,21 +4,21 @@
 <circle cx="58.5" cy="119.5" r="42" stroke="#18191C" stroke-width="5"/>
 <line y1="209.5" x2="292" y2="209.5" stroke="#5B5B5B"/>
 <rect x="19" y="80" width="79" height="79" rx="39.5" fill="url(#pattern1)"/>
-<text fill="white" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="18" font-weight="500" letter-spacing="0.075em"><tspan x="19" y="192.545">Criz#1270</tspan></text>
-<text fill="#B9BBBE" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="11" font-weight="800" letter-spacing="0.065em"><tspan x="19" y="233.5">ABOUT ME</tspan></text>
-<text fill="#BBBBBC" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="13" letter-spacing="-0.005em"><tspan x="19" y="255.727">Itz me !</tspan></text>
+<text fill="white" xml:space="preserve" style="white-space: pre" font-family="sans-serif" font-size="18" font-weight="500" letter-spacing="0.075em"><tspan x="19" y="192.545">Criz#1270</tspan></text>
+<text fill="#B9BBBE" xml:space="preserve" style="white-space: pre" font-family="sans-serif" font-size="11" font-weight="800" letter-spacing="0.065em"><tspan x="19" y="233.5">ABOUT ME</tspan></text>
+<text fill="#BBBBBC" xml:space="preserve" style="white-space: pre" font-family="sans-serif" font-size="13" letter-spacing="-0.005em"><tspan x="19" y="255.727">Itz me !</tspan></text>
 <rect x="21" y="366.462" width="247.385" height="29.5385" rx="4" fill="#4E545B"/>
 <!-- <rect x="19" y="295.385" width="55.3846" height="55.3846" rx="7" fill="#393026"/> -->
 <!-- <circle cx="70.6923" cy="347.077" r="10.2308" fill="#203036" stroke="#18191C" stroke-width="2"/> -->
 <rect x="21" y="295.385" width="55.3846" height="55.3846" rx="7" fill="url(#pattern2)"/>
 <rect x="62.4615" y="337.846" width="18.4615" height="18.4615" rx="9.23077" fill="url(#pattern3)"/>
 <rect x="245" y="279" width="24" height="24" rx="12" fill="url(#pattern4)"/>
-<text fill="white" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="12" font-weight="500" letter-spacing="0em"><tspan x="102.476" y="385.71">View Repository</tspan></text>
-<text fill="#CCCDCF" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="12" font-weight="300" letter-spacing="0.07em"><tspan x="89.5385" y="352.479">23:34 elapsed</tspan></text>
-<text fill="#CCCDCF" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="12" font-weight="300" letter-spacing="0.07em"><tspan x="89.5385" y="338.633">Working on app.js:377:6...</tspan></text>
-<text fill="#D0D1D1" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="12" font-weight="300" letter-spacing="0.005em"><tspan x="89.5385" y="324.787">In breeze - 0 problems found</tspan></text>
-<text fill="white" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="12" font-weight="500" letter-spacing="0.1em"><tspan x="89.5385" y="310.941">Code</tspan></text>
-<text fill="#B9BBBE" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="11" font-weight="500" letter-spacing="0.04em"><tspan x="21" y="286.5">PLAYING</tspan></text>
+<text fill="white" xml:space="preserve" style="white-space: pre" font-family="sans-serif" font-size="12" font-weight="500" letter-spacing="0em"><tspan x="102.476" y="385.71">View Repository</tspan></text>
+<text fill="#CCCDCF" xml:space="preserve" style="white-space: pre" font-family="sans-serif" font-size="12" font-weight="300" letter-spacing="0.07em"><tspan x="89.5385" y="352.479">23:34 elapsed</tspan></text>
+<text fill="#CCCDCF" xml:space="preserve" style="white-space: pre" font-family="sans-serif" font-size="12" font-weight="300" letter-spacing="0.07em"><tspan x="89.5385" y="338.633">Working on app.js:377:6...</tspan></text>
+<text fill="#D0D1D1" xml:space="preserve" style="white-space: pre" font-family="sans-serif" font-size="12" font-weight="300" letter-spacing="0.005em"><tspan x="89.5385" y="324.787">In breeze - 0 problems found</tspan></text>
+<text fill="white" xml:space="preserve" style="white-space: pre" font-family="sans-serif" font-size="12" font-weight="500" letter-spacing="0.1em"><tspan x="89.5385" y="310.941">Code</tspan></text>
+<text fill="#B9BBBE" xml:space="preserve" style="white-space: pre" font-family="sans-serif" font-size="11" font-weight="500" letter-spacing="0.04em"><tspan x="21" y="286.5">PLAYING</tspan></text>
 <defs>
 <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
 <use xlink:href="#image0_25_2" transform="translate(0 -0.184375) scale(0.000260417 0.000633681)"/>
