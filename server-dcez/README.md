@@ -18,11 +18,11 @@
   <summary>Features</summary>
   <ol>
     <li>
-      <a href="#breeze api">Breeze API</a>
+      <a href="#breeze-api">Breeze API</a>
     </li>
-    <li><a href="#api endpoints">API endpoints</a></li>
+    <li><a href="#api-endpoints">API endpoints</a></li>
+    <li><a href="#api-qiery-parameters">API queries</a></li>
     <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
   </ol>
 </details>
 
