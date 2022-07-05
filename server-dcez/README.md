@@ -30,6 +30,8 @@
 
 With the help of breeze API you can display your discord activity as a card on your website or anywhere you want. 
 
+Join the [discord server](https://discord.gg/VcMPV8vc2x) to start using the API cards.
+
 ![breeze](https://media.discordapp.net/attachments/988140784807202886/993533565738426378/breeze.png?width=1028&height=474)
 
 ## API Endpoints
