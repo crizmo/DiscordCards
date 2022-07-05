@@ -39,6 +39,7 @@ With the help of breeze API you can display your discord activity as a card on y
 <a href="https://api-breeze.herokuapp.com/api/:id">User card</a> <br>
 
 These are the base endpoints of breeze , :id is the main card endpoint.
+When using the api img in readme do add a ? at the end of the url to keep clearing the cache.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
