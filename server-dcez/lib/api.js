@@ -252,7 +252,7 @@ const api = () => {
             temp = temp.replace('[state]', state);
             temp = temp.replace('[type]', type || 'Vibing');
             temp = temp.replace('[on]', largeText);
-            temp = temp.replace('[time]', 0 + ' -- ' + timeString);
+            temp = temp.replace('[time]', 'Time -  ' + timeString);
             
             temp = temp.replace('[large-image]', large64);
             temp = temp.replace('[small-image]', small64);
@@ -329,7 +329,7 @@ const api = () => {
 
             temp = temp.replace('[large-image]', raw);
         }
-        //  clear cache header
+        
         res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
         res.setHeader('Pragma', 'no-cache');
         res.setHeader('Expires', '0');
