@@ -1,6 +1,5 @@
 const express = require('express');
 const app = express();
-// const onlysvg = express();
 const fs = require('fs');
 
 const { Client, Intents, Collection } = require('discord.js');
@@ -25,8 +24,6 @@ const io = new Server(server, {
 
 const serverPort = process.env.PORT || 3001;
 
-// bring the no_activity function down to make the main_user work
-
 io.on("connection", async (socket) => {
     console.log(`a user connected ${socket.id}`)
 
@@ -36,7 +33,6 @@ io.on("connection", async (socket) => {
         try {
             client.guilds.fetch("782646778347388959")
             member = client.guilds.cache.get('782646778347388959').members.cache.get(main_user) || await client.guilds.cache.get("782646778347388959").members.fetch(main_user);
-            // console.log(`${member.user.username} is the member`)
             if (!member) {
                 console.log('member not in server')
                 io.emit('not-in-server', {
@@ -49,7 +45,6 @@ io.on("connection", async (socket) => {
             io.emit('not-in-server', {
                 user_id: data.user
             })
-            // console.log(error)
             return
         }
         let activity
@@ -175,8 +170,6 @@ io.on("connection", async (socket) => {
             let seconds = Math.floor((elapsed % 60000) / 1000)
             let timeString = `${minutes}:${seconds}` 
 
-            let time = 0;
-
             temp = fs.readFileSync('./assets/cards/spotify-new.svg', {encoding: 'utf-8'}).toString()
             temp = temp.replace('[username]', username);
             temp = temp.replace('[banner]', banner);
@@ -226,7 +219,6 @@ io.on("connection", async (socket) => {
             temp = temp.replace('[small-image]', rawsmall);
             temp = temp.replace('[button-text]', activity.buttons[0] || 'View Repository');
         } else if (activity.type === 'PLAYING') {
-            // console.log(activity)
             let time, elapsed, hours, minutes, seconds, timeString
             
             try {
@@ -356,10 +348,6 @@ process.on('uncaughtExceptionMonitor', async (err, origin) => {
         .setDescription('```js\n' + err.stack + '```');
     client.channels.cache.get('988140784807202886').send({ embeds: [embed] })
 });
-
-// app.get('/', (req, res) => {
-//     res.send('Hello World!')
-// })
 
 const start = require('./lib/base_endpoints/start')
 app.use('/', start)
