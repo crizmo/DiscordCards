@@ -1,0 +1,33 @@
+<svg width="385" height="178" viewBox="0 0 385 178" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<path d="M275.861 3.66649C277.76 1.34603 280.6 0.000366211 283.599 0.000366211H375C380.523 0.000366211 385 4.47752 385 10.0004V168C385 173.523 380.523 178 375 178H154.276C145.838 178 141.193 168.195 146.537 161.666L275.861 3.66649Z" fill="url(#pattern0)"/>
+<path d="M0 0H299.957L160.856 178H0V0Z" fill="#18191C"/>
+<rect x="18.4589" y="31.0151" width="59.3322" height="60.6817" rx="13" fill="url(#pattern1)"/>
+<rect x="63.2877" y="76.8635" width="17.1404" height="17.5303" rx="8" fill="url(#pattern2)"/>
+<text opacity="0.8" fill="#D0D1D1" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="11" font-weight="300" letter-spacing="0.005em"><tspan x="88" y="78.5">[on]</tspan></text>
+<text fill="#D0D1D1" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="11" font-weight="300" letter-spacing="0.005em"><tspan x="23" y="109.5">[time]</tspan></text>
+<text fill="#D0D1D1" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="11" font-weight="300" letter-spacing="0.005em"><tspan x="88" y="61.5">[state]</tspan></text>
+<text fill="#DCDDDE" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="11" font-weight="500" letter-spacing="0.1em"><tspan x="88" y="44.5">[details]</tspan></text>
+<text fill="#B5B7B9" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="10" font-weight="500" letter-spacing="0.045em"><tspan x="23" y="21.5">[type]</tspan></text>
+<text transform="matrix(0.613925 -0.789364 0.775724 0.631073 159.315 154.194)" fill="#BBBBBC" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="11" letter-spacing="-0.005em"><tspan x="26.5437" y="10.5">[about]</tspan></text>
+<rect x="18.4589" y="145.636" width="138.442" height="21.5757" rx="3" fill="#4E545B"/>
+<text transform="translate(38.2363 149.682)" fill="white" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="10" font-weight="500" letter-spacing="0em"><tspan x="16.2597" y="10.03636">[button-text]</tspan></text>
+<rect x="250.514" y="9.43979" width="17.1404" height="17.5303" rx="8.57021" fill="url(#pattern3)"/>
+<defs>
+<pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+<use xlink:href="#image0_43_39" transform="translate(-0.128283) scale(0.000327231 0.000462963)"/>
+</pattern>
+<pattern id="pattern1" patternContentUnits="objectBoundingBox" width="1" height="1">
+<use xlink:href="#image1_43_39" transform="translate(-0.0113724) scale(0.00222336 0.00217391)"/>
+</pattern>
+<pattern id="pattern2" patternContentUnits="objectBoundingBox" width="1" height="1">
+<use xlink:href="#image2_43_39" transform="translate(-0.0113724) scale(0.00433366 0.00423729)"/>
+</pattern>
+<pattern id="pattern3" patternContentUnits="objectBoundingBox" width="1" height="1">
+<use xlink:href="#image3_43_39" transform="translate(0 -0.000249848) scale(0.0116279 0.0113693)"/>
+</pattern>
+<image id="image0_43_39" width="3840" height="2160" xlink:href="[banner]"/>
+<image id="image1_43_39" width="460" height="460" xlink:href="[large-image]"/>
+<image id="image2_43_39" width="236" height="236" xlink:href="[small-image]"/>
+<image id="image3_43_39" width="86" height="88" xlink:href="[spotify-logo]"/>
+</defs>
+</svg>
