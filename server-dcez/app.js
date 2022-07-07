@@ -356,7 +356,10 @@ const pre_api = require('./lib/base_endpoints/pre-api')
 app.use('/api', pre_api)
 
 const api = require('./lib/api')
-app.use('/api', api)
+app.use('/api/card', api)
+
+const api_xomp = require('./lib/api_xomp')
+app.use('/api/compact', api_xomp)
 
 server.listen(process.env.PORT || serverPort , () => console.log(`Listening on port ${process.env.PORT || serverPort}`))
 client.login(process.env.DISCORD_TOKEN);
