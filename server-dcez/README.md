@@ -38,7 +38,8 @@ Join the [discord server](https://discord.gg/VcMPV8vc2x) to start using the API 
 
 <a href="https://api-breeze.herokuapp.com/">Base</a> <br> 
 <a href="https://api-breeze.herokuapp.com/api/">api</a> <br>
-<a href="https://api-breeze.herokuapp.com/api/:id">User card</a> <br>
+<a href="https://api-breeze.herokuapp.com/api/card/:id">User card large</a> <br>
+<a href="https://api-breeze.herokuapp.com/api/compact/:id">User card compact</a> <br>
 
 These are the base endpoints of breeze , :id is the main card endpoint.
 When using the api img in readme do add a ? at the end of the url to keep clearing the cache.
