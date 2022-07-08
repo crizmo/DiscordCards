@@ -60,6 +60,6 @@ When using the api img in readme do add a ? at the end of the url to keep cleari
 
 ## License
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+Distributed under the MIT License. See `LICENSE.md` for more information.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
