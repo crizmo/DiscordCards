@@ -5,7 +5,6 @@ const fs = require('fs');
 const imageToBase64 = require('image-to-base64');
 
 const { Client, Intents, Collection } = require('discord.js');
-const Discord = require('discord.js');
 const client = new Client({ intents: 32767 });
 require('dotenv').config();
 
@@ -70,10 +69,11 @@ const api = () => {
 
             temp_large = "https://cdn.discordapp.com/attachments/988140784807202886/991310693791965214/large_breeze.png"
             temp_small = "https://cdn.discordapp.com/attachments/988140784807202886/991310761991360512/small_breeze.png"
+            temp_side = discord_avatar
 
             large_image = req.query.large_image || temp_large
             small_image = req.query.small_image || temp_small
-            side_image = req.query.side_image || discord_avatar
+            side_image = req.query.side_image || temp_side
 
         } catch (e) {
             res.send('Uh user error')
@@ -142,7 +142,7 @@ const api = () => {
                     details = 'Vibing'
                 }
 
-                temp = fs.readFileSync('./assets/cards/no-activity-new.svg', {encoding: 'utf-8'}).toString()
+                temp = fs.readFileSync('./assets/cards/large/no-activity-new.svg', {encoding: 'utf-8'}).toString()
                 temp = temp.replace('[pfp]', pfp64);
                 temp = temp.replace('[username]', username);
                 temp = temp.replace('[banner]', banner64);
@@ -242,7 +242,7 @@ const api = () => {
             let seconds = Math.floor((elapsed % 60000) / 1000)
             let timeString = `${minutes}:${seconds}` 
 
-            temp = fs.readFileSync('./assets/cards/spotify-new.svg', {encoding: 'utf-8'}).toString()
+            temp = fs.readFileSync('./assets/cards/large/spotify-new.svg', {encoding: 'utf-8'}).toString()
             temp = temp.replace('[username]', username);
             temp = temp.replace('[pfp]', pfp64);
             temp = temp.replace('[banner]', banner64);
@@ -283,14 +283,14 @@ const api = () => {
             small64 = await imageToBase64(rawsmall)
             small64 = `data:image/png;base64,${small64}`
 
-            temp = fs.readFileSync('./assets/cards/vscode-new.svg', {encoding: 'utf-8'}).toString()
+            temp = fs.readFileSync('./assets/cards/large/vscode-new.svg', {encoding: 'utf-8'}).toString()
             temp = temp.replace('[username]', username);
             temp = temp.replace('[banner]', banner64);
             temp = temp.replace('[about]', about);
             temp = temp.replace('[pfp]', pfp64);
 
-            temp = temp.replace('[name]', activity.name || 'Gaming');
-            temp = temp.replace('[details]', activity.details || 'No details');
+            temp = temp.replace('[name]', name || 'Coding');
+            temp = temp.replace('[details]', details || 'No details');
             temp = temp.replace('[state]', state || 'No description');
             temp = temp.replace('[type]', type || 'Coding');
             temp = temp.replace('[time]', timeString + ' elapsed' || '0:00 elapsed');
@@ -315,7 +315,7 @@ const api = () => {
                 timeString = '0:0:0'
             }
 
-            temp = fs.readFileSync('./assets/cards/game-new.svg', {encoding: 'utf-8'}).toString()
+            temp = fs.readFileSync('./assets/cards/large/game-new.svg', {encoding: 'utf-8'}).toString()
             temp = temp.replace('[username]', username);
             temp = temp.replace('[banner]', banner64);
             temp = temp.replace('[about]', about);

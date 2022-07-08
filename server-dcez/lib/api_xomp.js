@@ -1,13 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
-const cacheBuster = new Date().getTime();
-
 const fs = require('fs');
 const imageToBase64 = require('image-to-base64');
 
 const { Client, Intents, Collection } = require('discord.js');
-const Discord = require('discord.js');
 const client = new Client({ intents: 32767 });
 require('dotenv').config();
 
@@ -62,18 +59,19 @@ const api_xomp = () => {
             discord_avatar = member.user.displayAvatarURL({ format: 'png', dynamic: true, size: 1024 })
             banner = req.query.banner || 'https://media.discordapp.net/attachments/988140784807202886/991308628978061402/blue_boi.png'
             about = req.query.about || ' '
-            if (about.length > 20) {
-                about = about.substring(0, 20) + "..."
+            if (about.length > 13) {
+                about = about.substring(0, 13) + "..."
             }
             
             spotify_logo = 'https://www.freeiconspng.com/uploads/spotify-icon-0.png'
 
             temp_large = "https://cdn.discordapp.com/attachments/988140784807202886/991310693791965214/large_breeze.png"
             temp_small = "https://cdn.discordapp.com/attachments/988140784807202886/991310761991360512/small_breeze.png"
+            temp_side = discord_avatar
 
             large_image = req.query.large_image || temp_large
             small_image = req.query.small_image || temp_small
-            side_image = req.query.side_image || discord_avatar
+            side_image = req.query.side_image || temp_side
 
         } catch (e) {
             res.send('Uh user error')
@@ -172,8 +170,8 @@ const api_xomp = () => {
             details = 'No details'
         } else {
             details = activity.details.replace(/&/g, '&amp;') || req.query.details || 'No details'
-            if (details.length > 17) {
-                details = details.substring(0, 17) + '...';
+            if (details.length > 22) {
+                details = details.substring(0, 22) + '...';
             }
         }
         
@@ -181,8 +179,8 @@ const api_xomp = () => {
             state = 'No description'
         } else {
             state = activity.state.replace(/&/g, '&amp;') || req.query.state || 'No description'
-            if (state.length > 17) {
-                state = state.substring(0, 17) + '...';
+            if (state.length > 19) {
+                state = state.substring(0, 19) + '...';
             }
         }
 
@@ -190,8 +188,8 @@ const api_xomp = () => {
             type = req.query.type || 'Vibing'
         } else {
             type = activity.type.replace(/&/g, '&amp;')|| req.query.type || 'Vibing'
-            if (type.length > 17) {
-                type = type.substring(0, 17) + '...';
+            if (type.length > 19) {
+                type = type.substring(0, 19) + '...';
             }
         }
         
@@ -280,8 +278,8 @@ const api_xomp = () => {
             temp = temp.replace('[banner]', banner64);
             temp = temp.replace('[about]', about);
 
-            temp = temp.replace('[name]', activity.name || 'Gaming');
-            temp = temp.replace('[details]', activity.details || 'No details');
+            temp = temp.replace('[name]', name || 'Coding');
+            temp = temp.replace('[details]', details || 'No details');
             temp = temp.replace('[state]', state || 'No description');
             temp = temp.replace('[type]', type || 'Coding');
             temp = temp.replace('[time]', timeString + ' elapsed' || '0:00 elapsed');
