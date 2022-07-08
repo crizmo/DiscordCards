@@ -23,6 +23,7 @@
     </li>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#issues">Issues</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -62,6 +63,11 @@ You can either use the api endpoint to display your discord activity or get your
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
+## Issues
+
+One of the biggest issue that i still haven't figured out is with github caching api images.
+I'm not sure how to fix this issue.
+Would love to get some help from those who know how to fix this issue.
 
 ## Contributing
 
