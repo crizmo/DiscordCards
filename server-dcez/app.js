@@ -170,7 +170,7 @@ io.on("connection", async (socket) => {
             let seconds = Math.floor((elapsed % 60000) / 1000)
             let timeString = `${minutes}:${seconds}` 
 
-            temp = fs.readFileSync('./assets/cards/spotify-new.svg', {encoding: 'utf-8'}).toString()
+            temp = fs.readFileSync('./assets/cards/large/spotify-new.svg', {encoding: 'utf-8'}).toString()
             temp = temp.replace('[username]', username);
             temp = temp.replace('[banner]', banner);
             temp = temp.replace('[about]', about);
@@ -204,7 +204,7 @@ io.on("connection", async (socket) => {
             let smallink = smallimage.split('raw')[1]
             const rawsmall = 'https://raw' + smallink
 
-            temp = fs.readFileSync('./assets/cards/vscode-new.svg', {encoding: 'utf-8'}).toString()
+            temp = fs.readFileSync('./assets/cards/large/vscode-new.svg', {encoding: 'utf-8'}).toString()
             temp = temp.replace('[username]', username);
             temp = temp.replace('[banner]', banner);
             temp = temp.replace('[about]', about);
@@ -232,7 +232,7 @@ io.on("connection", async (socket) => {
                 timeString = '0:0:0'
             }
             
-            temp = fs.readFileSync('./assets/cards/game-new.svg', {encoding: 'utf-8'}).toString()
+            temp = fs.readFileSync('./assets/cards/large/game-new.svg', {encoding: 'utf-8'}).toString()
             temp = temp.replace('[username]', username);
             temp = temp.replace('[banner]', banner);
             temp = temp.replace('[about]', about);
