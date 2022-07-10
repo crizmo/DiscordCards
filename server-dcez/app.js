@@ -362,4 +362,6 @@ const api_xomp = require('./lib/api_xomp')
 app.use('/api/compact', api_xomp)
 
 server.listen(process.env.PORT || serverPort , () => console.log(`Listening on port ${process.env.PORT || serverPort}`))
+// console.log(`http://localhost:3001/api/card/784141856426033233`)
+// console.log(`http://localhost:3001/api/compact/784141856426033233`)
 client.login(process.env.DISCORD_TOKEN);
