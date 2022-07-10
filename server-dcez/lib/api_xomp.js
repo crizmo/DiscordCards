@@ -315,10 +315,8 @@ const api_xomp = () => {
 
             temp = temp.replace('[large-image]', raw);
         }
-        res.setHeader("Surrogate-Control", "no-store");
-        res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate, proxy-revalidate");
-        res.setHeader("Pragma", "no-cache");
-        res.setHeader("Expires", "0");
+        
+        res.setHeader('Cache-Control', 'public, max-age=14400');
 
         res.writeHead(200, {'Content-Type': 'image/svg+xml'})
         res.end(temp)
