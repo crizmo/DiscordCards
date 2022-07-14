@@ -10,7 +10,7 @@
     ·
     <a href="https://github.com/crizmo/dcez-client">Client Side</a>
     ·
-    <a href="https://localhost:3000">Website</a>
+    <a href="https://breeze-stats.netlify.app/">Website</a>
   </p>
 </div>
 
