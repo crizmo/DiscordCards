@@ -20,7 +20,7 @@
 <pattern id="pattern3" patternContentUnits="objectBoundingBox" width="1" height="1">
 <use xlink:href="#image3_43_4" transform="translate(0 -0.153474) scale(0.000835422 0.000816843)"/>
 </pattern>
-<!-- <image id="image0_43_4" width="3840" height="2160" xlink:href="[banner]"/> -->
+<image id="image0_43_4" width="3840" height="2160" xlink:href="[banner]"/>
 <image id="image1_43_4" width="235" height="222" xlink:href="[sub-image]"/>
 <image id="image2_43_4" width="460" height="460" xlink:href="[small-image]"/>
 <image id="image3_43_4" width="1197" height="1600" xlink:href="[pfp]"/>
