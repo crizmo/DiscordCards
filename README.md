@@ -12,7 +12,7 @@
     ·
     <a href="https://breeze-stats.netlify.app/">Website</a>
   </p>
-  <img src="https://api-breeze.herokuapp.com/api/card/784141856426033233?about=oi&banner=https://cdn.discordapp.com/attachments/988140784807202886/999326064973197352/blue_girl.gif" />
+  <img src="https://api-breeze.herokuapp.com/api/card/784141856426033233?about=oi" />
 </div>
 
 <details>
