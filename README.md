@@ -12,7 +12,7 @@
     ·
     <a href="https://breeze-stats.netlify.app/">Website</a>
   </p>
-  <img src="https://api-breeze.herokuapp.com/api/card/784141856426033233?about=pog caching" />
+  <img src="https://api-breeze.herokuapp.com/api/card/784141856426033233?about=cache" />
 </div>
 
 <details>
