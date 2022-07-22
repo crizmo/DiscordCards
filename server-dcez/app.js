@@ -305,7 +305,7 @@ io.on("connection", async (socket) => {
                 details = data.details
             }
 
-            temp = fs.readFileSync('./assets/cards/no-activity-new.svg', {encoding: 'utf-8'}).toString()
+            temp = fs.readFileSync('./assets/cards/large/no-activity-new.svg', {encoding: 'utf-8'}).toString()
             temp = temp.replace('[pfp]', discord_avatar);
             temp = temp.replace('[username]', username);
             temp = temp.replace('[banner]', banner);
