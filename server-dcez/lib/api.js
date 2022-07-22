@@ -330,9 +330,8 @@ const api = () => {
             temp = temp.replace('[large-image]', raw);
         }
         
-        res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
-        res.setHeader('Pragma', 'no-cache');
-        res.setHeader('Expires', '0');
+        res.setHeader('Cache-Control', 'no-cache, no-store, private, must-revalidate');
+        res.setHeader('Content-Security-Policy', 'default-src \'none\'; img-src data:; style-src \'unsafe-inline\'');
         
         res.writeHead(200, {'Content-Type': 'image/svg+xml'})
         res.end(temp)
