@@ -38,8 +38,23 @@ const api_xomp = () => {
                 return
             }
         } catch (e) {
-            res.send('User not found ! Please try again')
-            // console.log(e)
+
+            let html = `
+            <html>
+            <head>
+            <title>User not found</title>
+            </head>
+            <body>
+            <h3>User not found</h3>
+            <p>User id: ${req.params.id}</p>
+            <p>If the user is not in the DrunkBetch server, please add them to the server and try again</p>
+            <a href="https://discord.gg/Ecy6WpEZsD">Join the DrunkBetch server</a>
+            <p>If the user is in the server, please try reloading the page</p>
+            </body>
+            </html>
+            `
+
+            res.send(html)
             return;
         }
 
@@ -316,8 +331,9 @@ const api_xomp = () => {
             temp = temp.replace('[large-image]', raw);
         }
 
-        res.setHeader('Cache-Control', 'no-cache, no-store, private, must-revalidate');
-        res.setHeader('Content-Security-Policy', 'default-src \'none\'; img-src data:; style-src \'unsafe-inline\'');
+        res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+        res.setHeader('Pragma', 'no-cache');
+        res.setHeader('Expires', '0');
 
         res.writeHead(200, {'Content-Type': 'image/svg+xml'})
         res.end(temp)
