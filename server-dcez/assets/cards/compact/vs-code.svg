@@ -8,7 +8,7 @@
 <text fill="#B5B7B9" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="11" font-weight="500" letter-spacing="0.045em"><tspan x="22" y="22.5">[type]</tspan></text>
 <text transform="matrix(0.613925 -0.789364 0.775724 0.631073 171 140.603)" fill="#BBBBBC" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="11" letter-spacing="-0.005em"><tspan x="26.5437" y="10.5">[about]</tspan></text>
 <rect x="18.4589" y="145.636" width="138.442" height="21.5757" rx="3" fill="#4E545B"/>
-<text transform="translate(36 150)" fill="white" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="10" font-weight="500" letter-spacing="0em"><tspan x="16.2597" y="9.63636">[button-text]</tspan></text>
+<text transform="translate(36 150)" fill="white" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="10" font-weight="500" letter-spacing="0em"><tspan x="11.2597" y="9.63636">[button-text]</tspan></text>
 <rect x="18.4589" y="32.3636" width="59.3322" height="60.6817" rx="13" fill="url(#pattern1)"/>
 <rect x="63.2877" y="78.212" width="19.7774" height="20.2272" rx="9.8887" fill="url(#pattern2)"/>
 <rect x="254.469" y="6.7424" width="19.7774" height="20.2272" rx="9.8887" fill="url(#pattern3)"/>
