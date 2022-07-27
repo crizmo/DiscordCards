@@ -301,7 +301,7 @@ const api_xomp = () => {
 
             temp = temp.replace('[large-image]', large64);
             temp = temp.replace('[small-image]', small64);
-            temp = temp.replace('[button-text]', activity.buttons[0] || 'Playing');
+            temp = temp.replace('[button-text]', activity.buttons[0] || 'Working on Code');
         } else if (activity.type === 'PLAYING') {
             let time, elapsed, hours, minutes, seconds, timeString
                 
