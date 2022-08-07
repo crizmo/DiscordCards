@@ -47,7 +47,7 @@ Here's what breeze offers:
 Breeze is very easy to use.
 You can either use the api endpoint to display your discord activity or get your discord activity using the breeze client website.
 
-<a href="https://api-breeze.herokuapp.com/">API</a>
+<a href="https://api-breeze.herokuapp.com/">API</a> <br>
 <a href="https://breeze-stats.netlify.app/">Website</a>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
