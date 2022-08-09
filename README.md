@@ -47,6 +47,23 @@ Here's what breeze offers:
 Breeze is very easy to use.
 You can either use the api endpoint to display your discord activity or get your discord activity using the breeze client website.
 
+You can display your discord activity as a card or a compact card.
+The endpoint are the following:
+<a href="https://api-breeze.herokuapp.com/api/card/:id">User card large</a> <br>
+<a href="https://api-breeze.herokuapp.com/api/compact/:id">User card compact</a> <br>
+Replace :id with your discord id + you can add the optional queries too.
+The queries are:
+
+  * banner: url of the banner image
+  * about: about the user
+  * type: discord activity type
+
+  * large_image: url of the large image
+  * small_image: url of the small image
+  * side_image: url of the side image
+
+  large_image, small_image , side_image are basically the activity images.
+
 <a href="https://api-breeze.herokuapp.com/">API</a>
 <a href="https://breeze-stats.netlify.app/">Website</a>
 

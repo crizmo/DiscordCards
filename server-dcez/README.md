@@ -56,6 +56,8 @@ When using the api img in readme do add a ? at the end of the url to keep cleari
   * small_image: url of the small image
   * side_image: url of the side image
 
+  large_image, small_image , side_image are basically the activity images.
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## License
