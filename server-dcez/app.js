@@ -2,14 +2,13 @@ const express = require('express');
 const app = express();
 const fs = require('fs');
 
-const { Client, Intents, Collection } = require('discord.js');
+const { Client } = require('discord.js');
 const Discord = require('discord.js');
 const client = new Client({ intents: 32767 });
 require('dotenv').config();
 
 const http = require('http')
 const { Server } = require('socket.io')
-const socketIO = require('socket.io')
 const cors = require('cors');
 app.use(cors())
 
@@ -23,6 +22,15 @@ const io = new Server(server, {
 })
 
 const serverPort = process.env.PORT || 3001;
+
+const start = require('./lib/base_endpoints/start')
+app.use('/', start)
+
+const api = require('./lib/api')
+app.use('/api/card', api)
+
+const api_xomp = require('./lib/api_xomp')
+app.use('/api/compact', api_xomp)
 
 io.on("connection", async (socket) => {
     console.log(`a user connected ${socket.id}`)
@@ -38,14 +46,14 @@ io.on("connection", async (socket) => {
                 io.emit('not-in-server', {
                     user_id: data.user
                 })
-                return 
+                return;
             }
         } catch (error) {
             console.log('member not in server')
             io.emit('not-in-server', {
                 user_id: data.user
             })
-            return
+            return;
         }
         let activity
         try {
@@ -67,6 +75,10 @@ io.on("connection", async (socket) => {
             return;
         }
         
+        let name, details, state, smallimg, raw, largeText
+        let large_image, small_image
+        let temp_large, temp_small
+
         let discord_avatar, username, banner, about
         let play_along, spotify_logo
         
@@ -87,9 +99,6 @@ io.on("connection", async (socket) => {
             return;
         }
         
-        let name, details, state, smallimg, raw, largeText
-        let large_image, small_image
-        let temp_large, temp_small
 
         try {
             temp_large = "https://cdn.discordapp.com/attachments/988140784807202886/991310693791965214/large_breeze.png"
@@ -126,29 +135,6 @@ io.on("connection", async (socket) => {
             }
         }
 
-        if(!activity.assets){
-            largeText = ' '
-        } else if(activity.assets.largeText === null) {
-            largeText = ' '
-        } else {
-            largeText = activity.assets.largeText.replace(/&/g, '&amp;');
-            if (largeText.length > 23) {
-                largeText = largeText.substring(0, 23) + '...';
-            }
-        }
-        
-        if(!activity.assets){
-            raw = discord_avatar
-        } else if(activity.assets.smallImage === null) {
-            raw = discord_avatar
-        } else if(activity.assets.smallImage.startsWith('mp:external')){
-            smallimg = activity.assets.smallImage
-            let smalllink = smallimg.split('https/')[1]
-            raw = 'https://' + smalllink
-        } else {
-            raw = data.large_image || discord_avatar  
-        }
-
         if(!data.large_image){
             large_image = temp_large 
         } else {
@@ -170,21 +156,34 @@ io.on("connection", async (socket) => {
             let seconds = Math.floor((elapsed % 60000) / 1000)
             let timeString = `${minutes}:${seconds}` 
 
+            if(!activity.assets){
+                largeText = ' '
+            } else if(activity.assets.largeText === null) {
+                largeText = ' '
+            } else {
+                largeText = activity.assets.largeText.replace(/&/g, '&amp;');
+                if (largeText.length > 23) {
+                    largeText = largeText.substring(0, 23) + '...';
+                }
+            }
+
             temp = fs.readFileSync('./assets/cards/large/spotify-new.svg', {encoding: 'utf-8'}).toString()
+            temp = temp.replace('[pfp]', discord_avatar);        
             temp = temp.replace('[username]', username);
             temp = temp.replace('[banner]', banner);
+            
+            
             temp = temp.replace('[about]', about);
-
-            temp = temp.replace('[play-along]', play_along);
-
             temp = temp.replace('[details]', details);
             temp = temp.replace('[state]', state);
             temp = temp.replace('[type]', activity.type);
             temp = temp.replace('[on]', largeText);
             temp = temp.replace('[time]', 'Time -  ' + timeString);
-            temp = temp.replace('[pfp]', discord_avatar);       
-            temp = temp.replace('[large-image]', large_image || temp_large);
-            temp = temp.replace('[small-image]', small_image || spotify_logo);
+            
+            temp = temp.replace('[large-image]', large_image);
+            temp = temp.replace('[small-image]', small_image);
+            
+            temp = temp.replace('[play-along]', play_along);
             temp = temp.replace('[spotify-logo]', spotify_logo);
             temp = temp.replace('[button-text]', "Play on Spotify");
         } else if (activity.name === 'Code' || activity.name === 'Visual Studio Code') {
@@ -215,6 +214,7 @@ io.on("connection", async (socket) => {
             temp = temp.replace('[state]', state);
             temp = temp.replace('[type]', activity.type);
             temp = temp.replace('[time]', timeString + ' elapsed');
+
             temp = temp.replace('[large-image]', rawlarge);
             temp = temp.replace('[small-image]', rawsmall);
             temp = temp.replace('[button-text]', activity.buttons[0] || 'View Repository');
@@ -230,6 +230,18 @@ io.on("connection", async (socket) => {
                 timeString = `${hours}:${minutes}:${seconds}`;
             } catch (error) {
                 timeString = '0:0:0'
+            }
+
+            if(!activity.assets){
+                raw = discord_avatar
+            } else if(activity.assets.smallImage === null) {
+                raw = discord_avatar
+            } else if(activity.assets.smallImage.startsWith('mp:external')){
+                smallimg = activity.assets.smallImage
+                let smalllink = smallimg.split('https/')[1]
+                raw = 'https://' + smalllink
+            } else {
+                raw = data.large_image || discord_avatar  
             }
             
             temp = fs.readFileSync('./assets/cards/large/game-new.svg', {encoding: 'utf-8'}).toString()
@@ -255,7 +267,7 @@ io.on("connection", async (socket) => {
             let temp
 
             let discord_avatar, username, banner, about
-            let large_image , small_image , side_image
+            let large_image , small_image
             let temp_large, temp_small
             let type , details
                 
@@ -287,12 +299,6 @@ io.on("connection", async (socket) => {
                 small_image = data.small_image
             }
 
-            if(!data.side_image){
-                side_image = discord_avatar
-            } else {
-                side_image = data.side_image
-            }
-
             if(!data.type){
                 type = 'Chilling'
             } else {
@@ -318,7 +324,7 @@ io.on("connection", async (socket) => {
             temp = temp.replace('[small-image]', small_image || discord_avatar)
             temp = temp.replace('[side-image]', discord_avatar)
 
-            console.log(`${member.user.username} has no activity`)
+            // console.log(`${member.user.username} has no activity`)
 
             io.emit('no-activity', {
                 user_id: data.user,
@@ -348,18 +354,6 @@ process.on('uncaughtExceptionMonitor', async (err, origin) => {
         .setDescription('```js\n' + err.stack + '```');
     client.channels.cache.get('988140784807202886').send({ embeds: [embed] })
 });
-
-const start = require('./lib/base_endpoints/start')
-app.use('/', start)
-
-const pre_api = require('./lib/base_endpoints/pre-api')
-app.use('/api', pre_api)
-
-const api = require('./lib/api')
-app.use('/api/card', api)
-
-const api_xomp = require('./lib/api_xomp')
-app.use('/api/compact', api_xomp)
 
 server.listen(process.env.PORT || serverPort , () => console.log(`Listening on port ${process.env.PORT || serverPort}`))
 // console.log(`http://localhost:3001/api/card/784141856426033233`)

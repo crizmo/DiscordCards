@@ -4,31 +4,14 @@ const router = express.Router();
 const fs = require('fs');
 const imageToBase64 = require('image-to-base64');
 
-const { Client, Intents, Collection } = require('discord.js');
+const { Client } = require('discord.js');
 const client = new Client({ intents: 32767 });
 require('dotenv').config();
 
 const api_xomp = () => {
 
     router.get('/:id', async (req, res) => {
-
-        /* queries = {
-            banner: 'req.query.banner',
-            about: 'req.query.about',
-            type: 'req.query.type',
-            large_image: 'req.query.large_image',
-            small_image: 'req.query.small_image',
-        } */
-
-        /* base64 images
-            pfp (discord_avatar),
-            banner,
-            spotify_logo,
-            large_image,
-            small_image,
-            play_along,
-            side image
-        */
+        // let startTime = Date.now();
 
         let member
         try {
@@ -60,34 +43,32 @@ const api_xomp = () => {
 
         let discord_avatar, banner, about
         let activity, name, type, details, state
-        let large_image, small_image, side_image
+        let large_image, small_image
         let smallimg, raw // for PLaying
         let spotify_logo, largeText // for Spotify
 
-        let temp_large, temp_small, temp_side
+        let hex
+        let temp_large, temp_small
 
         let pfp64, banner64
-        let spotify64
-        let large64, small64, side64
+        // let spotify64
+        let large64, small64
 
         try {
             discord_avatar = member.user.displayAvatarURL({ format: 'png', dynamic: true, size: 1024 })
-            banner = req.query.banner || 'https://media.discordapp.net/attachments/988140784807202886/991308628978061402/blue_boi.png'
+            banner = req.query.banner
             about = req.query.about || ' '
             if (about.length > 13) {
                 about = about.substring(0, 13) + "..."
             }
             
-            spotify_logo = 'https://www.freeiconspng.com/uploads/spotify-icon-0.png'
+            // spotify_logo = 'https://www.freeiconspng.com/uploads/spotify-icon-0.png'
 
-            temp_large = "https://cdn.discordapp.com/attachments/988140784807202886/991310693791965214/large_breeze.png"
             temp_small = "https://cdn.discordapp.com/attachments/988140784807202886/991310761991360512/small_breeze.png"
-            temp_side = discord_avatar
-
-            large_image = req.query.large_image || temp_large
+            large_image = req.query.large_image || discord_avatar
             small_image = req.query.small_image || temp_small
-            side_image = req.query.side_image || temp_side
 
+            hex = req.query.hex || '4E545B'
         } catch (e) {
             res.send('Uh user error')
             console.log(e)
@@ -98,23 +79,29 @@ const api_xomp = () => {
             pfp64 = await imageToBase64(discord_avatar)
             pfp64 = `data:image/png;base64,${pfp64}`
 
-            banner64 = await imageToBase64(banner)
-            banner64 = `data:image/png;base64,${banner64}`
+            if (banner) {
+                banner64 = await imageToBase64(banner)
+                banner64 = `data:image/png;base64,${banner64}`
+            } else {
+                banner64 = " "
+            }
 
-            spotify64 = await imageToBase64(spotify_logo)
-            spotify64 = `data:image/png;base64,${spotify64}`
-
-            large64 = large_image
-            large64 = await imageToBase64(large64)
-            large64 = `data:image/png;base64,${large64}`
+            if(req.query.large_image) {
+                large64 = large_image
+                large64 = await imageToBase64(large64)
+                large64 = `data:image/png;base64,${large64}`
+            } else {
+                large64 = pfp64
+            }
             
-            small64 = small_image
-            small64 = await imageToBase64(small64)
-            small64 = `data:image/png;base64,${small64}`
-    
-            side64 = side_image
-            side64 = await imageToBase64(side64)
-            side64 = `data:image/png;base64,${side64}`
+            if(req.query.small_image) {
+                small64 = small_image
+                small64 = await imageToBase64(small64)
+                small64 = `data:image/png;base64,${small64}`
+            } else {
+                small64 = await imageToBase64(temp_small)
+                small64 = `data:image/png;base64,${small64}`
+            }
 
         } catch (e) {
             console.log(e)
@@ -155,23 +142,26 @@ const api_xomp = () => {
                 temp = fs.readFileSync('./assets/cards/compact/no-activity.svg', {encoding: 'utf-8'}).toString()
                 temp = temp.replace('[pfp]', pfp64);
                 temp = temp.replace('[banner]', banner64);
-                temp = temp.replace('[about]', about);
 
+                temp = temp.replace('[about]', about);
                 temp = temp.replace('[type]', type);
                 temp = temp.replace('[details]', details);
 
                 temp = temp.replace('[large-image]', large64);
                 temp = temp.replace('[small-image]', small64);
-                temp = temp.replace('[side-image]', side64);
+                temp = temp.replace('[side-image]', pfp64);
 
-                // res.send('User has no activity')
+                temp = temp.replace('[button-text]', "Chilling");
+
+                temp = temp.replace('[hex]', hex);
+
                 res.writeHead(200, {'Content-Type': 'image/svg+xml'})
                 res.end(temp)
             }
             no_activity()
             return;
         }
-            
+
         if(!activity.name){
             name = 'No name'
         } else {
@@ -182,64 +172,40 @@ const api_xomp = () => {
         }
         
         if(!activity.details){
-            details = 'No details'
+            details = req.query.details || 'No details'
+            if (details.length > 22) {
+                details = details.substring(0, 22) + '...';
+            }
         } else {
-            details = activity.details.replace(/&/g, '&amp;') || req.query.details || 'No details'
+            details = activity.details.replace(/&/g, '&amp;')
             if (details.length > 22) {
                 details = details.substring(0, 22) + '...';
             }
         }
         
         if(!activity.state){
-            state = 'No description'
+            state = req.query.state || 'No state'
+            if (state.length > 22) {
+                state = state.substring(0, 22) + '...';
+            }
         } else {
-            state = activity.state.replace(/&/g, '&amp;') || req.query.state || 'No description'
-            if (state.length > 19) {
-                state = state.substring(0, 19) + '...';
+            state = activity.state.replace(/&/g, '&amp;')
+            if (state.length > 22) {
+                state = state.substring(0, 22) + '...';
             }
         }
-
+        
         if(!activity.type){
-            type = req.query.type || 'Vibing'
+            type = req.query.type || 'No type'
+            if (type.length > 19) {
+                type = type.substring(0, 19) + '...';
+            }
         } else {
-            type = activity.type.replace(/&/g, '&amp;')|| req.query.type || 'Vibing'
+            type = activity.type.replace(/&/g, '&amp;')
             if (type.length > 19) {
                 type = type.substring(0, 19) + '...';
             }
         }
-        
-        if(!activity.assets){
-            raw = req.query.large_image || pfp64
-        } else if(activity.assets.smallImage === null) {
-            raw = pfp64
-        } else if(activity.assets.smallImage.startsWith('mp:external')){
-            smallimg = activity.assets.smallImage
-            let smalllink = smallimg.split('https/')[1]
-            raw = 'https://' + smalllink
-            raw = await imageToBase64(raw)
-            raw = `data:image/png;base64,${raw}`
-        } else {
-            raw = req.query.large_image || pfp64
-        }
-
-        if(!activity.assets){
-            largeText = req.query.large_text || 'No large text'
-        } else if(activity.assets.largeText === null) {
-            largeText = req.query.large_text || 'No large text'
-        } else {
-            largeText = activity.assets.largeText.replace(/&/g, '&amp;');
-            if (largeText.length > 17) {
-                largeText = largeText.substring(0, 17) + '...';
-            }
-        }
-
-        large64 = req.query.large_image || large_image
-        large64 = await imageToBase64(large64)
-        large64 = `data:image/png;base64,${large64}`
-        
-        small64 = req.query.small_image || small_image
-        small64 = await imageToBase64(small64)
-        small64 = `data:image/png;base64,${small64}`
         
         let temp;
         if (activity.name === 'Spotify') {
@@ -251,10 +217,26 @@ const api_xomp = () => {
             let seconds = Math.floor((elapsed % 60000) / 1000)
             let timeString = `${minutes}:${seconds}` 
 
+            // spotify64 = await imageToBase64(spotify_logo)
+            // spotify64 = `data:image/png;base64,${spotify64}`
+            // console.log(spotify64)
+            // console.log("spotify64 generated in " + (Date.now() - startTime) + "ms")
+
+            if(!activity.assets){
+                largeText = req.query.large_text || 'No large text'
+            } else if(activity.assets.largeText === null) {
+                largeText = req.query.large_text || 'No large text'
+            } else {
+                largeText = activity.assets.largeText.replace(/&/g, '&amp;');
+                if (largeText.length > 17) {
+                    largeText = largeText.substring(0, 17) + '...';
+                }
+            }
+
             temp = fs.readFileSync('./assets/cards/compact/spotify.svg', {encoding: 'utf-8'}).toString()
             temp = temp.replace('[banner]', banner64);
-            temp = temp.replace('[about]', about);
             
+            temp = temp.replace('[about]', about);
             temp = temp.replace('[details]', details);
             temp = temp.replace('[state]', state);
             temp = temp.replace('[type]', type || 'Vibing');
@@ -263,9 +245,12 @@ const api_xomp = () => {
             
             temp = temp.replace('[large-image]', large64);
             temp = temp.replace('[small-image]', small64);
-
-            temp = temp.replace('[spotify-logo]', spotify64);
+            // temp = temp.replace('[spotify-logo]', spotify64);
+            
             temp = temp.replace('[button-text]', "Play on Spotify");
+
+            temp = temp.replace('[hex]', hex);
+
         } else if (activity.name === 'Code' || activity.name === 'Visual Studio Code' ) {
 
             let time = activity.timestamps.start;
@@ -291,8 +276,8 @@ const api_xomp = () => {
 
             temp = fs.readFileSync('./assets/cards/compact/vs-code.svg', {encoding: 'utf-8'}).toString()
             temp = temp.replace('[banner]', banner64);
+            
             temp = temp.replace('[about]', about);
-
             temp = temp.replace('[name]', name || 'Coding');
             temp = temp.replace('[details]', details || 'No details');
             temp = temp.replace('[state]', state || 'No description');
@@ -301,7 +286,10 @@ const api_xomp = () => {
 
             temp = temp.replace('[large-image]', large64);
             temp = temp.replace('[small-image]', small64);
+
             temp = temp.replace('[button-text]', activity.buttons[0] || 'Working on Code');
+            temp = temp.replace('[hex]', hex);
+
         } else if (activity.type === 'PLAYING') {
             let time, elapsed, hours, minutes, seconds, timeString
                 
@@ -316,19 +304,35 @@ const api_xomp = () => {
                 timeString = '0:0:0'
             }
 
+            if(!activity.assets){
+                raw = req.query.large_image || pfp64
+            } else if(activity.assets.smallImage === null) {
+                raw = pfp64
+            } else if(activity.assets.smallImage.startsWith('mp:external')){
+                smallimg = activity.assets.smallImage
+                let smalllink = smallimg.split('https/')[1]
+                raw = 'https://' + smalllink
+                raw = await imageToBase64(raw)
+                raw = `data:image/png;base64,${raw}`
+            } else {
+                raw = req.query.large_image || pfp64
+            }
+
             temp = fs.readFileSync('./assets/cards/compact/playing.svg', {encoding: 'utf-8'}).toString()
             temp = temp.replace('[banner]', banner64);
-            temp = temp.replace('[about]', about);
             temp = temp.replace('[pfp]', pfp64);
-
+            
+            temp = temp.replace('[about]', about);
             temp = temp.replace('[name]', name || 'Gaming');
             temp = temp.replace('[details]', details);
             temp = temp.replace('[state]', state);
             temp = temp.replace('[type]', type || 'Playing');
             temp = temp.replace('[time]', timeString + ' elapsed' || '0:00 elapsed');
+
             temp = temp.replace('[button-text]', activity.buttons[0] || 'Playing');
 
             temp = temp.replace('[large-image]', raw);
+            temp = temp.replace('[hex]', hex);
         }
 
         res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
@@ -337,6 +341,7 @@ const api_xomp = () => {
 
         res.writeHead(200, {'Content-Type': 'image/svg+xml'})
         res.end(temp)
+        // console.log(`Card generated in ${Date.now() - startTime}ms`);
     })
 }
 
