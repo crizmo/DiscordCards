@@ -1,32 +1,33 @@
-<svg width="385" height="178" viewBox="0 0 385 178" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<path d="M275.861 3.6664C277.76 1.34594 280.6 0.000274658 283.599 0.000274658H375C380.523 0.000274658 385 4.47743 385 10.0003V168C385 173.523 380.523 178 375 178H154.276C145.838 178 141.193 168.195 146.537 161.666L275.861 3.6664Z" fill="url(#pattern0)"/>
-<path d="M0 0H299.957L160.856 178H0V0Z" fill="#18191C"/>
-<text opacity="0.8" fill="#D0D1D1" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="11" font-weight="300" letter-spacing="0.005em"><tspan x="87" y="78.5">[state]</tspan></text>
-<text fill="#D0D1D1" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="11" font-weight="300" letter-spacing="0.005em"><tspan x="22" y="109.5">[time]</tspan></text>
-<text fill="#D0D1D1" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="11" font-weight="300" letter-spacing="0.005em"><tspan x="87.0205" y="63.0908">[details]</tspan></text>
-<text fill="#DCDDDE" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="11" font-weight="500" letter-spacing="0.1em"><tspan x="87" y="47.5">[name]</tspan></text>
-<text fill="#B5B7B9" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="11" font-weight="500" letter-spacing="0.045em"><tspan x="22" y="22.5">[type]</tspan></text>
-<text transform="matrix(0.613925 -0.789364 0.775724 0.631073 171 140.603)" fill="#BBBBBC" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="11" letter-spacing="-0.005em"><tspan x="26.5437" y="10.5">[about]</tspan></text>
-<rect x="18.4589" y="145.636" width="138.442" height="21.5757" rx="3" fill="#4E545B"/>
-<text transform="translate(36 150)" fill="white" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="10" font-weight="500" letter-spacing="0em"><tspan x="11.2597" y="9.63636">[button-text]</tspan></text>
-<rect x="18.4589" y="32.3636" width="59.3322" height="60.6817" rx="13" fill="url(#pattern1)"/>
-<rect x="63.2877" y="78.212" width="19.7774" height="20.2272" rx="9.8887" fill="url(#pattern2)"/>
-<rect x="254.469" y="6.7424" width="19.7774" height="20.2272" rx="9.8887" fill="url(#pattern3)"/>
+<svg width="351" height="178" viewBox="0 0 351 178" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<path d="M0 0H351V178H0V0Z" fill="#18191C"/>
+<rect x="18" y="37" width="59.3322" height="60.6817" rx="13" fill="url(#pattern0)"/>
+<rect x="62.8288" y="82.8484" width="19.7774" height="20.2272" rx="9.8887" fill="url(#pattern1)"/>
+<rect x="287" y="5" width="19.7774" height="20.2272" rx="9.8887" fill="url(#pattern2)"/>
+<path d="M273 48.5L351 0V178H195L273 48.5Z" fill="#[hex]"/>
+<text opacity="0.8" fill="#D0D1D1" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="11" font-weight="300" letter-spacing="0.005em"><tspan x="87" y="86.5">[details]</tspan></text>
+<text fill="#D0D1D1" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="11" font-weight="300" letter-spacing="0.005em"><tspan x="22" y="117.5">[time]</tspan></text>
+<text fill="#D0D1D1" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="11" font-weight="300" letter-spacing="0.005em"><tspan x="87" y="69.5">[state]</tspan></text>
+<text fill="#DCDDDE" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="11" font-weight="500" letter-spacing="0.1em"><tspan x="87" y="52.5">[name]</tspan></text>
+<text fill="#B5B7B9" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="11" font-weight="500" letter-spacing="0.045em"><tspan x="22.4589" y="25.5">[type]</tspan></text>
+<text transform="matrix(0.515038 -0.857167 0.845677 0.533695 195.463 144.571)" fill="#BBBBBC" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="11" letter-spacing="-0.005em"><tspan x="0" y="10.5">[about]</tspan></text>
+<rect x="18" y="145.636" width="157" height="21.5757" rx="3" fill="#4E545B"/>
+<text transform="translate(40.4285 149.682)" fill="white" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="10" font-weight="500" letter-spacing="0em"><tspan x="22.6225" y="9.63636">[button-text]</tspan></text>
+<path d="M273 48.5L351 0V178H195L273 48.5Z" fill="url(#pattern3)"/>
 <defs>
 <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
-<use xlink:href="#image0_47_2" transform="translate(-0.128283) scale(0.000327231 0.000462963)"/>
+<use xlink:href="#image0_203_28" transform="translate(-0.00455104 -0.0806934) scale(0.01 0.0109455)"/>
 </pattern>
 <pattern id="pattern1" patternContentUnits="objectBoundingBox" width="1" height="1">
-<use xlink:href="#image1_47_2" transform="translate(-0.00455104 -0.0806934) scale(0.01 0.0109455)"/>
+<use xlink:href="#image1_203_28" transform="translate(-0.0113724) scale(0.0444672 0.0434783)"/>
 </pattern>
 <pattern id="pattern2" patternContentUnits="objectBoundingBox" width="1" height="1">
-<use xlink:href="#image2_47_2" transform="translate(-0.0113724) scale(0.0444672 0.0434783)"/>
+<use xlink:href="#image1_203_28" transform="translate(-0.0113724) scale(0.0444672 0.0434783)"/>
 </pattern>
 <pattern id="pattern3" patternContentUnits="objectBoundingBox" width="1" height="1">
-<use xlink:href="#image2_47_2" transform="translate(-0.0113724) scale(0.0444672 0.0434783)"/>
+<use xlink:href="#image2_203_28" transform="translate(-0.39954) scale(0.000528253 0.000462963)"/>
 </pattern>
-<image id="image0_47_2" width="3840" height="2160" xlink:href="[banner]"/>
-<image id="image1_47_2" width="103" height="105" xlink:href="[large-image]"/>
-<image id="image2_47_2" width="23" height="23" xlink:href="[small-image]"/>
+<image id="image0_203_28" width="103" height="105" xlink:href="[large-image]"/>
+<image id="image1_203_28" width="23" height="23" xlink:href="[small-image]"/>
+<image id="image2_203_28" width="3840" height="2160" xlink:href="[banner]"/>
 </defs>
 </svg>

@@ -1,8 +1,10 @@
 <svg width="292" height="412" viewBox="0 0 292 412" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <rect width="292" height="412" fill="#18191C" rx="15"/>
-<rect width="292" height="120" fill="url(#pattern0)" rx="15"/>
-<circle cx="58.5" cy="119.5" r="42" stroke="#18191C" stroke-width="5"/>
+<rect width="293" height="120" fill="#[hex]" rx="0"/>
+<!-- <line y1="120" x2="292" y2="120" stroke="#5B5B5B"/> -->
+<rect width="292" height="121" fill="url(#pattern0)" rx="0"/>
 <line y1="209.5" x2="292" y2="209.5" stroke="#5B5B5B"/>
+<circle cx="58.5" cy="119.5" r="42" stroke="#18191C" stroke-width="5"/>
 <rect x="19" y="80" width="79" height="79" rx="39.5" fill="url(#pattern1)"/>
 <text fill="white" xml:space="preserve" style="white-space: pre" font-family="sans-serif" font-size="18" font-weight="500" letter-spacing="0.075em"><tspan x="19" y="192.545">[username]</tspan></text>
 <text fill="#B9BBBE" xml:space="preserve" style="white-space: pre" font-family="sans-serif" font-size="11" font-weight="800" letter-spacing="0.065em"><tspan x="19" y="233.5">ABOUT ME</tspan></text>
