@@ -49,6 +49,7 @@ When using the api img in readme do add a ? at the end of the url to keep cleari
 ## API Query Parameters
 
   * banner: url of the banner image
+  * hex: hex color for alternative banner color [ ?hex=D0D1D1 ]
   * about: about the user
   * type: discord activity type
 

@@ -55,6 +55,7 @@ Replace :id with your discord id + you can add the optional queries too.
 The queries are:
 
   * banner: url of the banner image
+  * hex: hex color for alternative banner color [ ?hex=D0D1D1 ]
   * about: about the user
   * type: discord activity type
 
