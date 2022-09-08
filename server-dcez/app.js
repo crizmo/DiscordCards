@@ -86,7 +86,7 @@ io.on("connection", async (socket) => {
             discord_avatar = member.user.displayAvatarURL({format: 'png', dynamic: true})
             spotify_logo = 'https://www.freeiconspng.com/uploads/spotify-icon-0.png'
             username = member.user.username + '#' + member.user.discriminator
-            banner = data.banner || 'https://media.discordapp.net/attachments/988140784807202886/991308628978061402/blue_boi.png'
+            banner = data.banner || 'https://cdn.discordapp.com/attachments/988140784807202886/1009883353232719932/banner.png'
             about = data.about || ' '
 
             if (about.length > 20) {
