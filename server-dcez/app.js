@@ -343,15 +343,16 @@ process.on('unhandledRejection', async (reason, p, origin) => {
     const embed = new Discord.MessageEmbed()
         .setTitle('Error Occured')
         .setColor('RANDOM')
-        .setDescription('```js\n' + reason.stack + '```');
+        .setDescription('```js\n' + reason.stack + reason + '```');
     client.channels.cache.get('988140784807202886').send({ embeds: [embed] })
 });
 
 process.on('uncaughtExceptionMonitor', async (err, origin) => {
+    console.log('Unhandled Rejection at: err:', err, 'origin:', origin);
     const embed = new Discord.MessageEmbed()
         .setTitle('Error Occured')
         .setColor('RANDOM')
-        .setDescription('```js\n' + err.stack + '```');
+        .setDescription('```js\n' + err.stack + err + '```');
     client.channels.cache.get('988140784807202886').send({ embeds: [embed] })
 });
 
