@@ -12,7 +12,7 @@
     ·
     <a href="https://breeze-stats.netlify.app/">Website</a>
   </p>
-  <img src="https://api-breeze.herokuapp.com/api/compact/784141856426033233?banner=https://wallpaperaccess.com/full/6276627.jpg" />
+  <img src="https://breeze-api.kurizu.repl.co/api/compact/784141856426033233?banner=https://wallpaperaccess.com/full/6276627.jpg" />
 </div>
 
 <details>
@@ -49,8 +49,8 @@ You can either use the api endpoint to display your discord activity or get your
 
 You can display your discord activity as a card or a compact card.
 The endpoint are the following:
-<a href="https://api-breeze.herokuapp.com/api/card/:id">User card large</a> <br>
-<a href="https://api-breeze.herokuapp.com/api/compact/:id">User card compact</a> <br>
+<a href="https://breeze-api.kurizu.repl.co/api/card/:id">User card large</a> <br>
+<a href="https://breeze-api.kurizu.repl.co/api/compact/:id">User card compact</a> <br>
 Replace :id with your discord id + you can add the optional queries too.
 The queries are:
 
@@ -65,7 +65,7 @@ The queries are:
 
   large_image, small_image , side_image are basically the activity images.
 
-<a href="https://api-breeze.herokuapp.com/">API</a>
+<a href="https://breeze-api.kurizu.repl.co/">API</a>
 <a href="https://breeze-stats.netlify.app/">Website</a>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
