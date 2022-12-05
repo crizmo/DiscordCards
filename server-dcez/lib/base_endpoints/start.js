@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const fs = require('fs');
 
 const start = () => {
 
@@ -35,6 +36,26 @@ const start = () => {
         </body>
         </html>
         `;
+        fs.readFile('./lib/requests.json', 'utf8', (err, data) => {
+            if (err) {
+                console.log(err);
+            } else {
+                const requests = JSON.parse(data);
+                if (requests.requests) {
+                    requests.requests += 1;
+                } else {
+                    requests.requests = 1;
+                }
+                fs.writeFile('./lib/requests.json', JSON.stringify(requests), (err) => {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        console.log('User made a request \nTotal requests: ' + requests.requests);
+                    }
+                });
+            }
+        });
+
         res.send(html);
     })
 }
