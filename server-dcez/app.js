@@ -12,6 +12,9 @@ const { Server } = require('socket.io')
 const cors = require('cors');
 app.use(cors())
 
+const nocache = require('./cache/nocache');
+app.use(nocache());
+
 const server = http.createServer(app)
 
 const io = new Server(server, {
