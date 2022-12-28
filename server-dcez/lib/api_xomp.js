@@ -374,11 +374,7 @@ const api_xomp = () => {
                 });
             }
         });
-
-        res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
-        res.setHeader('Pragma', 'no-cache');
-        res.setHeader('Expires', '0');
-
+        
         res.writeHead(200, {'Content-Type': 'image/svg+xml'})
         res.end(temp)
         // console.log(`Card generated in ${Date.now() - startTime}ms`);

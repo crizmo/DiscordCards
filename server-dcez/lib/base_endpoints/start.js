@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const fs = require('fs');
+// const fs = require('fs');
 
 const start = () => {
 
-    router.get('/', async (req, res) => {
-        const html = `
+  router.get('/', async (req, res) => {
+    const html = `
         <!DOCTYPE html>
         <html lang="en">
         <head>
@@ -36,28 +36,28 @@ const start = () => {
         </body>
         </html>
         `;
-        fs.readFile('./lib/requests.json', 'utf8', (err, data) => {
-            if (err) {
-                console.log(err);
-            } else {
-                const requests = JSON.parse(data);
-                if (requests.requests) {
-                    requests.requests += 1;
-                } else {
-                    requests.requests = 1;
-                }
-                fs.writeFile('./lib/requests.json', JSON.stringify(requests), (err) => {
-                    if (err) {
-                        console.log(err);
-                    } else {
-                        console.log('User made a request \nTotal requests: ' + requests.requests);
-                    }
-                });
-            }
-        });
+    // fs.readFile('./lib/requests.json', 'utf8', (err, data) => {
+    //     if (err) {
+    //         console.log(err);
+    //     } else {
+    //         const requests = JSON.parse(data);
+    //         if (requests.requests) {
+    //             requests.requests += 1;
+    //         } else {
+    //             requests.requests = 1;
+    //         }
+    //         fs.writeFile('./lib/requests.json', JSON.stringify(requests), (err) => {
+    //             if (err) {
+    //                 console.log(err);
+    //             } else {
+    //                 console.log('User made a request in root \nTotal requests: ' + requests.requests);
+    //             }
+    //         });
+    //     }
+    // });
 
-        res.send(html);
-    })
+    res.send(html);
+  })
 }
 
 start()
