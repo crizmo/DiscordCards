@@ -12,7 +12,7 @@
     ·
     <a href="https://breeze-stats.netlify.app/">Website</a>
   </p>
-  <img src="https://breeze-api.kurizu.repl.co/api/compact/784141856426033233?banner=https://wallpaperaccess.com/full/6276627.jpg" />
+  <img src="https://breeze-api.kurizu.repl.co/api/compact/784141856426033233?about=Exploring&banner=https://staticg.sportskeeda.com/editor/2022/10/72d24-16655552144135-1920.jpg" />
 </div>
 
 <details>
