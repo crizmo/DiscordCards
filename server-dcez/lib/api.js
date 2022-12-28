@@ -65,7 +65,6 @@ const api = () => {
         let activity, name, type, details, state
         let large_image, small_image
         let smallimg, raw // for PLaying
-        // let spotify_logo, play_along
         let largeText // for Spotify
 
         let hex
@@ -83,9 +82,6 @@ const api = () => {
             if (about.length > 20) {
                 about = about.substring(0, 20) + "..."
             }
-            
-            // spotify_logo = 'https://www.freeiconspng.com/uploads/spotify-icon-0.png'
-            // play_along = "https://cdn.discordapp.com/attachments/970974282681307187/987330240609132555/play-along.png"
 
             temp_small = "https://cdn.discordapp.com/attachments/988140784807202886/991310761991360512/small_breeze.png"
             large_image = req.query.large_image || discord_avatar
@@ -238,11 +234,6 @@ const api = () => {
             let minutes = Math.floor(elapsed / 60000)
             let seconds = Math.floor((elapsed % 60000) / 1000)
             let timeString = `${minutes}:${seconds}` 
-
-            // spotify64 = await imageToBase64(spotify_logo)
-            // spotify64 = `data:image/png;base64,${spotify64}`
-            // console.log(spotify64)
-            // console.log("spotify64 generated in " + (Date.now() - startTime) + "ms")
 
             if(!activity.assets){
                 largeText = req.query.large_text || 'No large text'

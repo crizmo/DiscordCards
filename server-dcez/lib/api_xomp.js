@@ -65,7 +65,7 @@ const api_xomp = () => {
         let activity, name, type, details, state
         let large_image, small_image
         let smallimg, raw // for PLaying
-        let spotify_logo, largeText // for Spotify
+        let largeText // for Spotify
 
         let hex
         let temp_large, temp_small
@@ -82,7 +82,6 @@ const api_xomp = () => {
                 about = about.substring(0, 13) + "..."
             }
             
-            // spotify_logo = 'https://www.freeiconspng.com/uploads/spotify-icon-0.png'
 
             temp_small = "https://cdn.discordapp.com/attachments/988140784807202886/991310761991360512/small_breeze.png"
             large_image = req.query.large_image || discord_avatar
@@ -236,11 +235,6 @@ const api_xomp = () => {
             let minutes = Math.floor(elapsed / 60000)
             let seconds = Math.floor((elapsed % 60000) / 1000)
             let timeString = `${minutes}:${seconds}` 
-
-            // spotify64 = await imageToBase64(spotify_logo)
-            // spotify64 = `data:image/png;base64,${spotify64}`
-            // console.log(spotify64)
-            // console.log("spotify64 generated in " + (Date.now() - startTime) + "ms")
 
             if(!activity.assets){
                 largeText = req.query.large_text || 'No large text'
