@@ -83,9 +83,9 @@ The queries are:
 
 ## Issues
 
-One of the biggest issue that i still haven't figured out is with github caching api images.
-I'm not sure how to fix this issue.
-Would love to get some help from those who know how to fix this issue.
+If you have any issues with the api or the client website, please open an issue on the github repo.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Contributing
 
