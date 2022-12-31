@@ -61,7 +61,7 @@ const api = () => {
             return;
         }
 
-        let username , discord_avatar, banner, about
+        let username, discord_avatar, banner, about
         let activity, name, type, details, state
         let large_image, small_image
         let smallimg, raw // for PLaying
@@ -105,15 +105,15 @@ const api = () => {
                 banner64 = ""
             }
 
-            if(req.query.large_image) {
+            if (req.query.large_image) {
                 large64 = large_image
                 large64 = await imageToBase64(large64)
                 large64 = `data:image/png;base64,${large64}`
             } else {
                 large64 = pfp64
             }
-            
-            if(req.query.small_image) {
+
+            if (req.query.small_image) {
                 small64 = small_image
                 small64 = await imageToBase64(small64)
                 small64 = `data:image/png;base64,${small64}`
@@ -125,9 +125,9 @@ const api = () => {
         } catch (e) {
             console.log(e)
         }
-        
+
         try {
-            if(member.presence.activities[0].id === 'custom' && !member.presence.activities[1]){
+            if (member.presence.activities[0].id === 'custom' && !member.presence.activities[1]) {
                 no_activity()
                 return;
             } else if (member.presence.activities[0].id === 'custom' || member.presence.activities[0].type === 'CUSTOM') {
@@ -158,11 +158,11 @@ const api = () => {
                     details = 'Vibing'
                 }
 
-                temp = fs.readFileSync('./assets/cards/large/no-activity-new.svg', {encoding: 'utf-8'}).toString()
+                temp = fs.readFileSync('./assets/cards/large/no-activity-new.svg', { encoding: 'utf-8' }).toString()
                 temp = temp.replace('[pfp]', pfp64);
                 temp = temp.replace('[username]', username);
                 temp = temp.replace('[banner]', banner64);
-                
+
                 temp = temp.replace('[about]', about);
                 temp = temp.replace('[type]', type);
                 temp = temp.replace('[details]', details);
@@ -173,14 +173,14 @@ const api = () => {
 
                 temp = temp.replace('[hex]', hex);
 
-                res.writeHead(200, {'Content-Type': 'image/svg+xml'})
+                res.writeHead(200, { 'Content-Type': 'image/svg+xml' })
                 res.end(temp)
             }
             no_activity()
             return;
         }
-            
-        if(!activity.name){
+
+        if (!activity.name) {
             name = 'No name'
         } else {
             name = activity.name.replace(/&/g, '&amp;');
@@ -188,8 +188,8 @@ const api = () => {
                 name = name.substring(0, 23) + '...';
             }
         }
-        
-        if(!activity.details){
+
+        if (!activity.details) {
             details = req.query.details || 'No details'
             if (details.length > 22) {
                 details = details.substring(0, 22) + '...';
@@ -200,8 +200,8 @@ const api = () => {
                 details = details.substring(0, 22) + '...';
             }
         }
-        
-        if(!activity.state){
+
+        if (!activity.state) {
             state = req.query.state || 'No state'
             if (state.length > 22) {
                 state = state.substring(0, 22) + '...';
@@ -212,8 +212,8 @@ const api = () => {
                 state = state.substring(0, 22) + '...';
             }
         }
-        
-        if(!activity.type){
+
+        if (!activity.type) {
             type = req.query.type || 'No type'
             if (type.length > 19) {
                 type = type.substring(0, 19) + '...';
@@ -224,20 +224,20 @@ const api = () => {
                 type = type.substring(0, 19) + '...';
             }
         }
-        
+
         let temp;
         if (activity.name === 'Spotify') {
-            
+
             let start = activity.timestamps.start
             let end = activity.timestamps.end
             let elapsed = end - start
             let minutes = Math.floor(elapsed / 60000)
             let seconds = Math.floor((elapsed % 60000) / 1000)
-            let timeString = `${minutes}:${seconds}` 
+            let timeString = `${minutes}:${seconds}`
 
-            if(!activity.assets){
+            if (!activity.assets) {
                 largeText = req.query.large_text || 'No large text'
-            } else if(activity.assets.largeText === null) {
+            } else if (activity.assets.largeText === null) {
                 largeText = req.query.large_text || 'No large text'
             } else {
                 largeText = activity.assets.largeText.replace(/&/g, '&amp;');
@@ -246,7 +246,7 @@ const api = () => {
                 }
             }
 
-            temp = fs.readFileSync('./assets/cards/large/spotify-new.svg', {encoding: 'utf-8'}).toString()
+            temp = fs.readFileSync('./assets/cards/large/spotify-new.svg', { encoding: 'utf-8' }).toString()
             temp = temp.replace('[pfp]', pfp64);
             temp = temp.replace('[username]', username);
             temp = temp.replace('[banner]', banner64);
@@ -257,14 +257,14 @@ const api = () => {
             temp = temp.replace('[type]', type || 'Vibing');
             temp = temp.replace('[on]', largeText);
             temp = temp.replace('[time]', 'Time -  ' + timeString);
-            
+
             temp = temp.replace('[large-image]', large64);
             temp = temp.replace('[small-image]', small64);
 
             temp = temp.replace('[hex]', hex);
 
             temp = temp.replace('[button-text]', "Play on Spotify");
-        } else if (activity.name === 'Code' || activity.name === 'Visual Studio Code' ) {
+        } else if (activity.name === 'Code' || activity.name === 'Visual Studio Code') {
 
             let time = activity.timestamps.start;
             let elapsed = Date.now() - time;
@@ -272,7 +272,7 @@ const api = () => {
             let minutes = Math.floor((elapsed % 3600000) / 60000);
             let seconds = Math.floor((elapsed % 60000) / 1000);
             let timeString = `${hours}:${minutes}:${seconds}`;
-            
+
             const largeimage = activity.assets.largeImage
             let largelink = largeimage.split('raw')[1]
             const rawlarge = 'https://raw' + largelink
@@ -287,7 +287,7 @@ const api = () => {
             small64 = await imageToBase64(rawsmall)
             small64 = `data:image/png;base64,${small64}`
 
-            temp = fs.readFileSync('./assets/cards/large/vscode-new.svg', {encoding: 'utf-8'}).toString()
+            temp = fs.readFileSync('./assets/cards/large/vscode-new.svg', { encoding: 'utf-8' }).toString()
             temp = temp.replace('[username]', username);
             temp = temp.replace('[banner]', banner64);
             temp = temp.replace('[about]', about);
@@ -307,7 +307,7 @@ const api = () => {
         } else if (activity.type === 'PLAYING') {
 
             let time, elapsed, hours, minutes, seconds, timeString
-                
+
             try {
                 time = activity.timestamps.start;
                 elapsed = Date.now() - time;
@@ -319,22 +319,22 @@ const api = () => {
                 timeString = '0:0:0'
             }
 
-            
-            if(!activity.assets){
-                raw = req.query.large_image || pfp64
-            } else if(activity.assets.smallImage === null) {
-                raw = pfp64
-            } else if(activity.assets.smallImage.startsWith('mp:external')){
+
+            if (!activity.assets && req.query.large_image) {
+                raw = req.query.large_image
+            } else if (!activity.assets.smallImage && req.query.large_image) {
+                raw = req.query.large_image
+            } else if (activity.assets.smallImage.startsWith('mp:external')) {
                 smallimg = activity.assets.smallImage
                 let smalllink = smallimg.split('https/')[1]
                 raw = 'https://' + smalllink
                 raw = await imageToBase64(raw)
                 raw = `data:image/png;base64,${raw}`
             } else {
-                raw = req.query.large_image || pfp64
+                raw = pfp64
             }
 
-            temp = fs.readFileSync('./assets/cards/large/game-new.svg', {encoding: 'utf-8'}).toString()
+            temp = fs.readFileSync('./assets/cards/large/game-new.svg', { encoding: 'utf-8' }).toString()
             temp = temp.replace('[username]', username);
             temp = temp.replace('[banner]', banner64);
             temp = temp.replace('[about]', about);
@@ -347,7 +347,7 @@ const api = () => {
             temp = temp.replace('[time]', timeString + ' elapsed' || '0:00 elapsed');
 
             temp = temp.replace('[large-image]', raw);
-            temp = temp.replace('[small-image]', pfp64);
+            temp = temp.replace('[small-image]', small64);
             temp = temp.replace('[hex]', hex);
         }
 
@@ -371,7 +371,7 @@ const api = () => {
             }
         });
 
-        res.writeHead(200, {'Content-Type': 'image/svg+xml'})
+        res.writeHead(200, { 'Content-Type': 'image/svg+xml' })
         res.end(temp)
         // console.log(`Card generated in ${Date.now() - startTime}ms`);
     })

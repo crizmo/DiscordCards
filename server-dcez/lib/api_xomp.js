@@ -318,18 +318,18 @@ const api_xomp = () => {
                 timeString = '0:0:0'
             }
 
-            if(!activity.assets){
-                raw = req.query.large_image || pfp64
-            } else if(activity.assets.smallImage === null) {
-                raw = pfp64
-            } else if(activity.assets.smallImage.startsWith('mp:external')){
+            if (!activity.assets && req.query.large_image) {
+                raw = req.query.large_image
+            } else if (!activity.assets.smallImage && req.query.large_image) {
+                raw = req.query.large_image
+            } else if (activity.assets.smallImage.startsWith('mp:external')) {
                 smallimg = activity.assets.smallImage
                 let smalllink = smallimg.split('https/')[1]
                 raw = 'https://' + smalllink
                 raw = await imageToBase64(raw)
                 raw = `data:image/png;base64,${raw}`
             } else {
-                raw = req.query.large_image || pfp64
+                raw = pfp64
             }
 
             temp = fs.readFileSync('./assets/cards/compact/playing.svg', {encoding: 'utf-8'}).toString()
