@@ -64,7 +64,7 @@ const api = () => {
         let username, discord_avatar, banner, about
         let activity, name, type, details, state
         let large_image, small_image
-        let smallimg, raw // for PLaying
+        let smallimg, largeimg, raw // for PLaying
         let largeText // for Spotify
 
         let hex
@@ -319,21 +319,37 @@ const api = () => {
                 timeString = '0:0:0'
             }
 
-
             if (!activity.assets && req.query.large_image) {
                 raw = req.query.large_image
-            } else if (!activity.assets.smallImage && req.query.large_image) {
-                raw = req.query.large_image
-            } else if (activity.assets.smallImage.startsWith('mp:external')) {
-                smallimg = activity.assets.smallImage
-                let smalllink = smallimg.split('https/')[1]
-                raw = 'https://' + smalllink
-                raw = await imageToBase64(raw)
-                raw = `data:image/png;base64,${raw}`
+            } else if (!activity.assets && !req.query.large_image) {
+                raw = pfp64
+            } else if (activity.assets) {
+                if (activity.assets.smallImage !== null) {
+                    if (activity.assets.smallImage.startsWith('mp:external') && activity.assets.smallImage !== null) {
+                        smallimg = activity.assets.smallImage
+                        let smalllink = smallimg.split('https/')[1]
+                        small64 = 'https://' + smalllink
+                        small64 = await imageToBase64(small64)
+                        small64 = `data:image/png;base64,${small64}`
+                    } else {
+                        small64 = pfp64
+                    }
+                } 
+                if (activity.assets.largeImage !== null) {
+                    if (activity.assets.largeImage.startsWith('mp:external')) {
+                        largeimg = activity.assets.largeImage
+                        let largelink = largeimg.split('https/')[1]
+                        raw = 'https://' + largelink
+                        raw = await imageToBase64(raw)
+                        raw = `data:image/png;base64,${raw}`
+                    } else {
+                        raw = pfp64
+                    }
+                }
             } else {
                 raw = pfp64
             }
-
+            
             temp = fs.readFileSync('./assets/cards/large/game-new.svg', { encoding: 'utf-8' }).toString()
             temp = temp.replace('[username]', username);
             temp = temp.replace('[banner]', banner64);
