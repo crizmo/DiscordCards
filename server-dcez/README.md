@@ -4,9 +4,9 @@
   <p align="center">
     An awesome way to display your discord activity !
     <br />
-    <a href="https://github.com/crizmo/breeze/blob/main/server-dcez/README.md"><strong>Explore more »</strong></a>
+    <a href="https://github.com/crizmo/DiscordCards/blob/main/server-dcez/README.md"><strong>Explore more »</strong></a>
     <br />
-    <a href="https://github.com/crizmo/breeze/tree/main/server-dcez">Server Side</a>
+    <a href="https://github.com/crizmo/DiscordCards/tree/main/server-dcez">Server Side</a>
     ·
     <a href="https://github.com/crizmo/dcez-client">Client Side</a>
     ·
