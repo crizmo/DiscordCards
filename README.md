@@ -1,5 +1,5 @@
 <div align="center">
-  <h3 align="center">Breeze</h3>
+  <h3 align="center">Discord Cards</h3>
 
   <p align="center">
     An awesome way to display your discord activity !
@@ -10,9 +10,9 @@
     ·
     <a href="https://github.com/crizmo/dcez-client">Client Side</a>
     ·
-    <a href="https://breeze-stats.netlify.app/">Website</a>
+    <a href="https://discord-cards.netlify.app/">Website</a>
   </p>
-  <img src="https://breeze-api.kurizu.repl.co/api/compact/784141856426033233?about=Exploring&banner=https://staticg.sportskeeda.com/editor/2022/10/72d24-16655552144135-1920.jpg" />
+  <img src="https://discord-cards.kurizu.repl.co/api/compact/784141856426033233?about=Exploring&banner=https://staticg.sportskeeda.com/editor/2022/10/72d24-16655552144135-1920.jpg" />
 </div>
 
 <details>
@@ -32,11 +32,9 @@
 
 ## About The Project
 
-<!-- [![Breeze][]]() -->
+Discord Cards helps you display your discord activity on your website / anywhere you want using the api or the client.
 
-Breeze helps you display your discord activity on your website / anywhere you want using the api or the client.
-
-Here's what breeze offers:
+Here's what Discord Cards offer:
 * client (website): display your discord activity on the website
 * server (backend): display your discord activity as a api image which u can use on your website or anywhere you want
 
@@ -44,13 +42,13 @@ Here's what breeze offers:
 
 ## Usage
 
-Breeze is very easy to use.
-You can either use the api endpoint to display your discord activity or get your discord activity using the breeze client website.
+Discord Cards is very easy to use.
+You can either use the api endpoint to display your discord activity or get your discord activity using the Discord Cards client website.
 
 You can display your discord activity as a card or a compact card.
 The endpoint are the following:
-<a href="https://breeze-api.kurizu.repl.co/api/card/:id">User card large</a> <br>
-<a href="https://breeze-api.kurizu.repl.co/api/compact/:id">User card compact</a> <br>
+<a href="https://discord-cards.kurizu.repl.co/api/card/:id">User card large</a> <br>
+<a href="https://discord-cards.kurizu.repl.co/api/compact/:id">User card compact</a> <br>
 Replace :id with your discord id + you can add the optional queries too.
 The queries are:
 
@@ -65,8 +63,8 @@ The queries are:
 
   large_image, small_image , side_image are basically the activity images.
 
-<a href="https://breeze-api.kurizu.repl.co/">API</a>
-<a href="https://breeze-stats.netlify.app/">Website</a>
+<a href="https://discord-cards.kurizu.repl.co/">API</a>
+<a href="https://discord-cards.netlify.app/">Website</a>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 

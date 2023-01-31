@@ -144,7 +144,7 @@ const api_xomp = () => {
             let temp;
             function no_activity() {
                 try {
-                    type = req.query.type || 'Breeze'
+                    type = req.query.type || 'Discord Cards'
                     details = req.query.details || 'Vibing'
 
                     if (type.length > 17) {
@@ -154,7 +154,7 @@ const api_xomp = () => {
                         details = details.substring(0, 17) + "..."
                     }
                 } catch (e) {
-                    type = 'Breeze'
+                    type = 'Discord Cards'
                     details = 'Vibing'
                 }
 

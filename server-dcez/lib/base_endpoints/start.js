@@ -12,7 +12,7 @@ const start = () => {
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <meta http-equiv="X-UA-Compatible" content="ie=edge">
-            <title>Breeze API</title>
+            <title>Discord Cards API</title>
             <style>
                 body {
                     background-color: #fafafa;
@@ -25,7 +25,7 @@ const start = () => {
             </style>
         </head>
         <body>
-            <h1>Welcome to Breeze API</h1>
+            <h1>Welcome to Discord Cards API</h1>
             <p>
                 The base endpoints are :-
                 <ul>

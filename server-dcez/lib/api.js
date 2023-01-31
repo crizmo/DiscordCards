@@ -144,7 +144,7 @@ const api = () => {
             let temp;
             function no_activity() {
                 try {
-                    type = req.query.type || 'Breeze'
+                    type = req.query.type || 'Discord Cards'
                     details = req.query.details || 'Vibing'
 
                     if (type.length > 23) {
@@ -154,7 +154,7 @@ const api = () => {
                         details = details.substring(0, 23) + "..."
                     }
                 } catch (e) {
-                    type = 'Breeze'
+                    type = 'Discord Cards'
                     details = 'Vibing'
                 }
 
