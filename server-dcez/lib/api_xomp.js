@@ -78,8 +78,8 @@ const api_xomp = () => {
             discord_avatar = member.user.displayAvatarURL({ format: 'png', dynamic: true, size: 1024 })
             banner = req.query.banner
             about = req.query.about || ' '
-            if (about.length > 13) {
-                about = about.substring(0, 13) + "..."
+            if (about.length > 22) {
+                about = about.substring(0, 22) + "..."
             }
             
 
@@ -145,7 +145,7 @@ const api_xomp = () => {
             function no_activity() {
                 try {
                     type = req.query.type || 'Discord Cards'
-                    details = req.query.details || 'Vibing'
+                    details = req.query.details || 'No Activity'
 
                     if (type.length > 17) {
                         type = type.substring(0, 17) + "..."
@@ -155,20 +155,23 @@ const api_xomp = () => {
                     }
                 } catch (e) {
                     type = 'Discord Cards'
-                    details = 'Vibing'
+                    details = 'No Activity'
                 }
 
-                temp = fs.readFileSync('./assets/cards/compact/no-activity.svg', {encoding: 'utf-8'}).toString()
+                temp = fs.readFileSync('./assets/updated/small.svg', {encoding: 'utf-8'}).toString()
                 temp = temp.replace('[pfp]', pfp64);
                 temp = temp.replace('[banner]', banner64);
 
                 temp = temp.replace('[about]', about);
                 temp = temp.replace('[type]', type);
                 temp = temp.replace('[details]', details);
+                temp = temp.replace('[state]', 'on Discord');
+                temp = temp.replace('[on]', ' ');
+                temp = temp.replace('[time]', ' ');
 
                 temp = temp.replace('[large-image]', large64);
                 temp = temp.replace('[small-image]', small64);
-                temp = temp.replace('[side-image]', pfp64);
+                temp = temp.replace('[logo]', pfp64);
 
                 temp = temp.replace('[button-text]', "Chilling");
 
@@ -192,13 +195,13 @@ const api_xomp = () => {
         
         if(!activity.details){
             details = req.query.details || 'No details'
-            if (details.length > 22) {
-                details = details.substring(0, 22) + '...';
+            if (details.length > 25) {
+                details = details.substring(0, 25) + '...';
             }
         } else {
             details = activity.details.replace(/&/g, '&amp;')
-            if (details.length > 22) {
-                details = details.substring(0, 22) + '...';
+            if (details.length > 25) {
+                details = details.substring(0, 25) + '...';
             }
         }
         
@@ -227,6 +230,7 @@ const api_xomp = () => {
         }
         
         let temp;
+        temp = fs.readFileSync('./assets/updated/small.svg', {encoding: 'utf-8'}).toString()
         if (activity.name === 'Spotify') {
             
             let start = activity.timestamps.start
@@ -247,7 +251,8 @@ const api_xomp = () => {
                 }
             }
 
-            temp = fs.readFileSync('./assets/cards/compact/spotify.svg', {encoding: 'utf-8'}).toString()
+            let logo64 = fs.readFileSync('./assets/logos/spotify.txt', { encoding: 'utf-8' }).toString()
+
             temp = temp.replace('[banner]', banner64);
             
             temp = temp.replace('[about]', about);
@@ -259,7 +264,7 @@ const api_xomp = () => {
             
             temp = temp.replace('[large-image]', large64);
             temp = temp.replace('[small-image]', small64);
-            // temp = temp.replace('[spotify-logo]', spotify64);
+            temp = temp.replace('[logo]', logo64);
             
             temp = temp.replace('[button-text]', "Play on Spotify");
 
@@ -288,25 +293,25 @@ const api_xomp = () => {
             small64 = await imageToBase64(rawsmall)
             small64 = `data:image/png;base64,${small64}`
 
-            temp = fs.readFileSync('./assets/cards/compact/vs-code.svg', {encoding: 'utf-8'}).toString()
             temp = temp.replace('[banner]', banner64);
             
             temp = temp.replace('[about]', about);
-            temp = temp.replace('[name]', name || 'Coding');
-            temp = temp.replace('[details]', details || 'No details');
-            temp = temp.replace('[state]', state || 'No description');
             temp = temp.replace('[type]', type || 'Coding');
+            temp = temp.replace('[name]', activity.name || 'Coding');
+            temp = temp.replace('[details]', name || 'Coding');
+            temp = temp.replace('[state]', details || 'No details');
+            temp = temp.replace('[on]', state || 'No description');
             temp = temp.replace('[time]', timeString + ' elapsed' || '0:00 elapsed');
 
             temp = temp.replace('[large-image]', large64);
             temp = temp.replace('[small-image]', small64);
+            temp = temp.replace('[logo]', small64);
 
             temp = temp.replace('[button-text]', activity.buttons[0] || 'Working on Code');
             temp = temp.replace('[hex]', hex);
 
         } else if (activity.type === 'PLAYING') {
             let time, elapsed, hours, minutes, seconds, timeString
-                
             try {
                 time = activity.timestamps.start;
                 elapsed = Date.now() - time;
@@ -318,9 +323,7 @@ const api_xomp = () => {
                 timeString = '0:0:0'
             }
 
-            if (!activity.assets && req.query.large_image) {
-                raw = req.query.large_image
-            } else if (!activity.assets && !req.query.large_image) {
+            if (!activity.assets && req.query.large_image == undefined) {
                 raw = pfp64
             } else if (activity.assets) {
                 if (activity.assets.smallImage !== null) {
@@ -346,23 +349,25 @@ const api_xomp = () => {
                     }
                 }
             } else {
-                raw = pfp64
+                raw = req.query.large_image
             }
 
-            temp = fs.readFileSync('./assets/cards/compact/playing.svg', {encoding: 'utf-8'}).toString()
             temp = temp.replace('[banner]', banner64);
             temp = temp.replace('[pfp]', pfp64);
             
             temp = temp.replace('[about]', about);
-            temp = temp.replace('[name]', name || 'Gaming');
-            temp = temp.replace('[details]', details);
-            temp = temp.replace('[state]', state);
             temp = temp.replace('[type]', type || 'Playing');
+            temp = temp.replace('[name]', name || 'Gaming');
+            temp = temp.replace('[details]',name);
+            temp = temp.replace('[state]', details);
+            temp = temp.replace('[on]', state);
             temp = temp.replace('[time]', timeString + ' elapsed' || '0:00 elapsed');
 
             temp = temp.replace('[button-text]', activity.buttons[0] || 'Playing');
 
             temp = temp.replace('[large-image]', raw);
+            temp = temp.replace('[small-image]', small64);
+            temp = temp.replace('[logo]', small64);
             temp = temp.replace('[hex]', hex);
         }
 
