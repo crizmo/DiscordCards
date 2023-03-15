@@ -171,7 +171,7 @@ const api_xomp = () => {
 
                 temp = temp.replace('[large-image]', large64);
                 temp = temp.replace('[small-image]', small64);
-                temp = temp.replace('[logo]', pfp64);
+                // temp = temp.replace('[logo]', pfp64);
 
                 temp = temp.replace('[button-text]', "Chilling");
 
@@ -367,7 +367,7 @@ const api_xomp = () => {
 
             temp = temp.replace('[large-image]', raw);
             temp = temp.replace('[small-image]', small64);
-            temp = temp.replace('[logo]', small64);
+            // temp = temp.replace('[logo]', small64);
             temp = temp.replace('[hex]', hex);
         }
 
