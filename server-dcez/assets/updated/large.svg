@@ -1,0 +1,121 @@
+<svg width="292" height="421" viewBox="0 0 292 421" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<rect width="292" height="421" rx="10" fill="#232428"/>
+<path d="M0 10C0 4.47715 4.47715 0 10 0H282C287.523 0 292 4.47715 292 10V120H0V10Z" fill="#[hex]"/>
+<g filter="url(#filter0_i_624_3)">
+<path d="M0 10C0 4.47715 4.47715 0 10 0H282C287.523 0 292 4.47715 292 10V120H0V10Z" fill="url(#pattern0)"/>
+</g>
+<circle cx="58.5" cy="111.5" r="42" stroke="#18191C" stroke-width="5"/>
+<g filter="url(#filter1_di_624_3)">
+<rect x="19" y="72" width="79" height="79" rx="39.5" fill="url(#pattern1)" shape-rendering="crispEdges"/>
+</g>
+<rect x="11" y="172" width="269" height="235" rx="5" fill="#111214"/>
+<g filter="url(#filter2_d_624_3)">
+<line x1="22.498" y1="210.498" x2="267.498" y2="210.502" stroke="#5B5B5B" stroke-linecap="round"/>
+</g>
+<text fill="url(#paint0_diamond_624_3)" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="16" font-weight="500" letter-spacing="0.075em"><tspan x="23" y="200.318">[username]</tspan></text>
+<text fill="white" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="11" font-weight="800" letter-spacing="0.065em"><tspan x="23" y="228.5">ABOUT ME</tspan></text>
+<text fill="#CBCBCB" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="12" letter-spacing="-0.005em"><tspan x="23" y="251.864">[about]</tspan></text>
+<rect x="238.703" y="367.423" width="29.8901" height="30.1538" rx="5" fill="#4E545B"/>
+<g filter="url(#filter3_i_624_3)">
+<rect x="240.703" y="369.423" width="29.8901" height="30.1538" rx="5" fill="url(#pattern2)"/>
+</g>
+<g filter="url(#filter4_i_624_3)">
+<rect x="22" y="290.731" width="56.044" height="56.5384" rx="10" fill="url(#pattern3)"/>
+</g>
+<rect x="58.415" y="331.442" width="20.1813" height="20.3461" rx="10.0907" fill="url(#pattern4)" stroke="#18191C" stroke-width="1.5"/>
+<text fill="#D0D1D1" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="10" font-weight="300" letter-spacing="0.005em"><tspan x="83.2637" y="333.156">[on]</tspan></text>
+<text fill="#BCBCBC" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="8.5" font-weight="300" letter-spacing="0.005em"><tspan x="83.4502" y="347.822">[time]</tspan></text>
+<text fill="#D0D1D1" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="10" font-weight="300" letter-spacing="0.005em"><tspan x="83.2637" y="320.156">[state]</tspan></text>
+<text fill="#DCDDDE" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="13" font-weight="500" letter-spacing="0.1em"><tspan x="83.2637" y="305.246">[name]</tspan></text>
+<text fill="#B5B7B9" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="11" font-weight="500" letter-spacing="0.045em"><tspan x="23.7363" y="280.5">[type]</tspan></text>
+<path d="M22 372C22 369.239 24.2386 367 27 367H225C227.761 367 230 369.239 230 372V394C230 396.761 227.761 399 225 399H27C24.2386 399 22 396.761 22 394L22 372Z" fill="#383C41"/>
+<text transform="translate(52.0674 374.903)" fill="white" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="12" font-weight="500" letter-spacing="0em"><tspan x="33.8232" y="11.8636">[button-text]</tspan></text>
+<g filter="url(#filter5_i_624_3)">
+<rect x="242" y="280" width="20.9962" height="21.6731" rx="10.4981" fill="url(#pattern5)" style="mix-blend-mode:lighten"/>
+</g>
+<defs>
+<filter id="filter5_i_624_3" x="242" y="278" width="22.9961" height="23.6731" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dx="2" dy="-2"/>
+<feGaussianBlur stdDeviation="2"/>
+<feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+<feColorMatrix type="matrix" values="0 1 0 1 325234"/>
+<feBlend mode="normal" in2="shape" result="effect1_innerShadow_624_3"/>
+</filter>
+<filter id="filter0_i_624_3" x="-4" y="-4" width="296" height="124" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dx="-4" dy="-4"/>
+<feGaussianBlur stdDeviation="15"/>
+<feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.7 0"/>
+<feBlend mode="normal" in2="shape" result="effect1_innerShadow_624_3"/>
+</filter>
+<pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+<use xlink:href="#image0_624_3" transform="matrix(0.000260417 0 0 0.000633681 0 -0.184375)"/>
+</pattern>
+<filter id="filter1_di_624_3" x="15" y="72" width="87" height="87" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="4"/>
+<feGaussianBlur stdDeviation="2"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_624_3"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_624_3" result="shape"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dx="-4" dy="4"/>
+<feGaussianBlur stdDeviation="5"/>
+<feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.4 0"/>
+<feBlend mode="normal" in2="shape" result="effect2_innerShadow_624_3"/>
+</filter>
+<pattern id="pattern1" patternContentUnits="objectBoundingBox" width="1" height="1">
+<use xlink:href="#image1_624_3" transform="scale(0.00217391)"/>
+</pattern>
+<filter id="filter2_d_624_3" x="18.998" y="210.502" width="252" height="7.99585" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="-0.5"/>
+<feGaussianBlur stdDeviation="1.5"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0.375 0 0 0 0 0.375 0 0 0 0 0.375 0 0 0 0.2 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_624_3"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_624_3" result="shape"/>
+</filter>
+<pattern id="pattern2" patternContentUnits="objectBoundingBox" width="1" height="1">
+<use xlink:href="#image2_624_3" transform="matrix(0.0315257 0 0 0.03125 -0.00441148 0)"/>
+</pattern>
+<filter id="filter4_i_624_3" x="19" y="286.731" width="60.0439" height="60.5385" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dx="4" dy="-4"/>
+<feGaussianBlur stdDeviation="5"/>
+<feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0"/>
+<feBlend mode="normal" in2="shape" result="effect1_innerShadow_624_3"/>
+</filter>
+<pattern id="pattern3" patternContentUnits="objectBoundingBox" width="1" height="1">
+<use xlink:href="#image3_624_3" transform="matrix(0.000985179 0 0 0.000976562 -0.00441147 0)"/>
+</pattern>
+<pattern id="pattern4" patternContentUnits="objectBoundingBox" width="1" height="1">
+<use xlink:href="#image4_624_3" transform="matrix(0.00219309 0 0 0.00217391 -0.0044115 0)"/>
+</pattern>
+<pattern id="pattern5" patternContentUnits="objectBoundingBox" width="1" height="1">
+<use xlink:href="#image5_624_3" transform="matrix(0.0116279 0 0 0.0115262 0 -0.00715335)"/>
+</pattern>
+<radialGradient id="paint0_diamond_624_3" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(6.24999 196.559) rotate(7.36626) scale(177.087 549.848)">
+<stop stop-color="white"/>
+<stop offset="1" stop-color="white" stop-opacity="0.76"/>
+</radialGradient>
+<image id="image0_624_3" width="3840" height="2160" xlink:href="[banner]"/>
+<image id="image1_624_3" width="460" height="460" xlink:href="[pfp]"/>
+<svg id="image2_624_3" fill="#FFF" width="28" height="28"  viewBox="0 0 24 24"><path fill="white" d="[small-btn]"></path></svg>
+<image id="image3_624_3" width="1024" height="1024" xlink:href="[large-image]"/>
+<image id="image4_624_3" width="460" height="460" xlink:href="[small-image]"/>
+<image id="image5_624_3" fill="#1DB954" width="86" height="88" xlink:href="[side-image]"/>
+</defs>
+</svg>
