@@ -10,7 +10,7 @@
     ·
     <a href="https://github.com/crizmo/dcez-client">Client Side</a>
     ·
-    <a href="https://discord-cards.netlify.app/">Website</a>
+    <a href="https://discord-cards.vercel.app/">Website</a>
   </p>
 </div>
 

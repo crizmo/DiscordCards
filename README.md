@@ -10,7 +10,7 @@
     ·
     <a href="https://github.com/crizmo/dcez-client">Client Side</a>
     ·
-    <a href="https://discord-cards.netlify.app/">Website</a>
+    <a href="https://discord-cards.vercel.app/">Website</a>
   </p>
   <img src="https://discord-cards.kurizu.repl.co/api/compact/784141856426033233?about=Exploring&banner=https://staticg.sportskeeda.com/editor/2022/10/72d24-16655552144135-1920.jpg" />
 </div>
@@ -64,7 +64,7 @@ The queries are:
   large_image, small_image , side_image are basically the activity images.
 
 <a href="https://discord-cards.kurizu.repl.co/">API</a>
-<a href="https://discord-cards.netlify.app/">Website</a>
+<a href="https://discord-cards.vercel.app/">Website</a>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
