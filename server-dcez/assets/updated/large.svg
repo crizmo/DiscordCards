@@ -6,7 +6,7 @@
 </g>
 <circle cx="58.5" cy="111.5" r="42" stroke="#18191C" stroke-width="5"/>
 <g filter="url(#filter1_di_624_3)">
-<rect x="19" y="72" width="79" height="79" rx="39.5" fill="url(#pattern1)" shape-rendering="crispEdges"/>
+<rect x="19" y="72" width="79" height="79" rx="39.5" fill="url(#pattern1)" shape-rendering="smooth"/>
 </g>
 <rect x="11" y="172" width="269" height="235" rx="5" fill="#111214"/>
 <g filter="url(#filter2_d_624_3)">
