@@ -271,7 +271,6 @@ const api_xomp = () => {
             temp = temp.replace('[hex]', hex);
 
         } else if (activity.name === 'Code' || activity.name === 'Visual Studio Code' ) {
-
             let time = activity.timestamps.start;
             let elapsed = Date.now() - time;
             let hours = Math.floor(elapsed / 3600000);
@@ -279,16 +278,25 @@ const api_xomp = () => {
             let seconds = Math.floor((elapsed % 60000) / 1000);
             let timeString = `${hours}:${minutes}:${seconds}`;
             
-            const largeimage = activity.assets.largeImage
-            let largelink = largeimage.split('raw')[1]
-            const rawlarge = 'https://raw' + largelink
+            let largeimage , smallimage, rawlarge, rawsmall, large64, small64;
 
-            large64 = await imageToBase64(rawlarge)
-            large64 = `data:image/png;base64,${large64}`
+            if(activity.assets != null) {
+                largeimage = activity.assets.largeImage
+                let largelink = largeimage.split('raw')[1]
+                rawlarge = 'https://raw' + largelink
+                large64 = await imageToBase64(rawlarge)
+                large64 = `data:image/png;base64,${large64}`
+            } else {
+                large64 = pfp64
+            }
 
-            const smallimage = activity.assets.smallImage
-            let smallink = smallimage.split('raw')[1]
-            const rawsmall = 'https://raw' + smallink
+            if(activity.assets != null) {
+                smallimage = activity.assets.smallImage
+                let smallink = smallimage.split('raw')[1]
+                rawsmall = 'https://raw' + smallink
+            } else {
+                rawsmall = 'https://cdn.discordapp.com/attachments/988140784807202886/1086221722807713812/vs_large.png'
+            }
 
             small64 = await imageToBase64(rawsmall)
             small64 = `data:image/png;base64,${small64}`
