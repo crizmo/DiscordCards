@@ -26,23 +26,6 @@ app.use('/api/card', api)
 const api_xomp = require('./lib/api_xomp')
 app.use('/api/compact', api_xomp)
 
-let requests = 0;
-fs.readFile('./lib/requests.json', 'utf8', (err, data) => {
-    if (err) {
-        console.log(err);
-    } else {
-        const requestsData = JSON.parse(data);
-        if (requestsData.requests) {
-            requests = requestsData.requests;
-        } else {
-            requests = 0;
-        }
-    }
-});
-app.use('/requests', (req, res) => {
-    res.send("Requests: " + requests);
-})
-
 client.on('ready', () => {
     console.log('Status is ready!');
     client.user.setStatus('idle');
