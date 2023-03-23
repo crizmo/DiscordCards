@@ -32,7 +32,6 @@ client.on('ready', () => {
     let index = 0;
     setInterval(() => {
       const arrayOfStatus = [
-        `${requests} requests`,
         `${client.users.cache.size} users`
       ];
       if (index === arrayOfStatus.length) index = 0;
