@@ -1,6 +1,5 @@
 const express = require('express');
 const app = express();
-const fs = require('fs');
 
 const { Client } = require('discord.js');
 const Discord = require('discord.js');
@@ -86,3 +85,5 @@ function ratelimit() {
 ratelimit();
 
 client.login(process.env.DISCORD_TOKEN);
+
+module.exports = app;
