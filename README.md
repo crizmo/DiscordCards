@@ -12,7 +12,7 @@
     ·
     <a href="https://discord-cards.vercel.app/">Website</a>
   </p>
-  <img src="https://discord-cards.kurizu.repl.co/api/compact/784141856426033233?about=Exploring&banner=https://staticg.sportskeeda.com/editor/2022/10/72d24-16655552144135-1920.jpg" />
+  <img src="https://discord-cards.onrender.com/api/compact/784141856426033233?about=Exploring&banner=https://staticg.sportskeeda.com/editor/2022/10/72d24-16655552144135-1920.jpg" />
 </div>
 
 <details>
