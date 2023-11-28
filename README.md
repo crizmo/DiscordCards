@@ -1,3 +1,5 @@
+<h3>Note: If you are already using discord cards else ignore this note</h3><p>Update your discord cards url from https://discord-cards.kurizu.repl.co/ to https://discord-cards.onrender.com/</p>
+
 <div align="center">
   <h3 align="center">Discord Cards</h3>
 
