@@ -2,3 +2,4 @@
 	path = dcez-client
 	url = https://github.com/crizmo/dcez-client
 	ignore = dirty
+	branch = master
