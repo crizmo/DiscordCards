@@ -83,16 +83,12 @@ function ratelimit() {
 
 ratelimit();
 
+client.login(process.env.DISCORD_TOKEN)
+server.listen(process.env.PORT || serverPort, () => console.log(`Listening on port ${process.env.PORT || serverPort}`))
+
 // client.login(process.env.DISCORD_TOKEN).then(() => {
 //     console.log('Logged in!');
+//     server.listen(process.env.PORT || serverPort, () => console.log(`Listening on port ${process.env.PORT || serverPort}`))
 // }).catch((err) => {
 //     console.log(err);
 // })
-// server.listen(process.env.PORT || serverPort, () => console.log(`Listening on port ${process.env.PORT || serverPort}`))
-
-client.login(process.env.DISCORD_TOKEN).then(() => {
-    console.log('Logged in!');
-    server.listen(process.env.PORT || serverPort, () => console.log(`Listening on port ${process.env.PORT || serverPort}`))
-}).catch((err) => {
-    console.log(err);
-})
