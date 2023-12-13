@@ -61,27 +61,27 @@ process.on('uncaughtExceptionMonitor', async (err, origin) => {
 // console.log(`http://localhost:3001/api/card/784141856426033233`)
 // console.log(`http://localhost:3001/api/compact/784141856426033233`)
 
-// client.on("rateLimit", data => {
-//     process.kill(1)
-// })
+client.on("rateLimit", data => {
+    process.kill(1)
+})
 
-// client.on('rateLimited', () => {
-//     process.kill(1);
-// });
+client.on('rateLimited', () => {
+    process.kill(1);
+});
 
-// const { get } = require("https");
+const { get } = require("https");
 
-// function ratelimit() {
-//     setInterval(() => {
-//         get(`https://discord.com/api/v10/gateway`, ({ statusCode }) => {
-//             if (statusCode == 429) {
-//                 process.kill(1);
-//             }
-//         });
-//     }, 60 * 5 * 1000);
-// }
+function ratelimit() {
+    setInterval(() => {
+        get(`https://discord.com/api/v10/gateway`, ({ statusCode }) => {
+            if (statusCode == 429) {
+                process.kill(1);
+            }
+        });
+    }, 60 * 5 * 1000);
+}
 
-// ratelimit();
+ratelimit();
 
 // client.login(process.env.DISCORD_TOKEN)
 // server.listen(process.env.PORT || serverPort, () => console.log(`Listening on port ${process.env.PORT || serverPort}`))
