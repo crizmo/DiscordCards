@@ -61,34 +61,34 @@ process.on('uncaughtExceptionMonitor', async (err, origin) => {
 // console.log(`http://localhost:3001/api/card/784141856426033233`)
 // console.log(`http://localhost:3001/api/compact/784141856426033233`)
 
-client.on("rateLimit", data => {
-    process.kill(1)
-})
-
-client.on('rateLimited', () => {
-    process.kill(1);
-});
-
-const { get } = require("https");
-
-function ratelimit() {
-    setInterval(() => {
-        get(`https://discord.com/api/v10/gateway`, ({ statusCode }) => {
-            if (statusCode == 429) {
-                process.kill(1);
-            }
-        });
-    }, 60 * 5 * 1000);
-}
-
-ratelimit();
-
-client.login(process.env.DISCORD_TOKEN)
-server.listen(process.env.PORT || serverPort, () => console.log(`Listening on port ${process.env.PORT || serverPort}`))
-
-// client.login(process.env.DISCORD_TOKEN).then(() => {
-//     console.log('Logged in!');
-//     server.listen(process.env.PORT || serverPort, () => console.log(`Listening on port ${process.env.PORT || serverPort}`))
-// }).catch((err) => {
-//     console.log(err);
+// client.on("rateLimit", data => {
+//     process.kill(1)
 // })
+
+// client.on('rateLimited', () => {
+//     process.kill(1);
+// });
+
+// const { get } = require("https");
+
+// function ratelimit() {
+//     setInterval(() => {
+//         get(`https://discord.com/api/v10/gateway`, ({ statusCode }) => {
+//             if (statusCode == 429) {
+//                 process.kill(1);
+//             }
+//         });
+//     }, 60 * 5 * 1000);
+// }
+
+// ratelimit();
+
+// client.login(process.env.DISCORD_TOKEN)
+// server.listen(process.env.PORT || serverPort, () => console.log(`Listening on port ${process.env.PORT || serverPort}`))
+
+client.login(process.env.DISCORD_TOKEN).then(() => {
+    console.log('Logged in!');
+    server.listen(process.env.PORT || serverPort, () => console.log(`Listening on port ${process.env.PORT || serverPort}`))
+}).catch((err) => {
+    console.log(err);
+})
