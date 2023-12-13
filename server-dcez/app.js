@@ -58,7 +58,6 @@ process.on('uncaughtExceptionMonitor', async (err, origin) => {
     client.channels.cache.get('988140784807202886').send({ embeds: [embed] })
 });
 
-server.listen(process.env.PORT || serverPort, () => console.log(`Listening on port ${process.env.PORT || serverPort}`))
 // console.log(`http://localhost:3001/api/card/784141856426033233`)
 // console.log(`http://localhost:3001/api/compact/784141856426033233`)
 
@@ -84,4 +83,16 @@ function ratelimit() {
 
 ratelimit();
 
-client.login(process.env.DISCORD_TOKEN);
+// client.login(process.env.DISCORD_TOKEN).then(() => {
+//     console.log('Logged in!');
+// }).catch((err) => {
+//     console.log(err);
+// })
+// server.listen(process.env.PORT || serverPort, () => console.log(`Listening on port ${process.env.PORT || serverPort}`))
+
+client.login(process.env.DISCORD_TOKEN).then(() => {
+    console.log('Logged in!');
+    server.listen(process.env.PORT || serverPort, () => console.log(`Listening on port ${process.env.PORT || serverPort}`))
+}).catch((err) => {
+    console.log(err);
+})
