@@ -1,4 +1,4 @@
-<h3>Note: If you are already using discord cards else ignore this note</h3><p>Update your discord cards url from https://discord-cards.kurizu.repl.co/ to https://discord-cards.onrender.com/</p>
+<h3>Note: <h3><p>Should i rewrite this api - fix bugs and add more stuff ?!</p>
 
 <div align="center">
   <h3 align="center">Discord Cards</h3>
