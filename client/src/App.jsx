@@ -28,7 +28,7 @@ const App = () => {
     const largeimageurl = document.getElementById('large-image-url').value;
     const smallimageurl = document.getElementById('small-image-url').value;
 
-    const baseUrl = `http://localhost:3001/api`;
+    const baseUrl = `https://discord-cards.onrender.com/api`;
     setLargeUrl(`${baseUrl}/card/${userid}?about=${aboutme}&banner=${bannerurl}&large_image=${largeimageurl}&small_image=${smallimageurl}&hex=${hexColor.substring(1)}`);
     setSmallUrl(`${baseUrl}/compact/${userid}?about=${aboutme}&banner=${bannerurl}&large_image=${largeimageurl}&small_image=${smallimageurl}&hex=${hexColor.substring(1)}`);
   };
