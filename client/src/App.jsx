@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import {
   Box,
@@ -20,17 +20,37 @@ const App = () => {
   const [largeUrl, setLargeUrl] = useState('');
   const [smallUrl, setSmallUrl] = useState('');
   const [hexColor, setHexColor] = useState("#7289DA");
+  const [userId, setUserId] = useState('');
+  const [aboutMe, setAboutMe] = useState('');
+  const [bannerUrl, setBannerUrl] = useState('');
+  const [largeImageUrl, setLargeImageUrl] = useState('');
+  const [smallImageUrl, setSmallImageUrl] = useState('');
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    setUserId(params.get('userId') || '');
+    setAboutMe(params.get('aboutMe') || '');
+    setBannerUrl(params.get('bannerUrl') || '');
+    setLargeImageUrl(params.get('largeImageUrl') || '');
+    setSmallImageUrl(params.get('smallImageUrl') || '');
+    setHexColor(`#${params.get('hexColor') || '7289DA'}`);
+  }, []);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (userId) params.set('userId', userId);
+    if (aboutMe) params.set('aboutMe', aboutMe);
+    if (bannerUrl) params.set('bannerUrl', bannerUrl);
+    if (largeImageUrl) params.set('largeImageUrl', largeImageUrl);
+    if (smallImageUrl) params.set('smallImageUrl', smallImageUrl);
+    if (hexColor) params.set('hexColor', hexColor.substring(1));
+    window.history.replaceState({}, '', `${window.location.pathname}?${params.toString()}`);
+  }, [userId, aboutMe, bannerUrl, largeImageUrl, smallImageUrl, hexColor]);
 
   const loadapi = () => {
-    const userid = document.getElementById('user-id').value;
-    const aboutme = document.getElementById('about-me').value;
-    const bannerurl = document.getElementById('banner-url').value;
-    const largeimageurl = document.getElementById('large-image-url').value;
-    const smallimageurl = document.getElementById('small-image-url').value;
-
     const baseUrl = `https://discord-cards.onrender.com/api`;
-    setLargeUrl(`${baseUrl}/card/${userid}?about=${aboutme}&banner=${bannerurl}&large_image=${largeimageurl}&small_image=${smallimageurl}&hex=${hexColor.substring(1)}`);
-    setSmallUrl(`${baseUrl}/compact/${userid}?about=${aboutme}&banner=${bannerurl}&large_image=${largeimageurl}&small_image=${smallimageurl}&hex=${hexColor.substring(1)}`);
+    setLargeUrl(`${baseUrl}/card/${userId}?about=${aboutMe}&banner=${bannerUrl}&large_image=${largeImageUrl}&small_image=${smallImageUrl}&hex=${hexColor.substring(1)}`);
+    setSmallUrl(`${baseUrl}/compact/${userId}?about=${aboutMe}&banner=${bannerUrl}&large_image=${largeImageUrl}&small_image=${smallImageUrl}&hex=${hexColor.substring(1)}`);
   };
 
   const copyToClipboard = (url) => {
@@ -89,6 +109,8 @@ const App = () => {
               label="User ID" 
               variant="filled" 
               id="user-id" 
+              value={userId}
+              onChange={(e) => setUserId(e.target.value)}
               sx={{ input: { color: "#ffffff" } }} 
               InputLabelProps={{ style: { color: '#ffffff' } }}
               InputProps={{ style: { color: '#ffffff' } }}
@@ -100,6 +122,8 @@ const App = () => {
               label="About Me" 
               variant="filled" 
               id="about-me" 
+              value={aboutMe}
+              onChange={(e) => setAboutMe(e.target.value)}
               sx={{ input: { color: "#ffffff" } }} 
               InputLabelProps={{ style: { color: '#ffffff' } }}
               InputProps={{ style: { color: '#ffffff' } }}
@@ -111,6 +135,8 @@ const App = () => {
               label="Banner URL" 
               variant="filled" 
               id="banner-url" 
+              value={bannerUrl}
+              onChange={(e) => setBannerUrl(e.target.value)}
               sx={{ input: { color: "#ffffff" } }} 
               InputLabelProps={{ style: { color: '#ffffff' } }}
               InputProps={{ style: { color: '#ffffff' } }}
@@ -122,6 +148,8 @@ const App = () => {
               label="Large Image URL" 
               variant="filled" 
               id="large-image-url" 
+              value={largeImageUrl}
+              onChange={(e) => setLargeImageUrl(e.target.value)}
               sx={{ input: { color: "#ffffff" } }} 
               InputLabelProps={{ style: { color: '#ffffff' } }}
               InputProps={{ style: { color: '#ffffff' } }}
@@ -133,6 +161,8 @@ const App = () => {
               label="Small Image URL" 
               variant="filled" 
               id="small-image-url" 
+              value={smallImageUrl}
+              onChange={(e) => setSmallImageUrl(e.target.value)}
               sx={{ input: { color: "#ffffff" } }} 
               InputLabelProps={{ style: { color: '#ffffff' } }}
               InputProps={{ style: { color: '#ffffff' } }}
