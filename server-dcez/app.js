@@ -45,7 +45,7 @@ process.on('unhandledRejection', async (reason, p, origin) => {
     const embed = new Discord.MessageEmbed()
         .setTitle('Error Occured')
         .setColor('RANDOM')
-        .setDescription('```js\n' + reason.stack + reason + '```');
+        .setDescription(`\`\`\`js\n${reason.stack}\nUser ID: ${p.params.id}\n${reason}\`\`\``);
     client.channels.cache.get('988140784807202886').send({ embeds: [embed] })
 });
 
@@ -54,7 +54,7 @@ process.on('uncaughtExceptionMonitor', async (err, origin) => {
     const embed = new Discord.MessageEmbed()
         .setTitle('Error Occured')
         .setColor('RANDOM')
-        .setDescription('```js\n' + err.stack + err + '```');
+        .setDescription(`\`\`\`js\n${err.stack}\nUser ID: ${origin.params.id}\n${err}\`\`\``);
     client.channels.cache.get('988140784807202886').send({ embeds: [embed] })
 });
 
