@@ -1,4 +1,4 @@
-<h3>Note: <h3><p>Should i rewrite this api - fix bugs and add more stuff ?!</p>
+<h3>Note: <h3><p>I'm rewriting this API — let me know if you spot any bugs or have suggestions for improvement!</p>
 
 <div align="center">
   <h3 align="center">Discord Cards</h3>
