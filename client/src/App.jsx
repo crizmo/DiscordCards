@@ -47,6 +47,15 @@ const App = () => {
     window.history.replaceState({}, '', `${window.location.pathname}?${params.toString()}`);
   }, [userId, aboutMe, bannerUrl, largeImageUrl, smallImageUrl, hexColor]);
 
+  useEffect(() => {
+    if (largeUrl) {
+      const metaImage = document.getElementById('meta-image');
+      if (metaImage) {
+        metaImage.setAttribute('content', largeUrl);
+      }
+    }
+  }, [largeUrl]);
+
   const loadapi = () => {
     const baseUrl = `https://discord-cards.onrender.com/api`;
     setLargeUrl(`${baseUrl}/card/${userId}?about=${aboutMe}&banner=${bannerUrl}&large_image=${largeImageUrl}&small_image=${smallImageUrl}&hex=${hexColor.substring(1)}`);
