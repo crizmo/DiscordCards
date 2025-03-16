@@ -79,6 +79,8 @@ const api = () => {
             return handleCodeActivity(res, temp, activity, pfp64, banner64, about, details, state, type, hex, smallbtn64, username);
         } else if (activity.type === 'PLAYING') {
             return handlePlayingActivity(res, temp, activity, pfp64, banner64, about, details, state, type, hex, smallbtn64, username);
+        } else if (activity.type === 'CUSTOM') {
+            return noActivity(res, pfp64, banner64, about, hex, smallbtn64, username);
         }
 
         res.writeHead(200, { 'Content-Type': 'image/svg+xml' });

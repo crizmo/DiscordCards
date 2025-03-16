@@ -77,6 +77,8 @@ const api_xomp = () => {
             return handleCodeActivity(res, temp, activity, pfp64, banner64, about, details, state, type, hex);
         } else if (activity.type === 'PLAYING') {
             return handlePlayingActivity(res, temp, activity, pfp64, banner64, about, details, state, type, hex);
+        } else if (activity.type === 'CUSTOM') {
+            return noActivity(res, pfp64, banner64, about, hex);
         }
 
         res.writeHead(200, { 'Content-Type': 'image/svg+xml' });
@@ -96,6 +98,7 @@ const noActivity = (res, pfp64, banner64, about, hex) => {
         .replace('[time]', ' ')
         .replace('[large-image]', pfp64)
         .replace('[small-image]', pfp64)
+        .replace('[logo]', pfp64)
         .replace('[button-text]', "Chilling")
         .replace('[hex]', hex);
 
