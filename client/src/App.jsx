@@ -49,6 +49,7 @@ const App = () => {
 
   const loadapi = () => {
     const baseUrl = `https://discord-cards.onrender.com/api`;
+    // const baseUrl = `http://localhost:3001/api`;
     setLargeUrl(`${baseUrl}/card/${userId}?about=${aboutMe}&banner=${bannerUrl}&large_image=${largeImageUrl}&small_image=${smallImageUrl}&hex=${hexColor.substring(1)}`);
     setSmallUrl(`${baseUrl}/compact/${userId}?about=${aboutMe}&banner=${bannerUrl}&large_image=${largeImageUrl}&small_image=${smallImageUrl}&hex=${hexColor.substring(1)}`);
   };
@@ -93,6 +94,7 @@ const App = () => {
           <img src="https://cdn3.iconfinder.com/data/icons/inficons/512/github.png" alt="GitHub" style={{ width: "30px", height: "30px", borderRadius: "20%" }} />
         </IconButton>
       </Box>
+      
       {/* Input Form */}
       <Paper sx={{
         width: "80%",
@@ -103,67 +105,91 @@ const App = () => {
         boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.3)"
       }}>
         <Grid container spacing={2}>
+          {/* Discord ID Instructions */}
+          <Grid item xs={12}>
+            <Paper sx={{
+              padding: "10px",
+              backgroundColor: "rgba(114, 137, 218, 0.1)",
+              borderLeft: "4px solid #7289DA",
+              borderRadius: "4px",
+              marginBottom: "10px"
+            }}>
+              <Typography variant="caption" sx={{ 
+                color: "#FFFFFF",
+                display: "block",
+                fontWeight: "500"
+              }}>
+                <span style={{ fontWeight: "bold" }}>📌 How to get your Discord ID:</span>
+                <ol style={{ margin: "5px 0 0 0", paddingLeft: "20px" }}>
+                  <li>Open Discord Settings → Advanced</li>
+                  <li>Enable Developer Mode</li>
+                  <li>Right-click your username and select "Copy ID"</li>
+                </ol>
+              </Typography>
+            </Paper>
+          </Grid>
+          
           <Grid item xs={12} sm={6}>
-            <TextField 
-              fullWidth 
-              label="User ID" 
-              variant="filled" 
-              id="user-id" 
+            <TextField
+              fullWidth
+              label="User ID"
+              variant="filled"
+              id="user-id"
               value={userId}
               onChange={(e) => setUserId(e.target.value)}
-              sx={{ input: { color: "#ffffff" } }} 
+              sx={{ input: { color: "#ffffff" } }}
               InputLabelProps={{ style: { color: '#ffffff' } }}
               InputProps={{ style: { color: '#ffffff' } }}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <TextField 
-              fullWidth 
-              label="About Me" 
-              variant="filled" 
-              id="about-me" 
+            <TextField
+              fullWidth
+              label="About Me"
+              variant="filled"
+              id="about-me"
               value={aboutMe}
               onChange={(e) => setAboutMe(e.target.value)}
-              sx={{ input: { color: "#ffffff" } }} 
+              sx={{ input: { color: "#ffffff" } }}
               InputLabelProps={{ style: { color: '#ffffff' } }}
               InputProps={{ style: { color: '#ffffff' } }}
             />
           </Grid>
           <Grid item xs={12}>
-            <TextField 
-              fullWidth 
-              label="Banner URL" 
-              variant="filled" 
-              id="banner-url" 
+            <TextField
+              fullWidth
+              label="Banner URL"
+              variant="filled"
+              id="banner-url"
               value={bannerUrl}
               onChange={(e) => setBannerUrl(e.target.value)}
-              sx={{ input: { color: "#ffffff" } }} 
+              sx={{ input: { color: "#ffffff" } }}
               InputLabelProps={{ style: { color: '#ffffff' } }}
               InputProps={{ style: { color: '#ffffff' } }}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <TextField 
-              fullWidth 
-              label="Large Image URL" 
-              variant="filled" 
-              id="large-image-url" 
+            <TextField
+              fullWidth
+              label="Large Image URL"
+              variant="filled"
+              id="large-image-url"
               value={largeImageUrl}
               onChange={(e) => setLargeImageUrl(e.target.value)}
-              sx={{ input: { color: "#ffffff" } }} 
+              sx={{ input: { color: "#ffffff" } }}
               InputLabelProps={{ style: { color: '#ffffff' } }}
               InputProps={{ style: { color: '#ffffff' } }}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <TextField 
-              fullWidth 
-              label="Small Image URL" 
-              variant="filled" 
-              id="small-image-url" 
+            <TextField
+              fullWidth
+              label="Small Image URL"
+              variant="filled"
+              id="small-image-url"
               value={smallImageUrl}
               onChange={(e) => setSmallImageUrl(e.target.value)}
-              sx={{ input: { color: "#ffffff" } }} 
+              sx={{ input: { color: "#ffffff" } }}
               InputLabelProps={{ style: { color: '#ffffff' } }}
               InputProps={{ style: { color: '#ffffff' } }}
             />
@@ -229,6 +255,28 @@ const App = () => {
           )}
         </Grid>
       )}
+      
+      <Typography
+        variant="body2"
+        sx={{
+          marginTop: "20px",
+          color: "#B9BBBE",
+          textAlign: "center",
+          padding: "8px",
+          borderRadius: "5px",
+          backgroundColor: "rgba(44, 47, 51, 0.5)",
+          maxWidth: "80%"
+        }}
+      >
+        ⭐ If you like Discord Cards, please <a
+          href="https://github.com/crizmo/DiscordCards"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ color: "#7289DA", fontWeight: "bold" }}
+        >
+          star the GitHub repo
+        </a> to motivate me!
+      </Typography>
     </Box>
   );
 };
