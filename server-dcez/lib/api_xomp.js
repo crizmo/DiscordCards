@@ -37,7 +37,7 @@ const api_xomp = () => {
             banner = req.query.banner;
             about = (req.query.about || ' ').substring(0, 22);
             large_image = req.query.large_image || discord_avatar;
-            small_image = req.query.small_image || "https://static-00.iconduck.com/assets.00/discord-icon-256x256-9roejvqx.png";
+            small_image = req.query.small_image || "https://images.icon-icons.com/2108/PNG/512/discord_icon_130958.png";
             hex = req.query.hex || '4E545B';
 
             pfp64 = `data:image/png;base64,${await imageToBase64(discord_avatar)}`;
