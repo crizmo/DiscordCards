@@ -1,5 +1,3 @@
-<h3>Note: <h3><p>I'm rewriting this API — let me know if you spot any bugs or have suggestions for improvement!</p>
-
 <div align="center">
   <h3 align="center">Discord Cards</h3>
 
@@ -15,6 +13,11 @@
     <a href="https://discord-cards.vercel.app/">Website</a>
   </p>
   <img src="https://discord-cards.onrender.com/api/compact/784141856426033233?about=Exploring&banner=https://staticg.sportskeeda.com/editor/2022/10/72d24-16655552144135-1920.jpg" />
+  <p align="center">
+  <a href="https://ko-fi.com/kurizu" target="_blank">
+    <img src="https://ko-fi.com/img/githubbutton_sm.svg" alt="Support me on Ko-fi" />
+  </a>
+</p>
 </div>
 
 <details>
