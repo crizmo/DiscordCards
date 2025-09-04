@@ -277,6 +277,12 @@ const App = () => {
           star the GitHub repo
         </a> to motivate me!
       </Typography>
+      
+      <Box sx={{ marginTop: "20px", marginBottom: "20px" }}>
+        <a href="https://ko-fi.com/kurizu" target="_blank" rel="noopener noreferrer">
+          <img src="https://ko-fi.com/img/githubbutton_sm.svg" alt="Support me on Ko-fi" />
+        </a>
+      </Box>
     </Box>
   );
 };
