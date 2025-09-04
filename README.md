@@ -116,6 +116,6 @@ Distributed under the MIT License. See `LICENSE.md` for more information.
 <!-- CONTACT -->
 ## Contact
 
-You can contact me on Discord my username is `kurizu.taz`.
+You can contact me on Discord my username is `x_kurizu`.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
