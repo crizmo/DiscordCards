@@ -104,7 +104,7 @@ ratelimit();
 // client.login(process.env.DISCORD_TOKEN)
 // server.listen(process.env.PORT || serverPort, () => console.log(`Listening on port ${process.env.PORT || serverPort}`))
 
-function loginWithRetry(retries = 5, delay = 5000) {
+function loginWithRetry(retries = 5, delay = 10000) {
     client.login(process.env.DISCORD_TOKEN).then(() => {
         console.log('Logged in!');
     }).catch((err) => {
@@ -121,5 +121,5 @@ function loginWithRetry(retries = 5, delay = 5000) {
 
 server.listen(port, () => {
     console.log(`Listening on port ${port}`)
-    loginWithRetry();
+    setTimeout(() => loginWithRetry(), 10000); // Wait 10 seconds before login to avoid rate limits
 })
