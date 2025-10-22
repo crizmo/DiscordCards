@@ -6,6 +6,12 @@ const Discord = require('discord.js');
 const client = new Client({ intents: 32767 });
 require('dotenv').config();
 
+const args = process.argv.slice(2);
+let port = process.env.PORT || 3001;
+if (args.length > 0 && args[0] === '--port') {
+    port = parseInt(args[1]) || port;
+}
+
 const http = require('http')
 const cors = require('cors');
 app.use(cors())
@@ -86,9 +92,11 @@ ratelimit();
 // client.login(process.env.DISCORD_TOKEN)
 // server.listen(process.env.PORT || serverPort, () => console.log(`Listening on port ${process.env.PORT || serverPort}`))
 
-client.login(process.env.DISCORD_TOKEN).then(() => {
-    console.log('Logged in!');
-    server.listen(process.env.PORT || serverPort, () => console.log(`Listening on port ${process.env.PORT || serverPort}`))
-}).catch((err) => {
-    console.log(err);
+server.listen(port, () => {
+    console.log(`Listening on port ${port}`)
+    client.login(process.env.DISCORD_TOKEN).then(() => {
+        console.log('Logged in!');
+    }).catch((err) => {
+        console.log(err);
+    })
 })
