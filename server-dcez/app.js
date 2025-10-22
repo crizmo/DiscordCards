@@ -94,7 +94,6 @@ function ratelimit() {
         get(`https://discord.com/api/v10/gateway`, ({ statusCode }) => {
             if (statusCode == 429) {
                 console.log('Gateway rate limited');
-                process.exit(1);
             }
         });
     }, 60 * 5 * 1000);
