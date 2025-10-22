@@ -94,11 +94,22 @@ ratelimit();
 // client.login(process.env.DISCORD_TOKEN)
 // server.listen(process.env.PORT || serverPort, () => console.log(`Listening on port ${process.env.PORT || serverPort}`))
 
-server.listen(port, () => {
-    console.log(`Listening on port ${port}`)
+function loginWithRetry(retries = 5, delay = 5000) {
     client.login(process.env.DISCORD_TOKEN).then(() => {
         console.log('Logged in!');
     }).catch((err) => {
-        console.log(err);
-    })
+        console.log(`Login failed: ${err.message}`);
+        if (retries > 0) {
+            console.log(`Retrying login in ${delay / 1000} seconds... (${retries} retries left)`);
+            setTimeout(() => loginWithRetry(retries - 1, delay), delay);
+        } else {
+            console.log('Max retries reached. Exiting.');
+            process.exit(1);
+        }
+    });
+}
+
+server.listen(port, () => {
+    console.log(`Listening on port ${port}`)
+    loginWithRetry();
 })
