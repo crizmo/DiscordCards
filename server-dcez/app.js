@@ -7,8 +7,10 @@ const client = new Client({ intents: 32767 });
 require('dotenv').config();
 
 const args = process.argv.slice(2);
-let port = process.env.PORT || 3001;
-if (args.length > 0 && args[0] === '--port') {
+let port = 3001;
+if (process.env.PORT) {
+    port = parseInt(process.env.PORT);
+} else if (args.length > 0 && args[0] === '--port') {
     port = parseInt(args[1]) || port;
 }
 
