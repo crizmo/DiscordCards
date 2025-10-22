@@ -62,11 +62,11 @@ process.on('uncaughtExceptionMonitor', async (err, origin) => {
 // console.log(`http://localhost:3001/api/compact/784141856426033233`)
 
 client.on("rateLimit", data => {
-    process.kill(1)
+    process.exit(1)
 })
 
 client.on('rateLimited', () => {
-    process.kill(1);
+    process.exit(1);
 });
 
 const { get } = require("https");
@@ -75,7 +75,7 @@ function ratelimit() {
     setInterval(() => {
         get(`https://discord.com/api/v10/gateway`, ({ statusCode }) => {
             if (statusCode == 429) {
-                process.kill(1);
+                process.exit(1);
             }
         });
     }, 60 * 5 * 1000);

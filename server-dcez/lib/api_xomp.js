@@ -9,21 +9,27 @@ require('dotenv').config();
 const api_xomp = () => {
     router.get('/:id', async (req, res) => {
         let member;
-        try {
-            member = await client.guilds.cache.get("782646778347388959").members.fetch(req.params.id);
-            if (member.user.bot) {
-                return res.send("User is a bot");
+        let found = false;
+        for (const guild of client.guilds.cache.values()) {
+            try {
+                member = await guild.members.fetch(req.params.id);
+                if (!member.user.bot) {
+                    found = true;
+                    break;
+                }
+            } catch (e) {
+                // not in this guild
             }
-        } catch (e) {
+        }
+        if (!found) {
             return res.send(`
                 <html>
                 <head><title>User not found</title></head>
                 <body>
                 <h3>User not found</h3>
                 <p>User id: ${req.params.id}</p>
-                <p>If the user is not in the DrunkBetch server, please add them to the server and try again</p>
-                <a href="https://discord.gg/Ecy6WpEZsD">Join the DrunkBetch server</a>
-                <p>If the user is in the server, please try reloading the page</p>
+                <p>The user must be in a server with the bot to fetch their activity.</p>
+                <p>If the user is in a server with the bot, please try reloading the page</p>
                 </body>
                 </html>
             `);
