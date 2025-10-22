@@ -50,30 +50,40 @@ client.on('ready', () => {
 });
 
 process.on('unhandledRejection', async (reason, p, origin) => {
-    const embed = new Discord.MessageEmbed()
-        .setTitle('Error Occured')
-        .setColor('RANDOM')
-        .setDescription(`\`\`\`js\n${reason.stack}\nUser ID: ${p.params.id}\n${reason}\`\`\``);
-    client.channels.cache.get('988140784807202886').send({ embeds: [embed] })
+    try {
+        const embed = new Discord.MessageEmbed()
+            .setTitle('Error Occured')
+            .setColor('RANDOM')
+            .setDescription(`\`\`\`js\n${reason.stack}\nUser ID: ${p.params?.id || 'N/A'}\n${reason}\`\`\``);
+        await client.channels.cache.get('988140784807202886')?.send({ embeds: [embed] });
+    } catch (e) {
+        console.log('Failed to send error to channel:', e.message);
+    }
 });
 
 process.on('uncaughtExceptionMonitor', async (err, origin) => {
-    console.log('Unhandled Rejection at: err:', err, 'origin:', origin);
-    const embed = new Discord.MessageEmbed()
-        .setTitle('Error Occured')
-        .setColor('RANDOM')
-        .setDescription(`\`\`\`js\n${err.stack}\nUser ID: ${origin.params.id}\n${err}\`\`\``);
-    client.channels.cache.get('988140784807202886').send({ embeds: [embed] })
+    console.log('Unhandled Exception:', err);
+    try {
+        const embed = new Discord.MessageEmbed()
+            .setTitle('Error Occured')
+            .setColor('RANDOM')
+            .setDescription(`\`\`\`js\n${err.stack}\nUser ID: ${origin.params?.id || 'N/A'}\n${err}\`\`\``);
+        await client.channels.cache.get('988140784807202886')?.send({ embeds: [embed] });
+    } catch (e) {
+        console.log('Failed to send error to channel:', e.message);
+    }
 });
 
 // console.log(`http://localhost:3001/api/card/784141856426033233`)
 // console.log(`http://localhost:3001/api/compact/784141856426033233`)
 
 client.on("rateLimit", data => {
-    process.exit(1)
+    console.log('Rate limited:', data);
+    process.exit(1);
 })
 
 client.on('rateLimited', () => {
+    console.log('Rate limited');
     process.exit(1);
 });
 
@@ -83,6 +93,7 @@ function ratelimit() {
     setInterval(() => {
         get(`https://discord.com/api/v10/gateway`, ({ statusCode }) => {
             if (statusCode == 429) {
+                console.log('Gateway rate limited');
                 process.exit(1);
             }
         });
